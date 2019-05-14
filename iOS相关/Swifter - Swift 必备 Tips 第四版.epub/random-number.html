@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn" xml:lang="cn">
+  <head>
+    <title>随机数生成</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.3" name="generator"/>
+    <meta content="王巍 (onevcat)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_77">随机数生成</h1>
+        <div class="section">
+            <h1 id="随机数生成" class="calibre6">随机数生成</h1>
+<p class="calibre8">随机数生成一直是程序员要面临的大问题之一，在高中电脑课堂上我们就知道，由 CPU 时钟，进程和线程所构建出的世界中，是没有真正的随机的。在给定一个随机种子后，使用某些神奇的算法我们可以得到一组伪随机的序列。</p>
+<p class="calibre8"><code class="calibre14 pcalibre6 pcalibre5">arc4random</code> 是一个非常优秀的随机数算法，并且在 Swift 中也可以使用。它会返回给我们一个任意整数，我们想要在某个范围里的数的话，可以做模运算 (<code class="calibre14 pcalibre6 pcalibre5">%</code>) 取余数就行了。但是有个陷阱..</p>
+<blockquote class="calibre7">
+<h3 id="这是错误代码" class="calibre9">这是错误代码</h3>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-keyword">let</span> diceFaceCount = <span class="hljs-params">6</span>
+<span class="hljs-keyword">let</span> randomRoll = <span class="hljs-type">Int</span>(arc4random()) % diceFaceCount + <span class="hljs-params">1</span>
+<span class="hljs-params">print</span>(randomRoll)
+</code></pre>
+</blockquote>
+<p class="calibre8">其实在 iPhone 5s 上完全没有问题，但是在 iPhone 5 或者以下的设备中，<strong class="calibre11">有时候</strong> 程序会崩溃...请注意这个“有时候”..</p>
+<p class="calibre8">最让程序员郁闷的事情莫过于程序有时候会崩溃而有时候又能良好运行。还好这里的情况比较简单，聪明的我们马上就能指出原因。其实 Swift 的 <code class="calibre14 pcalibre6 pcalibre5">Int</code> 是和 CPU 架构有关的：在 32 位的 CPU 上 （也就是 iPhone 5 和前任们），实际上它是 <code class="calibre14 pcalibre6 pcalibre5">Int32</code>，而在 64 位 CPU (iPhone 5s 及以后的机型) 上是 <code class="calibre14 pcalibre6 pcalibre5">Int64</code>。<code class="calibre14 pcalibre6 pcalibre5">arc4random</code> 所返回的值不论在什么平台上都是一个 <code class="calibre14 pcalibre6 pcalibre5">UInt32</code>，于是在 32 位的平台上就有一半几率在进行 <code class="calibre14 pcalibre6 pcalibre5">Int</code> 转换时越界，时不时的崩溃也就不足为奇了。</p>
+<p class="calibre8">这种情况下，一种相对安全的做法是使用一个 <code class="calibre14 pcalibre6 pcalibre5">arc4random</code> 的改良版本：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">arc4random_uniform</span><span class="hljs-params">(<span class="hljs-params">_</span>: UInt32)</span></span> -&gt; <span class="hljs-type">UInt32</span>
+</code></pre>
+<p class="calibre8">这个改良版本接受一个 <code class="calibre14 pcalibre6 pcalibre5">UInt32</code> 的数字 <code class="calibre14 pcalibre6 pcalibre5">n</code> 作为输入，将结果归一化到 0 到 <code class="calibre14 pcalibre6 pcalibre5">n - 1</code> 之间。只要我们的输入不超过 <code class="calibre14 pcalibre6 pcalibre5">Int</code> 的范围，就可以避免危险的转换：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-keyword">let</span> diceFaceCount: <span class="hljs-type">UInt32</span> = <span class="hljs-params">6</span>
+<span class="hljs-keyword">let</span> randomRoll = <span class="hljs-type">Int</span>(arc4random_uniform(diceFaceCount)) + <span class="hljs-params">1</span>
+<span class="hljs-params">print</span>(randomRoll)
+</code></pre>
+<p class="calibre8">最佳实践当然是为创建一个 <code class="calibre14 pcalibre6 pcalibre5">Range</code> 的随机数的方法，这样我们就能在之后很容易地复用，甚至设计类似与 <code class="calibre14 pcalibre6 pcalibre5">Randomable</code> 这样的协议了：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">random</span><span class="hljs-params">(<span class="hljs-keyword">in</span> range: Range&lt;Int&gt;)</span></span> -&gt; <span class="hljs-type">Int</span> {
+    <span class="hljs-keyword">let</span> <span class="hljs-params">count</span> = <span class="hljs-type">UInt32</span>(range.endIndex - range.startIndex)
+    <span class="hljs-keyword">return</span>  <span class="hljs-type">Int</span>(arc4random_uniform(<span class="hljs-params">count</span>)) + range.startIndex
+}
+
+<span class="hljs-keyword">for</span> <span class="hljs-params">_</span> <span class="hljs-keyword">in</span> <span class="hljs-params">0</span>...<span class="hljs-params">100</span> {
+    <span class="hljs-keyword">let</span> range = <span class="hljs-type">Range</span>&lt;<span class="hljs-type">Int</span>&gt;(<span class="hljs-params">1</span>...<span class="hljs-params">6</span>)
+    <span class="hljs-params">print</span>(random(<span class="hljs-keyword">in</span>: range))
+}
+</code></pre>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

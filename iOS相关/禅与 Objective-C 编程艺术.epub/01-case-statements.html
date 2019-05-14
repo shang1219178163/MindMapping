@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>Case语句 | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_14">Case语句</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h1 id="case%E8%AF%AD%E5%8F%A5" class="calibre1">Case语句</h1>
+<p class="calibre7">除非编译器强制要求，括号在 case 语句里面是不必要的。但是当一个 case 包含了多行语句的时候，需要加上括号。</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">switch</span> (condition) {
+    <span class="hljs-keyword">case</span> <span class="hljs-built_in">1</span>:
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-built_in">2</span>: {
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-comment">// Multi-line example using braces</span>
+        <span class="hljs-keyword">break</span>;
+       }
+    <span class="hljs-keyword">case</span> <span class="hljs-built_in">3</span>:
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>: 
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">break</span>;
+}
+</code></pre>
+<p class="calibre7">有时候可以使用 fall-through 在不同的 case 里面执行同一段代码。一个 fall-through  是指移除 case 语句的 “break” 然后让下面的 case 继续执行。</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">switch</span> (condition) {
+    <span class="hljs-keyword">case</span> <span class="hljs-built_in">1</span>:
+    <span class="hljs-keyword">case</span> <span class="hljs-built_in">2</span>:
+        <span class="hljs-comment">// code executed for values 1 and 2</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>: 
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">break</span>;
+}
+</code></pre>
+<p class="calibre7">当在 switch 语句里面使用一个可枚举的变量的时候，<code class="pcalibre6 pcalibre5 calibre13">default</code> 是不必要的。比如：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">switch</span> (menuType) {
+    <span class="hljs-keyword">case</span> ZOCEnumNone:
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> ZOCEnumValue1:
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> ZOCEnumValue2:
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">break</span>;
+}
+</code></pre>
+<p class="calibre7">此外，为了避免使用默认的 case，如果新的值加入到 enum，程序员会马上收到一个 warning 通知</p>
+<p class="calibre7"><code class="pcalibre6 pcalibre5 calibre13">Enumeration value 'ZOCEnumValue3' not handled in switch.（枚举类型 'ZOCEnumValue3' 没有被 switch 处理）</code></p>
+<h3 id="%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B" class="calibre14">枚举类型</h3>
+<p class="calibre7">当使用 <code class="pcalibre6 pcalibre5 calibre13">enum</code> 的时候，建议使用新的固定的基础类型定义，因它有更强大的的类型检查和代码补全。 SDK 现在有一个 宏来鼓励和促进使用固定类型定义 - <code class="pcalibre6 pcalibre5 calibre13">NS_ENUM()</code></p>
+<p class="calibre7"><strong class="calibre10">例子:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">typedef</span> <span class="hljs-built_in">NS_ENUM</span>(<span class="hljs-built_in">NSUInteger</span>, ZOCMachineState) {
+    ZOCMachineStateNone,
+    ZOCMachineStateIdle,
+    ZOCMachineStateRunning,
+    ZOCMachineStatePaused
+};
+</code></pre>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>

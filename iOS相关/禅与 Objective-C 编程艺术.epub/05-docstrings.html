@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>字符串文档 | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_32">字符串文档</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h2 id="%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%87%E6%A1%A3" class="calibre9">字符串文档</h2>
+<p class="calibre7">所有重要的方法，接口，分类以及协议定义应该有伴随的注释来解释它们的用途以及如何使用。更多的例子可以看 Google 代码风格指南中的 <a href="http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml#File_Comments" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">File and Declaration Comments</a>。</p>
+<p class="calibre7">简而言之：有长的和短的两种字符串文档。</p>
+<p class="calibre7">短文档适用于单行的文件，包括注释斜杠。它适合简短的函数，特别是（但不仅仅是）非 public 的 API：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">// Return a user-readable form of a Frobnozz, html-escaped.
+</code></pre><p class="calibre7">文本应该用一个动词 ("return")  而不是 "returns" 这样的描述。</p>
+<p class="calibre7">如果描述超过一行，应改用长字符串文档：</p>
+<ul class="calibre11">
+<li class="calibre3">以<code class="pcalibre6 pcalibre5 calibre13">/**</code>开始</li>
+<li class="calibre3">换行写一句总结的话，以<code class="pcalibre6 pcalibre5 calibre13">?或者!或者.</code>结尾。</li>
+<li class="calibre3">空一行</li>
+<li class="calibre3">在与第一行对齐的位置开始写剩下的注释</li>
+<li class="calibre3">最后用<code class="pcalibre6 pcalibre5 calibre13">*/</code>结束。</li>
+</ul>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">/**
+ This comment serves to demonstrate the format of a docstring.
+
+ Note that the summary line is always at most one line long, and
+ after the opening block comment, and each line of text is preceded
+ by a single space.
+*/
+</code></pre><p class="calibre7">一个函数必须有一个字符串文档，除非它符合下面的所有条件：</p>
+<ul class="calibre11">
+<li class="calibre3">非公开</li>
+<li class="calibre3">很短</li>
+<li class="calibre3">显而易见</li>
+</ul>
+<p class="calibre7">字符串文档应该描述函数的调用符号和语义，而不是它如何实现。</p>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>

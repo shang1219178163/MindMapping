@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn" xml:lang="cn">
+  <head>
+    <title>tuple</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.3" name="generator"/>
+    <meta content="王巍 (onevcat)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_6">tuple</h1>
+        <div class="section">
+            <h1 id="多元组-tuple" class="calibre6">多元组 (Tuple)</h1>
+<p class="calibre8">多元组是我们的新朋友，多尝试使用这个新特性吧，会让生活轻松不少～</p>
+<p class="calibre8">比如交换输入，普通程序员亘古以来可能都是这么写的</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">swapMe1</span>&lt;T&gt;<span class="hljs-params">( a: <span class="hljs-keyword">inout</span> T, b: <span class="hljs-keyword">inout</span> T)</span></span> {
+    <span class="hljs-keyword">let</span> temp = a
+    a = b
+    b = temp
+}
+</code></pre>
+<p class="calibre8">但是要是使用多元组的话，我们可以不使用额外空间就完成交换，一下子就达到了文艺程序员的写法：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">swapMe2</span>&lt;T&gt;<span class="hljs-params">( a: <span class="hljs-keyword">inout</span> T, b: <span class="hljs-keyword">inout</span> T)</span></span> {
+    (a,b) = (b,a)
+}
+</code></pre>
+<p class="calibre8">在 Objective-C 版本的 Cocoa API 中有不少需要传递指针来获取值的地方，这一般是由于在 Objective-C 中返回值只能有一个所造成的妥协。比如 <code class="calibre14 pcalibre6 pcalibre5">CGRect</code> 有一个辅助方法叫做 <code class="calibre14 pcalibre6 pcalibre5">CGRectDivide</code>，它用来将一个 <code class="calibre14 pcalibre6 pcalibre5">CGRect</code> 在一定位置切分成两个区域。具体定义和用法如下：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-title">/*
+CGRectDivide(CGRect rect, CGRect *slice, CGRect *remainder, 
+                             CGFloat amount, CGRectEdge edge)
+*/</span>
+<span class="hljs-params">CGRect</span> rect = <span class="hljs-params">CGRectMake</span>(<span class="hljs-params">0</span>, <span class="hljs-params">0</span>, <span class="hljs-params">100</span>, <span class="hljs-params">100</span>);
+<span class="hljs-params">CGRect</span> small;
+<span class="hljs-params">CGRect</span> large;
+<span class="hljs-params">CGRectDivide</span>(rect, &amp;small, &amp;large, <span class="hljs-params">20</span>, <span class="hljs-params">CGRectMinXEdge</span>);
+</code></pre>
+<p class="calibre8">上面的代码将 {0,0,100,100} 的 <code class="calibre14 pcalibre6 pcalibre5">rect</code> 分割为两部分，分别是 {0,0,20,100} 的 <code class="calibre14 pcalibre6 pcalibre5">small</code> 和 {20,0,80,100} 的 <code class="calibre14 pcalibre6 pcalibre5">large</code>。由于 C 系语言的单一返回，我们不得不通过传入指针的方式让方法来填充需要的部分，可以说使用起来既不直观，又很麻烦。</p>
+<p class="calibre8">而现在在 Swift 中，这个方法摇身一变，使用了多元组的方式来同时返回被分割的部分和剩余部分：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">extension</span> <span class="hljs-title">CGRect</span> </span>{
+    <span class="hljs-title">//...</span>
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">divided</span><span class="hljs-params">(atDistance: CGFloat, from fromEdge: CGRectEdge)</span></span> 
+                    -&gt; (slice: <span class="hljs-type">CGRect</span>, remainder: <span class="hljs-type">CGRect</span>)
+    <span class="hljs-title">//...</span>
+}
+</code></pre>
+<p class="calibre8">然后使用的时候，对比之前的做法，现在就非常简单并且易于理解了：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-keyword">let</span> rect = <span class="hljs-type">CGRect</span>(x: <span class="hljs-params">0</span>, y: <span class="hljs-params">0</span>, width: <span class="hljs-params">100</span>, height: <span class="hljs-params">100</span>)
+<span class="hljs-keyword">let</span> (small, large) = rect.divided(atDistance: <span class="hljs-params">20</span>, from: .minXEdge)
+</code></pre>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

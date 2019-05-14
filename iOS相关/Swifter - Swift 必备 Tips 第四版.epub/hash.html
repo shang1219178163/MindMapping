@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn" xml:lang="cn">
+  <head>
+    <title>哈希</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.3" name="generator"/>
+    <meta content="王巍 (onevcat)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_63">哈希</h1>
+        <div class="section">
+            <h1 id="哈希" class="calibre6">哈希</h1>
+<p class="calibre8"><a target="_blank" href="http://en.wikipedia.org/wiki/Hash_table" class="pcalibre2 pcalibre calibre10 pcalibre1">哈希表</a>或者说散列表是程序世界中的一种基础数据结构，鉴于有太多的各类教程和资料已经将这个问题翻来覆去讲了无数遍，作为一个非科班出身的半路出家码农就不在数据结构理论或者哈希算法这方面班门弄斧了。简单说，我们需要为判等结果为相同的对象提供相同的哈希值，以保证在被用作字典的 key 时的确定性和性能。在这里，我们主要说说在 Swift 里对于哈希的使用。</p>
+<p class="calibre8">在<a href="equal.html" class="pcalibre2 pcalibre calibre10 pcalibre1">判等</a>中我们提到，Swift 中对 <code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 子类对象使用 <code class="calibre14 pcalibre6 pcalibre5">==</code> 时要是该子类没有实现这个操作符重载的话将回滚到 <code class="calibre14 pcalibre6 pcalibre5">-isEqual:</code> 方法。对于哈希计算，Swift 也采用了类似的策略。Swift 类型中提供了一个叫做 <code class="calibre14 pcalibre6 pcalibre5">Hashable</code> 的协议，实现这个协议即可为该类型提供哈希支持：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">protocol</span> <span class="hljs-title">Hashable</span> : <span class="hljs-title">Equatable</span> </span>{
+    <span class="hljs-keyword">var</span> hashValue: <span class="hljs-type">Int</span> { <span class="hljs-keyword">get</span> }
+}
+</code></pre>
+<p class="calibre8">Swift 的原生 <code class="calibre14 pcalibre6 pcalibre5">Dictionary</code> 中，key 一定是要实现了的 <code class="calibre14 pcalibre6 pcalibre5">Hashable</code> 协议的类型。像 <code class="calibre14 pcalibre6 pcalibre5">Int</code> 或者 <code class="calibre14 pcalibre6 pcalibre5">String</code> 这些 Swift 基础类型，已经实现了这个协议，因此可以用来作为 key 来使用。比如 <code class="calibre14 pcalibre6 pcalibre5">Int</code> 的 <code class="calibre14 pcalibre6 pcalibre5">hashValue</code> 就是它本身：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-keyword">let</span> num = <span class="hljs-params">19</span>
+<span class="hljs-params">print</span>(num.hashValue) <span class="hljs-title">// 19</span>
+</code></pre>
+<p class="calibre8">对 Objective-C 熟悉的读者可能知道 <code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 中有一个 <code class="calibre14 pcalibre6 pcalibre5">-hash</code> 方法。当我们对一个 <code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 的子类的 <code class="calibre14 pcalibre6 pcalibre5">-isEqual:</code> 进行重写的时候，我们一般也需要将 <code class="calibre14 pcalibre6 pcalibre5">-hash</code> 方法重写，以提供一个判等为真时返回同样哈希值的方法。在 Swift 中，<code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 也默认就实现了 <code class="calibre14 pcalibre6 pcalibre5">Hashable</code>，而且和判等的时候情况类似，<code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 对象的 <code class="calibre14 pcalibre6 pcalibre5">hashValue</code> 属性的访问将返回其对应的 <code class="calibre14 pcalibre6 pcalibre5">-hash</code> 的值。</p>
+<p class="calibre8">所以在重写哈希方法时候所采用的策略，与判等的时候是类似的：对于非 <code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 的类，我们需要遵守 <code class="calibre14 pcalibre6 pcalibre5">Hashable</code> 并根据 <code class="calibre14 pcalibre6 pcalibre5">==</code> 操作符的内容给出哈希算法；而对于 <code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 子类，需要根据是否需要在 Objective-C 中访问而选择合适的重写方式，去实现 <code class="calibre14 pcalibre6 pcalibre5">Hashable</code> 的 <code class="calibre14 pcalibre6 pcalibre5">hashValue</code> 或者直接重写 <code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 的 <code class="calibre14 pcalibre6 pcalibre5">-hash</code> 方法。</p>
+<p class="calibre8">也就是说，在 Objective-C 中，对于 <code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 的子类来说，其实 <code class="calibre14 pcalibre6 pcalibre5">NSDictionary</code> 的安全性是通过人为来保障的。对于那些重写了判等但是没有重写对应的哈希方法的子类，编译器并不能给出实质性的帮助。而在 Swift 中，如果你使用非 <code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 的类型和原生的 <code class="calibre14 pcalibre6 pcalibre5">Dictionary</code>，并试图将这个类型作为字典的 key 的话，编译器将直接抛出错误。从这方面来说，如果我们尽量使用 Swift 的话，安全性将得到大大增加。</p>
+<p class="calibre8">关于哈希值，另一个特别需要提出的是，除非我们正在开发一个哈希散列的数据结构，否则我们不应该直接依赖系统所实现的哈希值来做其他操作。首先哈希的定义是单向的，对于相等的对象或值，我们可以期待它们拥有相同的哈希，但是反过来并不一定成立。其次，某些对象的哈希值有可能随着系统环境或者时间的变化而改变。因此你也不应该依赖于哈希值来构建一些需要确定对象唯一性的功能，在绝大部分情况下，你将会得到错误的结果。</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

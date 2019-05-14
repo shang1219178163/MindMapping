@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn" xml:lang="cn">
+  <head>
+    <title>Selector</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.3" name="generator"/>
+    <meta content="王巍 (onevcat)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_42">Selector</h1>
+        <div class="section">
+            <h1 id="selector" class="calibre6">Selector</h1>
+<p class="calibre8"><code class="calibre14 pcalibre6 pcalibre5">@selector</code> 是 Objective-C 时代的一个关键字，它可以将一个方法转换并赋值给一个 <code class="calibre14 pcalibre6 pcalibre5">SEL</code> 类型，它的表现很类似一个动态的函数指针。在 Objective-C 时 selector 非常常用，从设定 target-action，到自举询问是否响应某个方法，再到指定接受通知时需要调用的方法等等，都是由 selector 来负责的。在 Objective-C 里生成一个 selector 的方法一般是这个样子的：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4">-(<span class="hljs-keyword">void</span>) callMe {
+    <span class="hljs-title">//...</span>
+}
+
+-(<span class="hljs-keyword">void</span>) callMeWithParam:(<span class="hljs-keyword">id</span>)obj {
+    <span class="hljs-title">//...</span>
+}
+
+SEL someMethod = <span class="hljs-keyword">@selector</span>(callMe);
+SEL anotherMethod = <span class="hljs-keyword">@selector</span>(callMeWithParam:);
+
+<span class="hljs-title">// 或者也可以使用 NSSelectorFromString</span>
+<span class="hljs-title">// SEL someMethod = NSSelectorFromString(@"callMe");</span>
+<span class="hljs-title">// SEL anotherMethod = NSSelectorFromString(@"callMeWithParam:");</span>
+</code></pre>
+<p class="calibre8">一般为了方便，很多人会选择使用 <code class="calibre14 pcalibre6 pcalibre5">@selector</code>，但是如果要追求灵活的话，可能会更愿意使用 <code class="calibre14 pcalibre6 pcalibre5">NSSelectorFromString</code> 的版本 -- 因为我们可以在运行时动态生成字符串，从而通过方法的名字来调用到对应的方法。</p>
+<p class="calibre8">在 Swift 中没有 <code class="calibre14 pcalibre6 pcalibre5">@selector</code> 了，取而代之，从 Swift 2.2 开始我们使用 <code class="calibre14 pcalibre6 pcalibre5">#selector</code> 来从暴露给 Objective-C 的代码中获取一个 selector。类似地，在 Swift 里对应原来 <code class="calibre14 pcalibre6 pcalibre5">SEL</code> 的类型是一个叫做 <code class="calibre14 pcalibre6 pcalibre5">Selector</code> 的结构体。像上面的两个例子在 Swift 中等效的写法是：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type">@objc</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">callMe</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-title">//...</span>
+}
+
+<span class="hljs-type">@objc</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">callMeWithParam</span><span class="hljs-params">(obj: AnyObject!)</span></span> {
+    <span class="hljs-title">//...</span>
+}
+
+<span class="hljs-keyword">let</span> someMethod = #selector(callMe)
+<span class="hljs-keyword">let</span> anotherMethod = #selector(callMeWithParam(obj:))
+</code></pre>
+<p class="calibre8">和 Objective-C 时一样，记得在 <code class="calibre14 pcalibre6 pcalibre5">callMeWithParam</code> 后面加上冒号和参数名 (:)，这才是完整的方法名字。多个参数的方法名也和原来类似，是这个样子：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type">@objc</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">turn</span><span class="hljs-params">(by angle: Int, speed: Float)</span></span> {
+    <span class="hljs-title">//...</span>
+}
+
+<span class="hljs-keyword">let</span> method = #selector(turn(by:speed:))
+</code></pre>
+<p class="calibre8">最后需要注意的是，selector 其实是 Objective-C runtime 的概念。在 Swift 4 中，默认情况下所有的 Swift 方法在 Objective-C 中都是不可见的，所以你需要在这类方法前面加上 <code class="calibre14 pcalibre6 pcalibre5">@objc</code> 关键字，将这个方法暴露给 Objective-C，才能进行使用。</p>
+<p class="calibre8">在 Swift 3 和之前的版本中，Apple 为了更好的 Objective-C 兼容性，会自动对 <code class="calibre14 pcalibre6 pcalibre5">NSObject</code> 的子类的非私有方法进行推断并为在幕后为它们自动加上 <code class="calibre14 pcalibre6 pcalibre5">@objc</code>。但是这需要每次 Swift 代码变动时都重新生成 Objective-C 所使用的头文件，这将造成 Swift 与 Objective-C 混编时速度大幅恶化。 另外，即使在 Swift 3 中，私有方法也只在 Swift 中可见，在调用这个 selector 时你会遇到一个 unrecognized selector 错误：</p>
+<blockquote class="calibre7">
+<h3 id="这是错误代码" class="calibre9">这是错误代码</h3>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-title">// In Swift 3</span>
+<span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">callMe</span><span class="hljs-params">()</span></span> {
+     <span class="hljs-title">//...</span>
+}
+
+<span class="hljs-type">NSTimer</span>.scheduledTimerWithTimeInterval(<span class="hljs-params">1</span>, target: <span class="hljs-keyword">self</span>,
+            selector:#selector(callMe), userInfo: <span class="hljs-params">nil</span>, repeats: <span class="hljs-params">true</span>)
+</code></pre>
+</blockquote>
+<p class="calibre8">正确的做法是在 <code class="calibre14 pcalibre6 pcalibre5">private</code> 前面加上 <code class="calibre14 pcalibre6 pcalibre5">@objc</code> 关键字，这样运行时就能找到对应的方法了。</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type">@objc</span> <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">callMe</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-title">//...</span>
+}
+
+<span class="hljs-type">NSTimer</span>.scheduledTimerWithTimeInterval(<span class="hljs-params">1</span>, target: <span class="hljs-keyword">self</span>,
+             selector:#selector(callMe), userInfo: <span class="hljs-params">nil</span>, repeats: <span class="hljs-params">true</span>)
+</code></pre>
+<blockquote class="calibre7">
+<p class="calibre8">同理，现在如果你想要 Objective-C 能使用 Swift 的类型或者方法的话，也需要进行相应的标记。对于单个方法，在前面添加 <code class="calibre14 pcalibre6 pcalibre5">@objc</code>。如果想让整个类型在 Objective-C 可用，可以在类型前添加 <code class="calibre14 pcalibre6 pcalibre5">@objcMembers</code>。</p>
+</blockquote>
+<p class="calibre8">最后，值得一提的是，如果方法名字在方法所在域内是唯一的话，我们可以简单地只是用方法的名字来作为 <code class="calibre14 pcalibre6 pcalibre5">#selector</code> 的内容。相比于前面带有冒号的完整的形式来说，这么写起来会方便一些：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-keyword">let</span> someMethod = #selector(callMe)
+<span class="hljs-keyword">let</span> anotherMethod = #selector(callMeWithParam)
+<span class="hljs-keyword">let</span> method = #selector(turn)
+</code></pre>
+<p class="calibre8">但是，如果在同一个作用域中存在同样名字的两个方法，即使它们的函数签名不相同，Swift 编译器也不允许编译通过：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4">@objc func commonFunc() {
+
+}
+
+@objc func commonFunc(input: Int) -&gt; Int {
+    return input
+}
+
+let method = #selector(commonFunc)
+// 编译错误，`commonFunc` 有歧义
+</code></pre><p class="calibre8">对于这种问题，我们可以通过将方法进行强制转换来使用：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-keyword">let</span> method1 = #selector(commonFunc <span class="hljs-keyword">as</span> ()-&gt;())
+<span class="hljs-keyword">let</span> method2 = #selector(commonFunc <span class="hljs-keyword">as</span> (<span class="hljs-type">Int</span>)-&gt;<span class="hljs-type">Int</span>)
+</code></pre>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

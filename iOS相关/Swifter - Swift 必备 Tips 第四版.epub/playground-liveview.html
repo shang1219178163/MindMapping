@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn" xml:lang="cn">
+  <head>
+    <title>Playground 可视化开发</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.3" name="generator"/>
+    <meta content="王巍 (onevcat)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_86">Playground 可视化开发</h1>
+        <div class="section">
+            <h1 id="playground-可视化开发" class="calibre6">Playground 可视化开发</h1>
+<p class="calibre8">Playground 的一大优势就是能够让我们立即看到代码运行的成果，这在演示算法的时候非常有用，我们将能够看到每一步的结果，从而理解算法完成的过程。而可视化的另一个重要作用体现在 UI 开发中，Playground 是支持直接运行 UI 代码并在集成环境中显示 UI，并允许用户进行交互的。我们只需要将想要显示的 <code class="calibre14 pcalibre6 pcalibre5">UIView</code> 子类赋值给当前 <code class="calibre14 pcalibre6 pcalibre5">PlaygroundPage</code> 的 <code class="calibre14 pcalibre6 pcalibre5">liveView</code> 属性，并且打开 Assistant Editor (Alt + Shift + Command + Return)，就能看到我们创建的视图了：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-keyword">import</span> UIKit
+<span class="hljs-keyword">import</span> PlaygroundSupport
+
+<span class="hljs-keyword">let</span> label = <span class="hljs-type">UILabel</span>(frame: <span class="hljs-type">CGRect</span>(x: <span class="hljs-params">0</span>, y: <span class="hljs-params">0</span>, width: <span class="hljs-params">400</span>, height: <span class="hljs-params">200</span>))
+label.backgroundColor = .white
+label.font = <span class="hljs-type">UIFont</span>.systemFont(ofSize: <span class="hljs-params">32</span>)
+label.textAlignment = .center
+label.text = <span class="hljs-string">"Hello World"</span>
+<span class="hljs-type">PlaygroundPage</span>.current.liveView = label
+</code></pre>
+<p class="calibre8">深究一下 <code class="calibre14 pcalibre6 pcalibre5">liveView</code>，它其实接受的是任意满足 <code class="calibre14 pcalibre6 pcalibre5">PlaygroundLiveViewable</code> 协议的属性。而 <code class="calibre14 pcalibre6 pcalibre5">PlaygroundLiveViewable</code> 本身需要返回一个 <code class="calibre14 pcalibre6 pcalibre5">PlaygroundLiveViewRepresentation</code>。在 <code class="calibre14 pcalibre6 pcalibre5">PlaygroundSupport</code> 中，<code class="calibre14 pcalibre6 pcalibre5">UIView</code> 和 <code class="calibre14 pcalibre6 pcalibre5">UIViewController</code> 都实现了这个协议。也就是说，我们不仅能够在 Playground 中显示一个单独的 view，也能够将一个 View Controller 实例赋值给 <code class="calibre14 pcalibre6 pcalibre5">liveView</code>，并与其进行交互。比如下面的代码创建了一个最简单的 <code class="calibre14 pcalibre6 pcalibre5">UITableViewController</code> 子类，并在点击其中 cell 的时候进行输出：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">class</span> <span class="hljs-title">ViewController</span>: <span class="hljs-title">UITableViewController</span> </span>{
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">viewDidLoad</span><span class="hljs-params">()</span></span> {
+        <span class="hljs-keyword">super</span>.viewDidLoad()
+        view.backgroundColor = .cyan
+    }
+}
+
+<span class="hljs-type"><span class="hljs-keyword">extension</span> <span class="hljs-title">ViewController</span> </span>{
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">tableView</span><span class="hljs-params">(<span class="hljs-params">_</span> tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="hljs-type">Int</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-params">30</span>
+    }
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">tableView</span><span class="hljs-params">(<span class="hljs-params">_</span> tableView: UITableView, cellForRowAt indexPath: IndexPath)</span></span> -&gt; <span class="hljs-type">UITableViewCell</span> {
+        <span class="hljs-keyword">let</span> cell = <span class="hljs-type">UITableViewCell</span>()
+        cell.textLabel?.text = <span class="hljs-type">String</span>(indexPath.row)
+        <span class="hljs-keyword">return</span> cell
+    }
+}
+
+<span class="hljs-type"><span class="hljs-keyword">extension</span> <span class="hljs-title">ViewController</span> </span>{
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">tableView</span><span class="hljs-params">(<span class="hljs-params">_</span> tableView: UITableView, didSelectRowAt indexPath: IndexPath)</span></span> {
+        <span class="hljs-params">print</span>(<span class="hljs-string">"Select: <span class="hljs-type">\(indexPath.row)</span>"</span>)
+    }
+}
+
+<span class="hljs-keyword">let</span> vc = <span class="hljs-type">ViewController</span>()
+<span class="hljs-type">PlaygroundPage</span>.current.liveView = vc
+</code></pre>
+<p class="calibre8">我们<a href="playground-project.html" class="pcalibre2 pcalibre calibre10 pcalibre1">提到过</a>将 Playground 加入完整的 app 项目中使用的方法，而使用 <code class="calibre14 pcalibre6 pcalibre5">liveView</code> 来在 Playground 中显示和调试 View Controller，为我们提供了一种不必每次都重启设备/模拟器的快速开发的方法。</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

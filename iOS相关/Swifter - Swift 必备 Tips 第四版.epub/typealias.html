@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn" xml:lang="cn">
+  <head>
+    <title>typealias</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.3" name="generator"/>
+    <meta content="王巍 (onevcat)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_16">typealias</h1>
+        <div class="section">
+            <h1 id="typealias" class="calibre6">typealias</h1>
+<p class="calibre8">typealias 是用来为已经存在的类型重新定义名字的，通过命名，可以使代码变得更加清晰。使用的语法也很简单，使用 typealias 关键字像使用普通的赋值语句一样，可以将某个已经存在的类型赋值为新的名字。比如在计算二维平面上的距离和位置的时候，我们一般使用 <code class="calibre14 pcalibre6 pcalibre5">Double</code> 来表示距离，用 <code class="calibre14 pcalibre6 pcalibre5">CGPoint</code> 来表示位置：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">distance</span><span class="hljs-params">(from point: CGPoint, to anotherPoint: CGPoint)</span></span> -&gt; <span class="hljs-type">Double</span> {
+    <span class="hljs-keyword">let</span> dx = <span class="hljs-type">Double</span>(anotherPoint.x - point.x)
+    <span class="hljs-keyword">let</span> dy = <span class="hljs-type">Double</span>(anotherPoint.y - point.y)
+    <span class="hljs-keyword">return</span> sqrt(dx * dx + dy * dy)
+}
+
+<span class="hljs-keyword">let</span> origin: <span class="hljs-type">CGPoint</span> = <span class="hljs-type">CGPoint</span>(x: <span class="hljs-params">0</span>, y: <span class="hljs-params">0</span>)
+<span class="hljs-keyword">let</span> point: <span class="hljs-type">CGPoint</span> = <span class="hljs-type">CGPoint</span>(x: <span class="hljs-params">1</span>, y: <span class="hljs-params">1</span>)
+
+<span class="hljs-keyword">let</span> d: <span class="hljs-type">Double</span> =  <span class="hljs-params">distance</span>(from: origin, to: point)
+</code></pre>
+<p class="calibre8">虽然在数学上和最后的程序运行上都没什么问题，但是阅读和维护的时候总是觉得有哪里不对。因为我们没有将数学抽象和实际问题结合起来，使得在阅读代码时我们还需要在大脑中进行一次额外的转换：<code class="calibre14 pcalibre6 pcalibre5">CGPoint</code> 代表一个点，而这个点就是我们在定义的坐标系里的<strong class="calibre11">位置</strong>；<code class="calibre14 pcalibre6 pcalibre5">Double</code> 是一个数字，它代表两个点之间的<strong class="calibre11">距离</strong>。</p>
+<p class="calibre8">如果我们使用 typealias，就可以将这种转换直接写在代码里，从而减轻阅读和维护的负担：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-keyword">import</span> UIKit
+
+<span class="hljs-keyword">typealias</span> <span class="hljs-type">Location</span> = <span class="hljs-type">CGPoint</span>
+<span class="hljs-keyword">typealias</span> <span class="hljs-type">Distance</span> = <span class="hljs-type">Double</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">distance</span><span class="hljs-params">(from location: Location,
+    to anotherLocation: Location)</span></span> -&gt; <span class="hljs-type">Distance</span> {
+        <span class="hljs-keyword">let</span> dx = <span class="hljs-type">Distance</span>(location.x - anotherLocation.x)
+        <span class="hljs-keyword">let</span> dy = <span class="hljs-type">Distance</span>(location.y - anotherLocation.y)
+        <span class="hljs-keyword">return</span> sqrt(dx * dx + dy * dy)
+}
+
+<span class="hljs-keyword">let</span> origin: <span class="hljs-type">Location</span> = <span class="hljs-type">Location</span>(x: <span class="hljs-params">0</span>, y: <span class="hljs-params">0</span>)
+<span class="hljs-keyword">let</span> point: <span class="hljs-type">Location</span> = <span class="hljs-type">Location</span>(x: <span class="hljs-params">1</span>, y: <span class="hljs-params">1</span>)
+
+<span class="hljs-keyword">let</span> d: <span class="hljs-type">Distance</span> = <span class="hljs-params">distance</span>(from: origin, to: point)
+</code></pre>
+<p class="calibre8">同样的代码，在 typealias 的帮助下，读起来就轻松多了。可能单单这个简单例子不会有特别多的体会，但是当你遇到更复杂的实际问题时，你就可以不再关心并去思考自己代码里那些成堆的 <code class="calibre14 pcalibre6 pcalibre5">Int</code> 或者 <code class="calibre14 pcalibre6 pcalibre5">String</code> 之类的基本类型到底代表的是什么东西了，这样你应该能省下不少脑细胞。</p>
+<p class="calibre8">对于普通类型并没有什么难点，但是在涉及到泛型时，情况就稍微不太一样。首先，typealias 是单一的，也就是说你必须指定将某个特定的类型通过 typealias 赋值为新名字，而不能将整个泛型类型进行重命名。下面这样的命名都是无法通过编译的：</p>
+<blockquote class="calibre7">
+<h3 id="这是错误代码" class="calibre9">这是错误代码</h3>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>&lt;<span class="hljs-title">T</span>&gt; </span>{}
+<span class="hljs-keyword">typealias</span> <span class="hljs-type">Worker</span> = <span class="hljs-type">Person</span>
+<span class="hljs-keyword">typealias</span> <span class="hljs-type">Worker</span> = <span class="hljs-type">Person</span>&lt;<span class="hljs-type">T</span>&gt;
+</code></pre>
+</blockquote>
+<p class="calibre8">不过如果我们在别名中也引入泛型，是可以进行对应的：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-title">// This is OK</span>
+<span class="hljs-keyword">typealias</span> <span class="hljs-type">Worker</span>&lt;<span class="hljs-type">T</span>&gt; = <span class="hljs-type">Person</span>&lt;<span class="hljs-type">T</span>&gt;
+</code></pre>
+<p class="calibre8">当泛型类型的确定性得到保证后，显然别名也是可以使用的：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>&lt;<span class="hljs-title">T</span>&gt; </span>{}
+
+<span class="hljs-keyword">typealias</span> <span class="hljs-type">WorkId</span> = <span class="hljs-type">String</span>
+<span class="hljs-keyword">typealias</span> <span class="hljs-type">Worker</span> = <span class="hljs-type">Person</span>&lt;<span class="hljs-type">WorkId</span>&gt;
+</code></pre>
+<p class="calibre8">另一个使用场景是某个类型同时实现多个协议的组合时。我们可以使用 <code class="calibre14 pcalibre6 pcalibre5">&amp;</code> 符号连接几个协议，然后给它们一个新的更符合上下文的名字，来增强代码可读性：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">protocol</span> <span class="hljs-title">Cat</span> </span>{ ... }
+<span class="hljs-type"><span class="hljs-keyword">protocol</span> <span class="hljs-title">Dog</span> </span>{ ... }
+<span class="hljs-keyword">typealias</span> <span class="hljs-type">Pat</span> = <span class="hljs-type">Cat</span> &amp; <span class="hljs-type">Dog</span>
+</code></pre>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

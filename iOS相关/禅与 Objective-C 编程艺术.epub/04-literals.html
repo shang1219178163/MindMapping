@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>字面值 | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_18">字面值</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h2 id="%E5%AD%97%E9%9D%A2%E5%80%BC" class="calibre9">字面值</h2>
+<p class="calibre7">使用字面值来创建不可变的 <code class="pcalibre6 pcalibre5 calibre13">NSString</code>, <code class="pcalibre6 pcalibre5 calibre13">NSDictionary</code>, <code class="pcalibre6 pcalibre5 calibre13">NSArray</code>, 和 <code class="pcalibre6 pcalibre5 calibre13">NSNumber</code> 对象。注意不要将 <code class="pcalibre6 pcalibre5 calibre13">nil</code> 传进 <code class="pcalibre6 pcalibre5 calibre13">NSArray</code> 和 <code class="pcalibre6 pcalibre5 calibre13">NSDictionary</code> 里，因为这样会导致崩溃。</p>
+<p class="calibre7"><strong class="calibre10">例子：</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-built_in">NSArray</span> *names = @[<span class="hljs-string">@"Brian"</span>, <span class="hljs-string">@"Matt"</span>, <span class="hljs-string">@"Chris"</span>, <span class="hljs-string">@"Alex"</span>, <span class="hljs-string">@"Steve"</span>, <span class="hljs-string">@"Paul"</span>];
+<span class="hljs-built_in">NSDictionary</span> *productManagers = @{<span class="hljs-string">@"iPhone"</span> : <span class="hljs-string">@"Kate"</span>, <span class="hljs-string">@"iPad"</span> : <span class="hljs-string">@"Kamal"</span>, <span class="hljs-string">@"Mobile Web"</span> : <span class="hljs-string">@"Bill"</span>};
+<span class="hljs-built_in">NSNumber</span> *shouldUseLiterals = @YES;
+<span class="hljs-built_in">NSNumber</span> *buildingZIPCode = @<span class="hljs-built_in">10018</span>;
+</code></pre>
+<p class="calibre7"><strong class="calibre10">不要这样:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-built_in">NSArray</span> *names = [<span class="hljs-built_in">NSArray</span> arrayWithObjects:<span class="hljs-string">@"Brian"</span>, <span class="hljs-string">@"Matt"</span>, <span class="hljs-string">@"Chris"</span>, <span class="hljs-string">@"Alex"</span>, <span class="hljs-string">@"Steve"</span>, <span class="hljs-string">@"Paul"</span>, <span class="hljs-built_in">nil</span>];
+<span class="hljs-built_in">NSDictionary</span> *productManagers = [<span class="hljs-built_in">NSDictionary</span> dictionaryWithObjectsAndKeys: <span class="hljs-string">@"Kate"</span>, <span class="hljs-string">@"iPhone"</span>, <span class="hljs-string">@"Kamal"</span>, <span class="hljs-string">@"iPad"</span>, <span class="hljs-string">@"Bill"</span>, <span class="hljs-string">@"Mobile Web"</span>, <span class="hljs-built_in">nil</span>];
+<span class="hljs-built_in">NSNumber</span> *shouldUseLiterals = [<span class="hljs-built_in">NSNumber</span> numberWithBool:<span class="hljs-built_in">YES</span>];
+<span class="hljs-built_in">NSNumber</span> *buildingZIPCode = [<span class="hljs-built_in">NSNumber</span> numberWithInteger:<span class="hljs-built_in">10018</span>];
+</code></pre>
+<p class="calibre7">如果要用到这些类的可变副本，我们推荐使用 <code class="pcalibre6 pcalibre5 calibre13">NSMutableArray</code>, <code class="pcalibre6 pcalibre5 calibre13">NSMutableString</code> 这样的类。</p>
+<p class="calibre7"><strong class="calibre10">应该避免</strong>下面这样:</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-built_in">NSMutableArray</span> *aMutableArray = [@[] mutableCopy];
+</code></pre>
+<p class="calibre7">上面这种书写方式的效率和可读性的都存在问题。</p>
+<p class="calibre7">效率方面，一个不必要的不可变对象被创建后立马被废弃了；虽然这并不会让你的 App 变慢（除非这个方法被频繁调用），但是确实没必要为了少打几个字而这样做。</p>
+<p class="calibre7">可读性方面，存在两个问题：第一个问题是当你浏览代码并看见 <code class="pcalibre6 pcalibre5 calibre13">@[]</code> 的时候，你首先联想到的是 <code class="pcalibre6 pcalibre5 calibre13">NSArray</code> 实例，但是在这种情形下你需要停下来深思熟虑的检查；</p>
+<p class="calibre7">另一个问题是，一些新手以他的水平看到你的代码后可能会对这是一个可变对象还是一个不可变对象产生分歧。他/她可能不熟悉可变拷贝构造的含义（这并不是说这个知识不重要）。</p>
+<p class="calibre7">当然，不存在绝对的错误，我们只是讨论代码的可用性（包括可读性)。</p>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn" xml:lang="cn">
+  <head>
+    <title>@escaping</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.3" name="generator"/>
+    <meta content="王巍 (onevcat)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_8">@escaping</h1>
+        <div class="section">
+            <h1 id="escaping" class="calibre6">@escaping</h1>
+<p class="calibre8">Swift 的语法非常适合函数式编程的使用，而闭包 (closure) 正是函数式编程的核心概念之一。Swift 中我们可以定义一个接受函数作为参数的函数，而在调用时，使用闭包的方式来传递这个参数是常见手段：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">doWork</span><span class="hljs-params">(block: <span class="hljs-params">()</span></span></span>-&gt;()) {
+    block()
+}
+
+doWork {
+    <span class="hljs-params">print</span>(<span class="hljs-string">"work"</span>)
+}
+</code></pre>
+<p class="calibre8">这种最简单的形式的闭包其实还默认隐藏了一个假设，那就是参数中 <code class="calibre14 pcalibre6 pcalibre5">block</code> 的内容会在 <code class="calibre14 pcalibre6 pcalibre5">doWork</code> 返回前就完成。也就是说，对于 <code class="calibre14 pcalibre6 pcalibre5">block</code> 的调用是同步行为。如果我们改变一下代码，将 <code class="calibre14 pcalibre6 pcalibre5">block</code> 放到一个 <code class="calibre14 pcalibre6 pcalibre5">Dispatch</code> 中去，让它在 <code class="calibre14 pcalibre6 pcalibre5">doWork</code> 返回后被调用的话，我们就需要在 <code class="calibre14 pcalibre6 pcalibre5">block</code> 的类型前加上 <code class="calibre14 pcalibre6 pcalibre5">@escaping</code> 标记来表明这个闭包是会“逃逸”出该方法的：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">doWorkAsync</span><span class="hljs-params">(block: @escaping <span class="hljs-params">()</span></span></span>-&gt;()) {
+    <span class="hljs-type">DispatchQueue</span>.main.async {
+        block()
+    }
+}
+</code></pre>
+<p class="calibre8">在使用闭包调用这个两个方法时，也会有一些行为的不同。我们知道，闭包是可以捕获其中的变量的。对于 <code class="calibre14 pcalibre6 pcalibre5">doWork</code> 参数里这样的没有逃逸行为的闭包，因为闭包的作用域不会超过函数本身，所以我们不需要担心在闭包内持有 <code class="calibre14 pcalibre6 pcalibre5">self</code> 等。而接受 <code class="calibre14 pcalibre6 pcalibre5">@escaping</code> 的 <code class="calibre14 pcalibre6 pcalibre5">doWorkAsync</code> 则有所不同。由于需要确保闭包内的成员依然有效，如果在闭包内引用了 <code class="calibre14 pcalibre6 pcalibre5">self</code> 及其成员的话，Swift 将强制我们明确地写出 <code class="calibre14 pcalibre6 pcalibre5">self</code>。对比下面的两个用例的不同之处：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">class</span> <span class="hljs-title">S</span> </span>{
+    <span class="hljs-keyword">var</span> foo = <span class="hljs-string">"foo"</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">method1</span><span class="hljs-params">()</span></span> {
+        doWork {
+            <span class="hljs-params">print</span>(foo)
+        }
+        foo = <span class="hljs-string">"bar"</span>
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">method2</span><span class="hljs-params">()</span></span> {
+        doWorkAsync {
+            <span class="hljs-params">print</span>(<span class="hljs-keyword">self</span>.foo)
+        }
+        foo = <span class="hljs-string">"bar"</span>
+    }
+}
+
+<span class="hljs-type">S</span>().method1() <span class="hljs-title">// foo</span>
+<span class="hljs-type">S</span>().method2() <span class="hljs-title">// bar</span>
+</code></pre>
+<p class="calibre8">显然，<code class="calibre14 pcalibre6 pcalibre5">method1</code> 中调用者不需要考虑 <code class="calibre14 pcalibre6 pcalibre5">self.foo</code> 的持有情况，使用起来相当直接。对 <code class="calibre14 pcalibre6 pcalibre5">foo</code> 的打印输出的是原始值 <code class="calibre14 pcalibre6 pcalibre5">foo</code>。而 <code class="calibre14 pcalibre6 pcalibre5">method2</code> 中由于闭包可逃逸，Swift 强制我们写明 <code class="calibre14 pcalibre6 pcalibre5">self</code>，以起到提醒作用，我们就需要考虑 <code class="calibre14 pcalibre6 pcalibre5">self</code> 的持有情况。在这个例子中，我们让闭包持有了 <code class="calibre14 pcalibre6 pcalibre5">self</code>，打印的值是 <code class="calibre14 pcalibre6 pcalibre5">method2</code> 最后对 <code class="calibre14 pcalibre6 pcalibre5">foo</code> 赋值后的内容 <code class="calibre14 pcalibre6 pcalibre5">bar</code>。如果我们不希望在闭包中持有 <code class="calibre14 pcalibre6 pcalibre5">self</code>，可以使用 <code class="calibre14 pcalibre6 pcalibre5">[weak self]</code> 的方式来表达：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">method3</span><span class="hljs-params">()</span></span> {
+    doWorkAsync {
+        [<span class="hljs-keyword">weak</span> <span class="hljs-keyword">self</span>] <span class="hljs-keyword">in</span>
+        <span class="hljs-params">print</span>(<span class="hljs-keyword">self</span>?.foo ?? <span class="hljs-string">"nil"</span>)
+    }
+    foo = <span class="hljs-string">"bar"</span>
+}
+
+<span class="hljs-type">S</span>().method3() <span class="hljs-title">// nil</span>
+</code></pre>
+<p class="calibre8">这时，在闭包执行时已经没有对于实例的引用，因此输出为 <code class="calibre14 pcalibre6 pcalibre5">nil</code>。关于 Swift 中内存管理的更多内容，可以参考本书<a href="retain-cycle.html" class="pcalibre2 pcalibre calibre10 pcalibre1">内存管理，weak 和 unowned</a> 一节的内容。</p>
+<p class="calibre8">关于 <code class="calibre14 pcalibre6 pcalibre5">@escaping</code> 最后还有一点想要说明。如果你在协议或者父类中定义了一个接受 <code class="calibre14 pcalibre6 pcalibre5">@escaping</code> 为参数方法，那么在实现协议和类型或者是这个父类的子类中，对应的方法也必须被声明为 <code class="calibre14 pcalibre6 pcalibre5">@escaping</code>，否则两个方法会被认为拥有不同的函数签名：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">protocol</span> <span class="hljs-title">P</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">work</span><span class="hljs-params">(b: @escaping <span class="hljs-params">()</span></span></span>-&gt;())
+}
+
+<span class="hljs-title">// 可以编译</span>
+<span class="hljs-type"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span>: <span class="hljs-title">P</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">work</span><span class="hljs-params">(b: @escaping <span class="hljs-params">()</span></span></span> -&gt; ()) {
+        <span class="hljs-type">DispatchQueue</span>.main.async {
+            <span class="hljs-params">print</span>(<span class="hljs-string">"in C"</span>)
+            b()
+        }
+    }
+}
+
+<span class="hljs-title">// 而这样是无法编译通过的：</span>
+<span class="hljs-type"><span class="hljs-keyword">class</span> <span class="hljs-title">C1</span>: <span class="hljs-title">P</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">work</span><span class="hljs-params">(b: <span class="hljs-params">()</span></span></span> -&gt; ()) {
+        <span class="hljs-title">// ...</span>
+    }
+}
+</code></pre>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

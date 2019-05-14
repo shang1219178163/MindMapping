@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+  <metadata xmlns:calibre="http://calibre.kovidgoyal.net/2009/metadata" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <meta name="cover" content="cover"/>
+    <dc:publisher>GitBook</dc:publisher>
+    <dc:language>cn</dc:language>
+    <dc:title>Swifter - Swift 必备 Tips (第四版)</dc:title>
+    <meta name="calibre:timestamp" content="2017-08-31T02:07:19.262934+00:00"/>
+    <dc:identifier id="uuid_id" opf:scheme="uuid">cf73c7c2-642b-4abe-8515-84010df60f9e</dc:identifier>
+    <dc:creator opf:file-as="Unknown" opf:role="aut">王巍 (onevcat)</dc:creator>
+    <dc:contributor opf:role="bkp">GitBook</dc:contributor>
+  </metadata>
+  <manifest>
+    <item href="cover.jpg" id="cover" media-type="image/jpeg"/>
+    <item href="SUMMARY.html" id="html" media-type="application/xhtml+xml"/>
+    <item href="add-file.jpg" id="added7" media-type="image/jpeg"/>
+    <item href="any-anyobject.md" id="added3" media-type="text/x-markdown"/>
+    <item href="asmname.html" id="html70" media-type="application/xhtml+xml"/>
+    <item href="assert.html" id="html80" media-type="application/xhtml+xml"/>
+    <item href="associated-object.html" id="html72" media-type="application/xhtml+xml"/>
+    <item href="associatedtype.html" id="html17" media-type="application/xhtml+xml"/>
+    <item href="autoclosure.html" id="html7" media-type="application/xhtml+xml"/>
+    <item href="autoreleasepool-1.png" id="added5" media-type="image/png"/>
+    <item href="autoreleasepool-2.png" id="added6" media-type="image/png"/>
+    <item href="autoreleasepool.html" id="html51" media-type="application/xhtml+xml"/>
+    <item href="backword.html" id="html103" media-type="application/xhtml+xml"/>
+    <item href="class-cluster.html" id="html64" media-type="application/xhtml+xml"/>
+    <item href="closure-ambiguous.html" id="html98" media-type="application/xhtml+xml"/>
+    <item href="code-framework.html" id="html82" media-type="application/xhtml+xml"/>
+    <item href="compatibility.html" id="html100" media-type="application/xhtml+xml"/>
+    <item href="condition-compile.html" id="html45" media-type="application/xhtml+xml"/>
+    <item href="core-data.html" id="html97" media-type="application/xhtml+xml"/>
+    <item href="coredata.png" id="added9" media-type="image/png"/>
+    <item href="cpointer.html" id="html56" media-type="application/xhtml+xml"/>
+    <item href="currying.html" id="html3" media-type="application/xhtml+xml"/>
+    <item href="default-param.html" id="html24" media-type="application/xhtml+xml"/>
+    <item href="define.html" id="html94" media-type="application/xhtml+xml"/>
+    <item href="delegate.html" id="html71" media-type="application/xhtml+xml"/>
+    <item href="documentation.html" id="html90" media-type="application/xhtml+xml"/>
+    <item href="dylib.html" id="html65" media-type="application/xhtml+xml"/>
+    <item href="enum-enumerate.html" id="html101" media-type="application/xhtml+xml"/>
+    <item href="enumerate.html" id="html68" media-type="application/xhtml+xml"/>
+    <item href="equal.html" id="html62" media-type="application/xhtml+xml"/>
+    <item href="error-handle.html" id="html79" media-type="application/xhtml+xml"/>
+    <item href="escaping.html" id="html8" media-type="application/xhtml+xml"/>
+    <item href="extension-generic.html" id="html99" media-type="application/xhtml+xml"/>
+    <item href="fatalerror.html" id="html81" media-type="application/xhtml+xml"/>
+    <item href="final.html" id="html32" media-type="application/xhtml+xml"/>
+    <item href="from-objc-to-swift.html" id="html41" media-type="application/xhtml+xml"/>
+    <item href="func-dispatch.html" id="html43" media-type="application/xhtml+xml"/>
+    <item href="func-naming.md" id="added14" media-type="text/x-markdown"/>
+    <item href="func-params.html" id="html11" media-type="application/xhtml+xml"/>
+    <item href="gcd-delay-call.html" id="html57" media-type="application/xhtml+xml"/>
+    <item href="hash.html" id="html63" media-type="application/xhtml+xml"/>
+    <item href="implicitly-optional.html" id="html35" media-type="application/xhtml+xml"/>
+    <item href="index.html" id="html1" media-type="application/xhtml+xml"/>
+    <item href="indirect-nested-enum.html" id="html40" media-type="application/xhtml+xml"/>
+    <item href="init-keywords.html" id="html20" media-type="application/xhtml+xml"/>
+    <item href="init-nil.html" id="html21" media-type="application/xhtml+xml"/>
+    <item href="init.html" id="html19" media-type="application/xhtml+xml"/>
+    <item href="instance-type.html" id="html58" media-type="application/xhtml+xml"/>
+    <item href="intropection.html" id="html59" media-type="application/xhtml+xml"/>
+    <item href="json.html" id="html88" media-type="application/xhtml+xml"/>
+    <item href="kvo.html" id="html60" media-type="application/xhtml+xml"/>
+    <item href="lazy.html" id="html33" media-type="application/xhtml+xml"/>
+    <item href="literal.html" id="html12" media-type="application/xhtml+xml"/>
+    <item href="local-scope.html" id="html61" media-type="application/xhtml+xml"/>
+    <item href="lock.html" id="html73" media-type="application/xhtml+xml"/>
+    <item href="log.html" id="html92" media-type="application/xhtml+xml"/>
+    <item href="mark.jpg" id="added4" media-type="image/jpeg"/>
+    <item href="math-number.html" id="html87" media-type="application/xhtml+xml"/>
+    <item href="multi-collection.html" id="html23" media-type="application/xhtml+xml"/>
+    <item href="multi-method.html" id="html30" media-type="application/xhtml+xml"/>
+    <item href="multiple-optional.html" id="html36" media-type="application/xhtml+xml"/>
+    <item href="namespace.html" id="html15" media-type="application/xhtml+xml"/>
+    <item href="nested-func.html" id="html14" media-type="application/xhtml+xml"/>
+    <item href="new-in-swift.html" id="html2" media-type="application/xhtml+xml"/>
+    <item href="nsnull.html" id="html89" media-type="application/xhtml+xml"/>
+    <item href="objc-dynamic.html" id="html48" media-type="application/xhtml+xml"/>
+    <item href="objc-protocol.html" id="html49" media-type="application/xhtml+xml"/>
+    <item href="operator.html" id="html10" media-type="application/xhtml+xml"/>
+    <item href="optional-chaining.html" id="html9" media-type="application/xhtml+xml"/>
+    <item href="optional-map.html" id="html37" media-type="application/xhtml+xml"/>
+    <item href="options.html" id="html67" media-type="application/xhtml+xml"/>
+    <item href="output-format.html" id="html66" media-type="application/xhtml+xml"/>
+    <item href="overflow.html" id="html93" media-type="application/xhtml+xml"/>
+    <item href="page_styles.css" id="page_css" media-type="text/css"/>
+    <item href="param-mark.html" id="html46" media-type="application/xhtml+xml"/>
+    <item href="pattern-match.html" id="html26" media-type="application/xhtml+xml"/>
+    <item href="performance.html" id="html91" media-type="application/xhtml+xml"/>
+    <item href="playground-delay.html" id="html84" media-type="application/xhtml+xml"/>
+    <item href="playground-liveview.html" id="html86" media-type="application/xhtml+xml"/>
+    <item href="playground-project.html" id="html85" media-type="application/xhtml+xml"/>
+    <item href="pointer-memory.html" id="html55" media-type="application/xhtml+xml"/>
+    <item href="practice-in-swift.html" id="html75" media-type="application/xhtml+xml"/>
+    <item href="print.html" id="html78" media-type="application/xhtml+xml"/>
+    <item href="property-access.html" id="html95" media-type="application/xhtml+xml"/>
+    <item href="property-observer.html" id="html31" media-type="application/xhtml+xml"/>
+    <item href="protocol-composition.md" id="added12" media-type="text/x-markdown"/>
+    <item href="protocol-extension.html" id="html38" media-type="application/xhtml+xml"/>
+    <item href="protocol-mutation.html" id="html4" media-type="application/xhtml+xml"/>
+    <item href="quick_help.png" id="added8" media-type="image/png"/>
+    <item href="random-number.html" id="html77" media-type="application/xhtml+xml"/>
+    <item href="range.html" id="html27" media-type="application/xhtml+xml"/>
+    <item href="reflect.html" id="html34" media-type="application/xhtml+xml"/>
+    <item href="regex.html" id="html25" media-type="application/xhtml+xml"/>
+    <item href="release-note.html" id="html104" media-type="application/xhtml+xml"/>
+    <item href="retain-cycle.html" id="html50" media-type="application/xhtml+xml"/>
+    <item href="safe-resource.html" id="html83" media-type="application/xhtml+xml"/>
+    <item href="selector.html" id="html42" media-type="application/xhtml+xml"/>
+    <item href="self-anyclass.html" id="html28" media-type="application/xhtml+xml"/>
+    <item href="sequence.html" id="html5" media-type="application/xhtml+xml"/>
+    <item href="singleton.html" id="html44" media-type="application/xhtml+xml"/>
+    <item href="static-class.html" id="html22" media-type="application/xhtml+xml"/>
+    <item href="string-nsstring.html" id="html53" media-type="application/xhtml+xml"/>
+    <item href="stylesheet.css" id="css" media-type="text/css"/>
+    <item href="subscript.html" id="html13" media-type="application/xhtml+xml"/>
+    <item href="swift-cli.html" id="html76" media-type="application/xhtml+xml"/>
+    <item href="swift-dylib.png" id="added10" media-type="image/png"/>
+    <item href="swift-test.html" id="html96" media-type="application/xhtml+xml"/>
+    <item href="swizzle.md" id="added11" media-type="text/x-markdown"/>
+    <item href="tail-recursion.html" id="html102" media-type="application/xhtml+xml"/>
+    <item href="titlepage.xhtml" id="titlepage" media-type="application/xhtml+xml"/>
+    <item href="toll-free.html" id="html74" media-type="application/xhtml+xml"/>
+    <item href="tuple.html" id="html6" media-type="application/xhtml+xml"/>
+    <item href="type-casting.md" id="added13" media-type="text/x-markdown"/>
+    <item href="type-encode.html" id="html69" media-type="application/xhtml+xml"/>
+    <item href="typealias.html" id="html16" media-type="application/xhtml+xml"/>
+    <item href="uiapplicationmain.html" id="html47" media-type="application/xhtml+xml"/>
+    <item href="unsafe.html" id="html54" media-type="application/xhtml+xml"/>
+    <item href="use-self.html" id="html29" media-type="application/xhtml+xml"/>
+    <item href="value-reference.html" id="html52" media-type="application/xhtml+xml"/>
+    <item href="variadic.html" id="html18" media-type="application/xhtml+xml"/>
+    <item href="wang-wei.jpg" id="added2" media-type="image/jpeg"/>
+    <item href="where.html" id="html39" media-type="application/xhtml+xml"/>
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="titlepage"/>
+    <itemref idref="html"/>
+    <itemref idref="html1"/>
+    <itemref idref="html2"/>
+    <itemref idref="html3"/>
+    <itemref idref="html4"/>
+    <itemref idref="html5"/>
+    <itemref idref="html6"/>
+    <itemref idref="html7"/>
+    <itemref idref="html8"/>
+    <itemref idref="html9"/>
+    <itemref idref="html10"/>
+    <itemref idref="html11"/>
+    <itemref idref="html12"/>
+    <itemref idref="html13"/>
+    <itemref idref="html14"/>
+    <itemref idref="html15"/>
+    <itemref idref="html16"/>
+    <itemref idref="html17"/>
+    <itemref idref="html18"/>
+    <itemref idref="html19"/>
+    <itemref idref="html20"/>
+    <itemref idref="html21"/>
+    <itemref idref="html22"/>
+    <itemref idref="html23"/>
+    <itemref idref="html24"/>
+    <itemref idref="html25"/>
+    <itemref idref="html26"/>
+    <itemref idref="html27"/>
+    <itemref idref="html28"/>
+    <itemref idref="html29"/>
+    <itemref idref="html30"/>
+    <itemref idref="html31"/>
+    <itemref idref="html32"/>
+    <itemref idref="html33"/>
+    <itemref idref="html34"/>
+    <itemref idref="html35"/>
+    <itemref idref="html36"/>
+    <itemref idref="html37"/>
+    <itemref idref="html38"/>
+    <itemref idref="html39"/>
+    <itemref idref="html40"/>
+    <itemref idref="html41"/>
+    <itemref idref="html42"/>
+    <itemref idref="html43"/>
+    <itemref idref="html44"/>
+    <itemref idref="html45"/>
+    <itemref idref="html46"/>
+    <itemref idref="html47"/>
+    <itemref idref="html48"/>
+    <itemref idref="html49"/>
+    <itemref idref="html50"/>
+    <itemref idref="html51"/>
+    <itemref idref="html52"/>
+    <itemref idref="html53"/>
+    <itemref idref="html54"/>
+    <itemref idref="html55"/>
+    <itemref idref="html56"/>
+    <itemref idref="html57"/>
+    <itemref idref="html58"/>
+    <itemref idref="html59"/>
+    <itemref idref="html60"/>
+    <itemref idref="html61"/>
+    <itemref idref="html62"/>
+    <itemref idref="html63"/>
+    <itemref idref="html64"/>
+    <itemref idref="html65"/>
+    <itemref idref="html66"/>
+    <itemref idref="html67"/>
+    <itemref idref="html68"/>
+    <itemref idref="html69"/>
+    <itemref idref="html70"/>
+    <itemref idref="html71"/>
+    <itemref idref="html72"/>
+    <itemref idref="html73"/>
+    <itemref idref="html74"/>
+    <itemref idref="html75"/>
+    <itemref idref="html76"/>
+    <itemref idref="html77"/>
+    <itemref idref="html78"/>
+    <itemref idref="html79"/>
+    <itemref idref="html80"/>
+    <itemref idref="html81"/>
+    <itemref idref="html82"/>
+    <itemref idref="html83"/>
+    <itemref idref="html84"/>
+    <itemref idref="html85"/>
+    <itemref idref="html86"/>
+    <itemref idref="html87"/>
+    <itemref idref="html88"/>
+    <itemref idref="html89"/>
+    <itemref idref="html90"/>
+    <itemref idref="html91"/>
+    <itemref idref="html92"/>
+    <itemref idref="html93"/>
+    <itemref idref="html94"/>
+    <itemref idref="html95"/>
+    <itemref idref="html96"/>
+    <itemref idref="html97"/>
+    <itemref idref="html98"/>
+    <itemref idref="html99"/>
+    <itemref idref="html100"/>
+    <itemref idref="html101"/>
+    <itemref idref="html102"/>
+    <itemref idref="html103"/>
+    <itemref idref="html104"/>
+  </spine>
+  <guide>
+    <reference href="titlepage.xhtml" title="Cover" type="cover"/>
+  </guide>
+</package>

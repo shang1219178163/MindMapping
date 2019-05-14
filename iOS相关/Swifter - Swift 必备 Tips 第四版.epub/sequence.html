@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn" xml:lang="cn">
+  <head>
+    <title>Sequence</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.3" name="generator"/>
+    <meta content="王巍 (onevcat)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_5">Sequence</h1>
+        <div class="section">
+            <h1 id="sequence" class="calibre6">Sequence</h1>
+<p class="calibre8">Swift 的 <code class="calibre14 pcalibre6 pcalibre5">for...in</code> 可以用在所有实现了 <code class="calibre14 pcalibre6 pcalibre5">Sequence</code> 的类型上，而为了实现 <code class="calibre14 pcalibre6 pcalibre5">Sequence</code> 你首先需要实现一个 <code class="calibre14 pcalibre6 pcalibre5">IteratorProtocol</code>。比如一个实现了反向的 <code class="calibre14 pcalibre6 pcalibre5">iterator</code> 和 <code class="calibre14 pcalibre6 pcalibre5">sequence</code> 可以这么写：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-title">// 先定义一个实现了 IteratorProtocol 协议的类型</span>
+<span class="hljs-title">// IteratorProtocol 需要指定一个 typealias Element</span>
+<span class="hljs-title">// 以及提供一个返回 Element? 的方法 next()</span>
+<span class="hljs-type"><span class="hljs-keyword">class</span> <span class="hljs-title">ReverseIterator</span>&lt;<span class="hljs-title">T</span>&gt;: <span class="hljs-title">IteratorProtocol</span> </span>{
+    <span class="hljs-keyword">typealias</span> <span class="hljs-type">Element</span> = <span class="hljs-type">T</span>
+
+    <span class="hljs-keyword">var</span> array: [<span class="hljs-type">Element</span>]
+    <span class="hljs-keyword">var</span> currentIndex = <span class="hljs-params">0</span>
+
+    <span class="hljs-keyword">init</span>(array: [<span class="hljs-type">Element</span>]) {
+        <span class="hljs-keyword">self</span>.array = array
+        currentIndex = array.<span class="hljs-params">count</span> - <span class="hljs-params">1</span>
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">next</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">Element</span>? {
+        <span class="hljs-keyword">if</span> currentIndex &lt; <span class="hljs-params">0</span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-params">nil</span>
+        }
+        <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">let</span> element = array[currentIndex]
+            currentIndex -= <span class="hljs-params">1</span>
+            <span class="hljs-keyword">return</span> element
+        }
+    }
+}
+
+<span class="hljs-title">// 然后我们来定义 Sequence</span>
+<span class="hljs-title">// 和 IteratorProtocol 很类似，不过换成指定一个 typealias Iterator</span>
+<span class="hljs-title">// 以及提供一个返回 Iterator? 的方法 makeIterator()</span>
+<span class="hljs-type"><span class="hljs-keyword">struct</span> <span class="hljs-title">ReverseSequence</span>&lt;<span class="hljs-title">T</span>&gt;: <span class="hljs-title">Sequence</span> </span>{
+    <span class="hljs-keyword">var</span> array: [<span class="hljs-type">T</span>]
+
+    <span class="hljs-keyword">init</span> (array: [<span class="hljs-type">T</span>]) {
+        <span class="hljs-keyword">self</span>.array = array
+    }
+
+    <span class="hljs-keyword">typealias</span> <span class="hljs-type">Iterator</span> = <span class="hljs-type">ReverseIterator</span>&lt;<span class="hljs-type">T</span>&gt;
+
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">makeIterator</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">ReverseIterator</span>&lt;<span class="hljs-type">T</span>&gt; {
+        <span class="hljs-keyword">return</span> <span class="hljs-type">ReverseIterator</span>(array: <span class="hljs-keyword">self</span>.array)
+    }
+}
+
+<span class="hljs-keyword">let</span> arr = [<span class="hljs-params">0</span>,<span class="hljs-params">1</span>,<span class="hljs-params">2</span>,<span class="hljs-params">3</span>,<span class="hljs-params">4</span>]
+
+<span class="hljs-title">// 对 Sequence 可以使用 for...in 来循环访问</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-type">ReverseSequence</span>(array: arr) {
+    <span class="hljs-params">print</span>(<span class="hljs-string">"Index <span class="hljs-type">\(i)</span> is <span class="hljs-type">\(arr[i])</span>"</span>)
+}
+</code></pre>
+<p class="calibre8">输出为</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4">Index 4 is 4
+Index 3 is 3
+Index 2 is 2
+Index 1 is 1
+Index 0 is 0
+</code></pre><p class="calibre8">如果我们想要深究 <code class="calibre14 pcalibre6 pcalibre5">for...in</code> 这样的方法到底做了什么的话，如果我们将其展开，大概会是下面这个样子：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-keyword">var</span> iterator = arr.makeIterator()
+<span class="hljs-keyword">while</span> <span class="hljs-keyword">let</span> obj = iterator.next() {
+    <span class="hljs-params">print</span>(obj)
+}
+</code></pre>
+<p class="calibre8">顺便你可以免费得到的收益是你可以使用像 <code class="calibre14 pcalibre6 pcalibre5">map</code> , <code class="calibre14 pcalibre6 pcalibre5">filter</code> 和 <code class="calibre14 pcalibre6 pcalibre5">reduce</code> 这些方法，因为 <code class="calibre14 pcalibre6 pcalibre5">Sequence</code> <a href="protocol-extension.html" class="pcalibre2 pcalibre calibre10 pcalibre1">协议扩展</a> (protocol extension) 已经实现了它们：</p>
+<blockquote class="calibre7">
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">extension</span> <span class="hljs-title">Sequence</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">map</span>&lt;T&gt;<span class="hljs-params">(<span class="hljs-params">_</span> transform: @noescape <span class="hljs-params">(<span class="hljs-keyword">Self</span>.Iterator.Element)</span></span></span> <span class="hljs-keyword">throws</span> -&gt; <span class="hljs-type">T</span>) <span class="hljs-keyword">rethrows</span> -&gt; [<span class="hljs-type">T</span>]
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">filter</span><span class="hljs-params">(<span class="hljs-params">_</span> isIncluded: @noescape <span class="hljs-params">(<span class="hljs-keyword">Self</span>.Iterator.Element)</span></span></span> <span class="hljs-keyword">throws</span> -&gt; <span class="hljs-type">Bool</span>) 
+                    <span class="hljs-keyword">rethrows</span> -&gt; [<span class="hljs-type">Self</span>.<span class="hljs-type">Iterator</span>.<span class="hljs-type">Element</span>]
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">reduce</span>&lt;Result&gt;<span class="hljs-params">(<span class="hljs-params">_</span> initialResult: Result, 
+        <span class="hljs-params">_</span> nextPartialResult: @noescape <span class="hljs-params">(partialResult: Result, <span class="hljs-keyword">Self</span>.Iterator.Element)</span></span></span> 
+        <span class="hljs-keyword">throws</span> -&gt; <span class="hljs-type">Result</span>) <span class="hljs-keyword">rethrows</span> -&gt; <span class="hljs-type">Result</span>
+</code></pre>
+</blockquote>
+<p class="calibre8">上面的定义中，关于 throws 和 rethrows，在<a href="error-handle.html" class="pcalibre2 pcalibre calibre10 pcalibre1">错误和异常处理</a>中有详细说明。</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

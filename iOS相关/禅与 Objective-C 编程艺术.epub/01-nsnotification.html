@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>NSNotification | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_26">NSNotification</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h1 id="nsnotification" class="calibre1">NSNotification</h1>
+<p class="calibre7">当你定义你自己的 <code class="pcalibre6 pcalibre5 calibre13">NSNotification</code> 的时候你应该把你的通知的名字定义为一个字符串常量，就像你暴露给其他类的其他字符串常量一样。你应该在公开的接口文件中将其声明为 <code class="pcalibre6 pcalibre5 calibre13">extern</code> 的， 并且在对应的实现文件里面定义。</p>
+<p class="calibre7">因为你在头文件中暴露了符号，所以你应该按照统一的命名空间前缀法则，用类名前缀作为这个通知名字的前缀。 </p>
+<p class="calibre7">同时，用一个 Did/Will 这样的动词以及用 "Notifications" 后缀来命名这个通知也是一个好的实践。 </p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-comment">// Foo.h</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-built_in">NSString</span> * <span class="hljs-keyword">const</span> ZO<span class="hljs-built_in">CFooDidBecomeBarNotification</span>
+
+<span class="hljs-comment">// Foo.m</span>
+<span class="hljs-built_in">NSString</span> * <span class="hljs-keyword">const</span> ZO<span class="hljs-built_in">CFooDidBecomeBarNotification</span> = <span class="hljs-string">@"ZOCFooDidBecomeBarNotification"</span>;
+</code></pre>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>

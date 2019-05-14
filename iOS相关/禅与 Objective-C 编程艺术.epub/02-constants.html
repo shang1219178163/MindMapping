@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>常量 | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_16">常量</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h2 id="constants-%E5%B8%B8%E9%87%8F" class="calibre9">Constants 常量</h2>
+<p class="calibre7">常量应该以驼峰法命名，并以相关类名作为前缀。</p>
+<p class="calibre7"><strong class="calibre10">推荐:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">NSTimeInterval</span> ZOCSignInViewControllerFadeOutAnimationDuration = <span class="hljs-built_in">0.4</span>;
+</code></pre>
+<p class="calibre7"><strong class="calibre10">不推荐:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">NSTimeInterval</span> fadeOutTime = <span class="hljs-built_in">0.4</span>;
+</code></pre>
+<p class="calibre7">推荐使用常量来代替字符串字面值和数字，这样能够方便复用，而且可以快速修改而不需要查找和替换。常量应该用 <code class="pcalibre6 pcalibre5 calibre13">static</code> 声明为静态常量，而不要用 <code class="pcalibre6 pcalibre5 calibre13">#define</code>，除非它明确的作为一个宏来使用。</p>
+<p class="calibre7"><strong class="calibre10">推荐:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">static</span> <span class="hljs-built_in">NSString</span> * <span class="hljs-keyword">const</span> ZOCCacheControllerDidClearCacheNotification = <span class="hljs-string">@"ZOCCacheControllerDidClearCacheNotification"</span>;
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">CGFloat</span> ZO<span class="hljs-built_in">CImageThumbnailHeight</span> = <span class="hljs-built_in">50.0</span>f;
+</code></pre>
+<p class="calibre7"><strong class="calibre10">不推荐:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-built_in">#define CompanyName @<span class="hljs-comment">"Apple Inc."</span></span>
+<span class="hljs-built_in">#define magicNumber 42</span>
+</code></pre>
+<p class="calibre7">常量应该在头文件中以这样的形式暴露给外部：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">extern</span> <span class="hljs-built_in">NSString</span> *<span class="hljs-keyword">const</span> ZOCCacheControllerDidClearCacheNotification;
+</code></pre>
+<p class="calibre7">并在实现文件中为它赋值。</p>
+<p class="calibre7">只有公有的常量才需要添加命名空间作为前缀。尽管实现文件中私有常量的命名可以遵循另外一种模式，你仍旧可以遵循这个规则。</p>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>

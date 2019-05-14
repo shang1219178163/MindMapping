@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>明确编译器警告和错误 | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_31">明确编译器警告和错误</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h2 id="%E6%98%8E%E7%A1%AE%E7%BC%96%E8%AF%91%E5%99%A8%E8%AD%A6%E5%91%8A%E5%92%8C%E9%94%99%E8%AF%AF" class="calibre9">明确编译器警告和错误</h2>
+<p class="calibre7">编译器是一个机器人，它会标记你代码中被 Clang 规则定义为错误的地方。但是，你总是比 Clang 更聪明。通常，你会发现一些讨厌的代码会导致这个问题，但是暂时却解决不了。你可以这样明确一个错误：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-built_in">NSInteger</span>)divide:(<span class="hljs-built_in">NSInteger</span>)dividend by:(<span class="hljs-built_in">NSInteger</span>)divisor
+{
+    <span class="hljs-built_in">#error Whoa, buddy, you need to check for zero here!</span>
+    <span class="hljs-keyword">return</span> (dividend / divisor);
+}
+</code></pre>
+<p class="calibre7">类似的，你可以这样标明一个警告</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-keyword">float</span>)divide:(<span class="hljs-keyword">float</span>)dividend by:(<span class="hljs-keyword">float</span>)divisor
+{
+    <span class="hljs-built_in">#warning Dude, don't compare floating point numbers like this!</span>
+    <span class="hljs-keyword">if</span> (divisor != <span class="hljs-built_in">0.0</span>) {
+        <span class="hljs-keyword">return</span> (dividend / divisor);
+    }
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> NAN;
+    }
+}
+</code></pre>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>

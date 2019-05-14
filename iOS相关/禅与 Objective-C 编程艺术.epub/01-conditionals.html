@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>条件语句 | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_7">条件语句</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h1 id="%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5" class="calibre1">条件语句</h1>
+<p class="calibre7">条件语句体应该总是被大括号包围。尽管有时候你可以不使用大括号（比如，条件语句体只有一行内容），但是这样做会带来问题隐患。比如，增加一行代码时，你可能会误以为它是 if 语句体里面的。此外，更危险的是，如果把 if 后面的那行代码注释掉，之后的一行代码会成为 if 语句里的代码。</p>
+<p class="calibre7"><strong class="calibre10">推荐:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">if</span> (!error) {
+    <span class="hljs-keyword">return</span> success;
+}
+</code></pre>
+<p class="calibre7"><strong class="calibre10">不推荐:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">if</span> (!error)
+    <span class="hljs-keyword">return</span> success;
+</code></pre>
+<p class="calibre7">和</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">if</span> (!error) <span class="hljs-keyword">return</span> success;
+</code></pre>
+<p class="calibre7">在 2014年2月 苹果的 SSL/TLS 实现里面发现了知名的 <a href="https://gotofail.com/" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">goto fail</a> 错误。</p>
+<p class="calibre7">代码在这里：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">static</span> OSStatus
+SSLVerifySignedServerKeyExchange(SSLContext *ctx, <span class="hljs-keyword">bool</span> isRsa, SSLBuffer signedParams,
+                                 uint8_t *signature, <span class="hljs-built_in">UInt16</span> signatureLen)
+{
+  OSStatus        err;
+  ...
+
+  <span class="hljs-keyword">if</span> ((err = SSLHashSHA1<span class="hljs-variable">.update</span>(&amp;hashCtx, &amp;serverRandom)) != <span class="hljs-built_in">0</span>)
+    <span class="hljs-keyword">goto</span> fail;
+  <span class="hljs-keyword">if</span> ((err = SSLHashSHA1<span class="hljs-variable">.update</span>(&amp;hashCtx, &amp;signedParams)) != <span class="hljs-built_in">0</span>)
+    <span class="hljs-keyword">goto</span> fail;
+    <span class="hljs-keyword">goto</span> fail;
+  <span class="hljs-keyword">if</span> ((err = SSLHashSHA1<span class="hljs-variable">.final</span>(&amp;hashCtx, &amp;hashOut)) != <span class="hljs-built_in">0</span>)
+    <span class="hljs-keyword">goto</span> fail;
+  ...
+
+fail:
+  SSLFreeBuffer(&amp;signedHashes);
+  SSLFreeBuffer(&amp;hashCtx);
+  <span class="hljs-keyword">return</span> err;
+}
+</code></pre>
+<p class="calibre7">显而易见，这里有没有括号包围的2行连续的 <code class="pcalibre6 pcalibre5 calibre13">goto fail;</code> 。我们当然不希望写出上面的代码导致错误。</p>
+<p class="calibre7">此外，在其他条件语句里面也应该按照这种风格统一，这样更便于检查。</p>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>

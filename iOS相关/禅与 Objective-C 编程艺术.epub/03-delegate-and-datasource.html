@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>委托和数据源 | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_36">委托和数据源</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h2 id="%E5%A7%94%E6%89%98%E5%92%8C%E6%95%B0%E6%8D%AE%E6%BA%90" class="calibre9">委托和数据源</h2>
+<p class="calibre7">(译者注： 这里是说两种模式：<a href="https://www.wikiwand.com/zh/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">委托模式</a> 以及 <a href="" class="calibre4 pcalibre pcalibre1 pcalibre2">数据源</a> 模式)</p>
+<p class="calibre7">委托模式是 Apple 的框架里面使用广泛的模式，同时它是四人帮的书“设计模式”中的重要模式之一。委托代理模式是单向的，消息的发送方（委托方）需要知道接收方（代理方）是谁，反过来就没有必要了。对象之间耦合较松，发送方仅需知道它的代理方是否遵守相关 protocol 即可。</p>
+<p class="calibre7">本质上，委托模式仅需要代理方提供一些回调方法，即代理方需要实现一系列空返回值的方法。</p>
+<p class="calibre7">不幸的是 Apple 的 API 并没有遵守这个原则，开发者也效仿 Apple 进入了一个误区。典型的例子就是 <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UITableViewDelegate_Protocol/Reference/Reference.html" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">UITableViewDelegate</a> 协议。</p>
+<p class="calibre7">它的一些方法返回 void 类型，就像我们所说的回调：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-keyword">void</span>)tableView:(<span class="hljs-built_in">UITableView</span> *)tableView didSelectRowAtIndexPath:(<span class="hljs-built_in">NSIndexPath</span> *)indexPath;
+- (<span class="hljs-keyword">void</span>)tableView:(<span class="hljs-built_in">UITableView</span> *)tableView didHighlightRowAtIndexPath:(<span class="hljs-built_in">NSIndexPath</span> *)indexPath;
+</code></pre>
+<p class="calibre7">但是其他的就不是那么回事：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-built_in">CGFloat</span>)tableView:(<span class="hljs-built_in">UITableView</span> *)tableView heightForRowAtIndexPath:(<span class="hljs-built_in">NSIndexPath</span> *)indexPath;
+- (<span class="hljs-built_in">BOOL</span>)tableView:(<span class="hljs-built_in">UITableView</span> *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(<span class="hljs-built_in">NSIndexPath</span> *)indexPath withSender:(<span class="hljs-keyword">id</span>)sender;
+</code></pre>
+<p class="calibre7">当委托者询问代理者一些信息的时候，这就暗示着信息是从代理者流向委托者而非相反的过程。 这(译者注：委托者 ==Data==&gt; 代理者)是概念性的不同，须用另一个新的名字来描述这种模式：数据源模式。</p>
+<p class="calibre7">可能有人会说 Apple 有一个 <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UITableViewDataSource_Protocol/Reference/Reference.html" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">UITableViewDataSouce</a>  protocol 来做这个（虽然使用委托代理模式的名字），但是实际上它的方法是用来提供真实的数据应该如何被展示的信息的。</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-built_in">UITableViewCell</span> *)tableView:(<span class="hljs-built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="hljs-built_in">NSIndexPath</span> *)indexPath;
+- (<span class="hljs-built_in">NSInteger</span>)numberOfSectionsInTableView:(<span class="hljs-built_in">UITableView</span> *)tableView;
+</code></pre>
+<p class="calibre7">此外，以上两个方法 Apple 混合了展示层和数据层，这显的非常糟糕，但是很少的开发者感到糟糕。而且我们在这里把空返回值和非空返回值的方法都天真地叫做代理方法。</p>
+<p class="calibre7">为了分离概念，我们应该这样做：</p>
+<ul class="calibre11">
+<li class="calibre3">委托模式(delegate pattern)：事件发生的时候，委托者需要通知代理者。</li>
+<li class="calibre3">数据源模式(datasource pattern): 委托者需要从数据源对象拉取数据。</li>
+</ul>
+<p class="calibre7">这个是实际的例子：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-class"><span class="hljs-keyword">@class</span> <span class="hljs-comment">ZOCSignUpViewController</span>;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-comment">ZOCSignUpViewControllerDelegate</span> &lt;<span class="hljs-comment">NSObject</span>&gt;</span>
+- (<span class="hljs-keyword">void</span>)signUpViewControllerDidPressSignUpButton:(ZOCSignUpViewController *)controller;
+<span class="hljs-keyword">@end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-comment">ZOCSignUpViewControllerDataSource</span> &lt;<span class="hljs-comment">NSObject</span>&gt;</span>
+- (ZOCUserCredentials *)credentialsForSignUpViewController:(ZOCSignUpViewController *)controller;
+<span class="hljs-keyword">@end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-comment">ZOCSignUpViewController</span> : <span class="hljs-comment">UIViewController</span></span>
+
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">weak</span>) <span class="hljs-keyword">id</span>&lt;ZOCSignUpViewControllerDelegate&gt; delegate;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">weak</span>) <span class="hljs-keyword">id</span>&lt;ZOCSignUpViewControllerDataSource&gt; dataSource;
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p class="calibre7">代理方法必须以调用者(即委托者)作为第一个参数，就像上面的例子一样。否则代理者无法区分不同的委托者实例。换句话说，调用者(委托者)没有被传递给代理，那就没有方法让代理处理两个不同的委托者，所以下面这种写法人神共怒：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-keyword">void</span>)calculatorDidCalculateValue:(<span class="hljs-built_in">CGFloat</span>)value;
+</code></pre>
+<p class="calibre7">默认情况下，代理者需要实现 protocol 的方法。可以用<code class="pcalibre6 pcalibre5 calibre13">@required</code> 和  <code class="pcalibre6 pcalibre5 calibre13">@optional</code> 关键字来标记方法是否是必要的还是可选的(默认是 <code class="pcalibre6 pcalibre5 calibre13">@required</code>: 必需的)。</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-comment">ZOCSignUpViewControllerDelegate</span> &lt;<span class="hljs-comment">NSObject</span>&gt;</span>
+<span class="hljs-keyword">@required</span>
+- (<span class="hljs-keyword">void</span>)signUpViewController:(ZOCSignUpViewController *)controller didProvideSignUpInfo:(<span class="hljs-built_in">NSDictionary</span> *)dict;
+<span class="hljs-keyword">@optional</span>
+- (<span class="hljs-keyword">void</span>)signUpViewControllerDidPressSignUpButton:(ZOCSignUpViewController *)controller;
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p class="calibre7">对于可选的方法，委托者必须在发送消息前检查代理是否确实实现了特定的方法（否则会 crash）：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-keyword">if</span> ([<span class="hljs-keyword">self</span><span class="hljs-variable">.delegate</span> respondsToSelector:<span class="hljs-keyword">@selector</span>(signUpViewControllerDidPressSignUpButton:)]) {
+    [<span class="hljs-keyword">self</span><span class="hljs-variable">.delegate</span> signUpViewControllerDidPressSignUpButton:<span class="hljs-keyword">self</span>];
+}
+</code></pre>
+<h3 id="%E7%BB%A7%E6%89%BF" class="calibre14">继承</h3>
+<p class="calibre7">有时候你可能需要重载代理方法。考虑有两个 UIViewController 子类的情况：UIViewControllerA 和 UIViewControllerB，有下面的类继承关系。</p>
+<p class="calibre7"><code class="pcalibre6 pcalibre5 calibre13">UIViewControllerB &lt; UIViewControllerA &lt; UIViewController</code></p>
+<p class="calibre7"><code class="pcalibre6 pcalibre5 calibre13">UIViewControllerA</code> conforms to <code class="pcalibre6 pcalibre5 calibre13">UITableViewDelegate</code> and implements <code class="pcalibre6 pcalibre5 calibre13">- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath</code>.</p>
+<p class="calibre7"><code class="pcalibre6 pcalibre5 calibre13">UIViewControllerA</code> 遵从 <code class="pcalibre6 pcalibre5 calibre13">UITableViewDelegate</code> 并且实现了 <code class="pcalibre6 pcalibre5 calibre13">- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath</code>.</p>
+<p class="calibre7">你可能会想要在 <code class="pcalibre6 pcalibre5 calibre13">UIViewControllerB</code> 中提供一个不同的实现，这个实现可能是这样子的：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">
+- (<span class="hljs-built_in">CGFloat</span>)tableView:(<span class="hljs-built_in">UITableView</span> *)tableView heightForRowAtIndexPath:(<span class="hljs-built_in">NSIndexPath</span> *)indexPath {
+    <span class="hljs-built_in">CGFloat</span> retVal = <span class="hljs-built_in">0</span>;
+    <span class="hljs-keyword">if</span> ([<span class="hljs-keyword">super</span> respondsToSelector:<span class="hljs-keyword">@selector</span>(tableView:heightForRowAtIndexPath:)]) {
+        retVal = [<span class="hljs-keyword">super</span> tableView:<span class="hljs-keyword">self</span><span class="hljs-variable">.tableView</span> heightForRowAtIndexPath:indexPath];
+    }
+    <span class="hljs-keyword">return</span> retVal + <span class="hljs-built_in">10.0</span>f;
+}
+</code></pre>
+<p class="calibre7">但是如果超类(<code class="pcalibre6 pcalibre5 calibre13">UIViewControllerA</code>)没有实现这个方法呢？</p>
+<p class="calibre7">此时调用<code class="pcalibre6 pcalibre5 calibre13">[super respondsToSelector:@selector(tableView:heightForRowAtIndexPath:)]</code>方法，将使用 NSObject 的实现，在 <code class="pcalibre6 pcalibre5 calibre13">self</code> 上下文深入查找并且明确 <code class="pcalibre6 pcalibre5 calibre13">self</code> 实现了这个方法（因为 <code class="pcalibre6 pcalibre5 calibre13">UITableViewControllerA</code> 遵从 <code class="pcalibre6 pcalibre5 calibre13">UITableViewDelegate</code>），但是应用将在下一行发生崩溃，并提示如下错误信息：</p>
+<p class="calibre7"><em class="calibre15">*</em> Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[UIViewControllerB tableView:heightForRowAtIndexPath:]: unrecognized selector sent to instance 0x8d82820'</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">
+这种情况下我们需要来询问特定的类实例是否可以响应对应的 selector。下面的代码提供了一个小技巧：
+
+```obj-c
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat retVal = 0;
+    if ([[UIViewControllerA class] instancesRespondToSelector:@selector(tableView:heightForRowAtIndexPath:)]) {
+        retVal = [super tableView:self.tableView heightForRowAtIndexPath:indexPath];
+    }
+    return retVal + 10.0f;
+}
+</code></pre><p class="calibre7">就像上面丑陋的代码，通常它会是更好的设计架构的方式，因为这种方式代理方法不需要被重写。</p>
+<h3 id="%E5%A4%9A%E9%87%8D%E5%A7%94%E6%89%98" class="calibre14">多重委托</h3>
+<p class="calibre7">多重委托是一个非常基础的概念，但是，大多数开发者对此非常不熟悉而使用 NSNotifications。就像你可能注意到的，委托和数据源是对象之间的通讯模式，但是只涉及两个对象：委托者和委托。</p>
+<p class="calibre7">数据源模式强制一对一的关系，当发送者请求信息时有且只能有一个对象来响应。对于代理模式而言这会有些不同，我们有足够的理由要去实现很多代理者等待(唯一委托者的)回调的场景。</p>
+<p class="calibre7">一些情况下至少有两个对象对特定委托者的回调感兴趣，而后者(即委托者)需要知道他的所有代理。这种方法在分布式系统下更为适用并且广泛使用于大型软件的复杂信息流程中。</p>
+<p class="calibre7">多重委托可以用很多方式实现，但读者更在乎找到适合自己的个人实现。Luca Bernardi 在他的 <a href="https://github.com/lukabernardi/LBDelegateMatrioska" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">LBDelegateMatrioska</a>中提供了上述范式的一个非常简洁的实现。</p>
+<p class="calibre7">这里给出一个基本的实现,方便你更好地理解这个概念。即使在Cocoa中也有一些在数据结构中保存 weak 引用来避免 引用循环的方法， 这里我们使用一个类来保留代理对象的 weak 引用(就像单一代理那样):</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-comment">ZOCWeakObject</span> : <span class="hljs-comment">NSObject</span></span>
+
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">weak</span>) <span class="hljs-keyword">id</span> object; 
+<span class="hljs-comment">//译者注：这里原文并没有很好地实践自己在本书之前章节所讨论的关于property属性修饰符的</span>
+<span class="hljs-comment">//人体工程学法则: 从左到右： 原子性 ===》 读写权限 (别名) ===》 内存管理权限符</span>
+
++ (instancetype)weakObjectWithObject:(<span class="hljs-keyword">id</span>)object;
+- (instancetype)initWithObject:(<span class="hljs-keyword">id</span>)object;
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-comment">ZOCWeakObject</span> ()</span>
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">weak</span>) <span class="hljs-keyword">id</span> object;
+<span class="hljs-keyword">@end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-comment">ZOCWeakObject</span></span>
+
++ (instancetype)weakObjectWithObject:(<span class="hljs-keyword">id</span>)object {
+    <span class="hljs-keyword">return</span> [[[<span class="hljs-keyword">self</span> class] alloc] initWithObject:object];
+}
+
+- (instancetype)initWithObject:(<span class="hljs-keyword">id</span>)object {
+    <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init])) {
+        _object = object;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
+}
+
+- (<span class="hljs-built_in">BOOL</span>)isEqual:(<span class="hljs-keyword">id</span>)object {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span> == object) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">YES</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (![object isKindOfClass:[object class]]) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">NO</span>;
+    }
+
+    <span class="hljs-keyword">return</span> [<span class="hljs-keyword">self</span> isEqualToWeakObject:(ZOCWeakObject *)object];
+}
+
+- (<span class="hljs-built_in">BOOL</span>)isEqualToWeakObject:(ZOCWeakObject *)object {
+    <span class="hljs-keyword">if</span> (!object) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">NO</span>;
+    }
+
+    <span class="hljs-built_in">BOOL</span> objectsMatch = [<span class="hljs-keyword">self</span><span class="hljs-variable">.object</span> isEqual:object<span class="hljs-variable">.object</span>];
+    <span class="hljs-keyword">return</span> objectsMatch;
+}
+
+- (<span class="hljs-built_in">NSUInteger</span>)hash {
+    <span class="hljs-keyword">return</span> [<span class="hljs-keyword">self</span><span class="hljs-variable">.object</span> hash];
+}
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p class="calibre7">使用 weak 对象来实现多重代理的简单组件：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-comment">ZOCServiceDelegate</span> &lt;<span class="hljs-comment">NSObject</span>&gt;</span>
+<span class="hljs-keyword">@optional</span>
+- (<span class="hljs-keyword">void</span>)generalService:(ZO<span class="hljs-built_in">CGeneralService</span> *)service didRetrieveEntries:(<span class="hljs-built_in">NSArray</span> *)entries;
+<span class="hljs-keyword">@end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-comment">ZOCGeneralService</span> : <span class="hljs-comment">NSObject</span></span>
+- (<span class="hljs-keyword">void</span>)registerDelegate:(<span class="hljs-keyword">id</span>&lt;ZOCServiceDelegate&gt;)delegate;
+- (<span class="hljs-keyword">void</span>)deregisterDelegate:(<span class="hljs-keyword">id</span>&lt;ZOCServiceDelegate&gt;)delegate;
+<span class="hljs-keyword">@end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-comment">ZOCGeneralService</span> ()</span>
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSMutableSet</span> *delegates;
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-comment">ZOCGeneralService</span></span>
+- (<span class="hljs-keyword">void</span>)registerDelegate:(<span class="hljs-keyword">id</span>&lt;ZOCServiceDelegate&gt;)delegate {
+    <span class="hljs-keyword">if</span> ([delegate conformsToProtocol:<span class="hljs-class"><span class="hljs-keyword">@protocol</span>(<span class="hljs-comment">ZOCServiceDelegate</span>)]) </span>{
+        [<span class="hljs-keyword">self</span><span class="hljs-variable">.delegates</span> addObject:[[ZOCWeakObject alloc] initWithObject:delegate]];
+    }
+}
+
+- (<span class="hljs-keyword">void</span>)deregisterDelegate:(<span class="hljs-keyword">id</span>&lt;ZOCServiceDelegate&gt;)delegate {
+    <span class="hljs-keyword">if</span> ([delegate conformsToProtocol:<span class="hljs-class"><span class="hljs-keyword">@protocol</span>(<span class="hljs-comment">ZOCServiceDelegate</span>)]) </span>{
+        [<span class="hljs-keyword">self</span><span class="hljs-variable">.delegates</span> removeObject:[[ZOCWeakObject alloc] initWithObject:delegate]];
+    }
+}
+
+- (<span class="hljs-keyword">void</span>)_notifyDelegates {
+    ...
+    <span class="hljs-keyword">for</span> (ZOCWeakObject *object <span class="hljs-keyword">in</span> <span class="hljs-keyword">self</span><span class="hljs-variable">.delegates</span>) {
+        <span class="hljs-keyword">if</span> (object<span class="hljs-variable">.object</span>) {
+            <span class="hljs-keyword">if</span> ([object<span class="hljs-variable">.object</span> respondsToSelector:<span class="hljs-keyword">@selector</span>(generalService:didRetrieveEntries:)]) {
+                [object<span class="hljs-variable">.object</span> generalService:<span class="hljs-keyword">self</span> didRetrieveEntries:entries];
+            }
+        }
+    }
+}
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p class="calibre7">在 <code class="pcalibre6 pcalibre5 calibre13">registerDelegate:</code> 和 <code class="pcalibre6 pcalibre5 calibre13">deregisterDelegate:</code> 方法的帮助下，连接/解除组件之间的联系很简单：在某些时间点上，如果代理不需要接收委托者的回调，仅仅需要'unsubscribe'.</p>
+<p class="calibre7">当不同的 view 等待同一个回调来更新界面展示的时候，这很有用：如果 view 只是暂时隐藏（但是仍然存在），它仅仅需要取消对回调的订阅。</p>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>

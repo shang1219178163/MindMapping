@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn" xml:lang="cn">
+  <head>
+    <title>associatedtype</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.3" name="generator"/>
+    <meta content="王巍 (onevcat)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_17">associatedtype</h1>
+        <div class="section">
+            <h1 id="associatedtype" class="calibre6">associatedtype</h1>
+<p class="calibre8">我们在 Swift 协议中可以定义属性和方法，并要求满足这个协议的类型实现它们：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">protocol</span> <span class="hljs-title">Food</span> </span>{ }
+
+<span class="hljs-type"><span class="hljs-keyword">protocol</span> <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">eat</span><span class="hljs-params">(<span class="hljs-params">_</span> food: Food)</span></span>
+}
+
+<span class="hljs-type"><span class="hljs-keyword">struct</span> <span class="hljs-title">Meat</span>: <span class="hljs-title">Food</span> </span>{ }
+<span class="hljs-type"><span class="hljs-keyword">struct</span> <span class="hljs-title">Grass</span>: <span class="hljs-title">Food</span> </span>{ }
+</code></pre>
+<p class="calibre8">我们定义了 <code class="calibre14 pcalibre6 pcalibre5">Food</code> 协议和 <code class="calibre14 pcalibre6 pcalibre5">Animal</code> 协议，在 <code class="calibre14 pcalibre6 pcalibre5">Animal</code> 中有一个接受 <code class="calibre14 pcalibre6 pcalibre5">Food</code> 的 <code class="calibre14 pcalibre6 pcalibre5">eat:</code> 方法。当我们尝试创建一个具体的类型来实现 <code class="calibre14 pcalibre6 pcalibre5">Animal</code> 协议时，需要实现这个方法：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">struct</span> <span class="hljs-title">Tiger</span>: <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">eat</span><span class="hljs-params">(<span class="hljs-params">_</span> food: Food)</span></span> {
+
+    }
+}
+</code></pre>
+<p class="calibre8">因为老虎并不吃素，所以在 <code class="calibre14 pcalibre6 pcalibre5">Tiger</code> 的 <code class="calibre14 pcalibre6 pcalibre5">eat</code> 中，我们很可能需要进行一些转换工作才能使用 <code class="calibre14 pcalibre6 pcalibre5">meat</code>：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">struct</span> <span class="hljs-title">Tiger</span>: <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">eat</span><span class="hljs-params">(<span class="hljs-params">_</span> food: Food)</span></span> {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> meat = food <span class="hljs-keyword">as</span>? <span class="hljs-type">Meat</span> {
+            <span class="hljs-params">print</span>(<span class="hljs-string">"eat <span class="hljs-type">\(meat)</span>"</span>)
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-params">fatalError</span>(<span class="hljs-string">"Tiger can only eat meat!"</span>)
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> meat = <span class="hljs-type">Meat</span>()
+<span class="hljs-type">Tiger</span>().eat(meat)
+</code></pre>
+<p class="calibre8">这样的转换很多时候没有意义，而且将责任扔给了运行时。有没有更好的方式，能让我们在编译时就确保“老虎不吃素”这个条件呢？因为 <code class="calibre14 pcalibre6 pcalibre5">Meat</code> 其实是实现了 <code class="calibre14 pcalibre6 pcalibre5">Food</code> 的类型，那换成下面的代码如何？</p>
+<blockquote class="calibre7">
+<h3 id="这是错误代码" class="calibre9">这是错误代码</h3>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">struct</span> <span class="hljs-title">Tiger</span>: <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">eat</span><span class="hljs-params">(<span class="hljs-params">_</span> food: Meat)</span></span> {
+        <span class="hljs-params">print</span>(<span class="hljs-string">"eat <span class="hljs-type">\(food)</span>"</span>)
+    }
+}
+</code></pre>
+</blockquote>
+<p class="calibre8">很遗憾，这段代码将无法编译，因为 <code class="calibre14 pcalibre6 pcalibre5">Meat</code> 实际上和协议中要求的 <code class="calibre14 pcalibre6 pcalibre5">Food</code> 并不能等价。其实在协议中除了定义属性和方法外，我们还能定义类型的占位符，让实现协议的类型来指定具体的类型。使用 <code class="calibre14 pcalibre6 pcalibre5">associatedtype</code> 我们就可以在 <code class="calibre14 pcalibre6 pcalibre5">Animal</code> 协议中添加一个限定，让 <code class="calibre14 pcalibre6 pcalibre5">Tiger</code> 来指定食物的具体类型：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">protocol</span> <span class="hljs-title">Animal</span> </span>{
+    associatedtype <span class="hljs-type">F</span>
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">eat</span><span class="hljs-params">(<span class="hljs-params">_</span> food: F)</span></span>
+}
+
+<span class="hljs-type"><span class="hljs-keyword">struct</span> <span class="hljs-title">Tiger</span>: <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-keyword">typealias</span> <span class="hljs-type">F</span> = <span class="hljs-type">Meat</span>
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">eat</span><span class="hljs-params">(<span class="hljs-params">_</span> food: Meat)</span></span> {
+        <span class="hljs-params">print</span>(<span class="hljs-string">"eat <span class="hljs-type">\(meat)</span>"</span>)
+    }
+}
+</code></pre>
+<p class="calibre8">在 <code class="calibre14 pcalibre6 pcalibre5">Tiger</code> 通过 <code class="calibre14 pcalibre6 pcalibre5">typealias</code> 具体指定 <code class="calibre14 pcalibre6 pcalibre5">F</code> 为 <code class="calibre14 pcalibre6 pcalibre5">Meat</code> 之前，<code class="calibre14 pcalibre6 pcalibre5">Animal</code> 协议中并不关心 <code class="calibre14 pcalibre6 pcalibre5">F</code> 的具体类型，只需要满足协议的类型中的 <code class="calibre14 pcalibre6 pcalibre5">F</code> 和 <code class="calibre14 pcalibre6 pcalibre5">eat</code> 参数一致即可。如此一来，我们就可以避免在 <code class="calibre14 pcalibre6 pcalibre5">Tiger</code> 的 <code class="calibre14 pcalibre6 pcalibre5">eat</code> 中进行判定和转换了。不过这里忽视了被吃的必须是 <code class="calibre14 pcalibre6 pcalibre5">Food</code> 这个前提。<code class="calibre14 pcalibre6 pcalibre5">associatedtype</code> 声明中可以使用冒号来指定类型满足某个协议，另外，在 <code class="calibre14 pcalibre6 pcalibre5">Tiger</code> 中只要实现了正确类型的 <code class="calibre14 pcalibre6 pcalibre5">eat</code>，<code class="calibre14 pcalibre6 pcalibre5">F</code> 的类型就可以被推断出来，所以我们也不需要显式地写明 <code class="calibre14 pcalibre6 pcalibre5">F</code>。最后这段代码看起来是这样的：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-type"><span class="hljs-keyword">protocol</span> <span class="hljs-title">Animal</span> </span>{
+    associatedtype <span class="hljs-type">F</span>: <span class="hljs-type">Food</span>
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">eat</span><span class="hljs-params">(<span class="hljs-params">_</span> food: F)</span></span>
+}
+
+<span class="hljs-type"><span class="hljs-keyword">struct</span> <span class="hljs-title">Tiger</span>: <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">eat</span><span class="hljs-params">(<span class="hljs-params">_</span> food: Meat)</span></span> {
+        <span class="hljs-params">print</span>(<span class="hljs-string">"eat <span class="hljs-type">\(meat)</span>"</span>)
+    }
+}
+
+<span class="hljs-type"><span class="hljs-keyword">struct</span> <span class="hljs-title">Sheep</span>: <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">eat</span><span class="hljs-params">(<span class="hljs-params">_</span> food: Grass)</span></span> {
+        <span class="hljs-params">print</span>(<span class="hljs-string">"eat <span class="hljs-type">\(food)</span>"</span>)
+    }
+}
+</code></pre>
+<p class="calibre8">不过在添加 <code class="calibre14 pcalibre6 pcalibre5">associatedtype</code> 后，<code class="calibre14 pcalibre6 pcalibre5">Animal</code> 协议就不能被当作独立的类型使用了。试想我们有一个函数来判断某个动物是否危险：</p>
+<blockquote class="calibre7">
+<h3 class="calibre9">这是错误代码</h3>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">isDangerous</span><span class="hljs-params">(animal: Animal)</span></span> -&gt; <span class="hljs-type">Bool</span> {
+    <span class="hljs-keyword">if</span> animal <span class="hljs-keyword">is</span> <span class="hljs-type">Tiger</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-params">true</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-params">false</span>
+    }
+}
+</code></pre>
+</blockquote>
+<p class="calibre8">编译器会告诉我们：</p>
+<blockquote class="calibre7">
+<p class="calibre8">protocol 'Animal' can only be used as a generic constraint because it has Self or associated type requirements</p>
+</blockquote>
+<p class="calibre8">这是因为 Swift 需要在编译时确定所有类型，这里因为 <code class="calibre14 pcalibre6 pcalibre5">Animal</code> 包含了一个不确定的类型，所以随着 <code class="calibre14 pcalibre6 pcalibre5">Animal</code> 本身类型的变化，其中的 <code class="calibre14 pcalibre6 pcalibre5">F</code> 将无法确定 (试想一下如果在这个函数内部调用 <code class="calibre14 pcalibre6 pcalibre5">eat</code> 的情形，你将无法指定 <code class="calibre14 pcalibre6 pcalibre5">eat</code> 参数的类型)。在一个协议加入了像是 <code class="calibre14 pcalibre6 pcalibre5">associatedtype</code> 或者 <code class="calibre14 pcalibre6 pcalibre5">Self</code> 的约束后，它将只能被用为泛型约束，而不能作为独立类型的占位使用，也失去了动态派发的特性。也就是说，这种情况下，我们需要将函数改写为泛型：</p>
+<pre class="calibre13"><code class="lang-swift pcalibre3 pcalibre4"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">isDangerous</span>&lt;T: Animal&gt;<span class="hljs-params">(animal: T)</span></span> -&gt; <span class="hljs-type">Bool</span> {
+    <span class="hljs-keyword">if</span> animal <span class="hljs-keyword">is</span> <span class="hljs-type">Tiger</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-params">true</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-params">false</span>
+    }
+}
+
+isDangerous(animal: <span class="hljs-type">Tiger</span>()) <span class="hljs-title">// true</span>
+isDangerous(animal: <span class="hljs-type">Sheep</span>()) <span class="hljs-title">// false</span>
+</code></pre>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

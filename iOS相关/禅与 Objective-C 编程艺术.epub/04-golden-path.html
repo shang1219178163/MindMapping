@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>黄金大道 | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_10">黄金大道</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h2 id="%E9%BB%84%E9%87%91%E5%A4%A7%E9%81%93" class="calibre9">黄金大道</h2>
+<p class="calibre7">在使用条件语句编程时，代码的左边距应该是一条“黄金”或者“快乐”的大道。 也就是说，不要嵌套 <code class="pcalibre6 pcalibre5 calibre13">if</code> 语句。使用多个 return 可以避免增加循环的复杂度，并提高代码的可读性。因为方法的重要部分没有嵌套在分支里面，并且你可以很清楚地找到相关的代码。</p>
+<p class="calibre7"><strong class="calibre10">推荐:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-keyword">void</span>)someMethod {
+  <span class="hljs-keyword">if</span> (![someOther boolValue]) {
+      <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-comment">//Do something important</span>
+}
+</code></pre>
+<p class="calibre7"><strong class="calibre10">不推荐:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-keyword">void</span>)someMethod {
+  <span class="hljs-keyword">if</span> ([someOther boolValue]) {
+    <span class="hljs-comment">//Do something important</span>
+  }
+}
+</code></pre>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>

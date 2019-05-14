@@ -1,0 +1,81 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+  <metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:calibre="http://calibre.kovidgoyal.net/2009/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:creator opf:role="aut" opf:file-as="马尔科姆•格拉德威尔">马尔科姆•格拉德威尔</dc:creator>
+<dc:publisher>中信出版社</dc:publisher>
+    <meta name="calibre:title_sort" content="异类:不一样的成功启示录(新版)"/>
+    <meta name="calibre:timestamp" content="2015-01-13T12:25:56.473000+00:00"/>
+    <meta name="cover" content="cover"/>
+    <dc:date>2014-04-30T16:00:00+00:00</dc:date>
+    <dc:contributor opf:role="bkp">calibre (1.24.0) [http://calibre-ebook.com]</dc:contributor>
+    <dc:identifier id="uuid_id" opf:scheme="uuid">c275fdd9-124c-4802-86c6-cb1d89d863f3</dc:identifier>
+    <dc:title>异类:不一样的成功启示录(新版)</dc:title>
+<meta name="calibre:user_categories" content="{}"/>
+<meta name="calibre:author_link_map" content="{&quot;马尔科姆•格拉德威尔&quot;: &quot;&quot;}"/>
+<dc:language>zh</dc:language>
+<dc:identifier opf:scheme="calibre">c275fdd9-124c-4802-86c6-cb1d89d863f3</dc:identifier>
+<dc:identifier opf:scheme="MOBI-ASIN">B00R5CI4FE</dc:identifier>
+<dc:identifier opf:scheme="ISBN">9787508643946</dc:identifier>
+</metadata>
+  <manifest>
+    <item href="cover.jpeg" id="cover" media-type="image/jpeg"/>
+    <item href="images/00002.jpeg" id="id2" media-type="image/jpeg"/>
+    <item href="images/00003.jpeg" id="id3" media-type="image/jpeg"/>
+    <item href="images/00004.jpeg" id="id4" media-type="image/jpeg"/>
+    <item href="images/00005.jpeg" id="id5" media-type="image/jpeg"/>
+    <item href="images/00006.jpeg" id="id6" media-type="image/jpeg"/>
+    <item href="images/00007.jpeg" id="id7" media-type="image/jpeg"/>
+    <item href="images/00008.jpeg" id="id8" media-type="image/jpeg"/>
+    <item href="images/00009.jpeg" id="id9" media-type="image/jpeg"/>
+    <item href="images/00010.jpeg" id="id10" media-type="image/jpeg"/>
+    <item href="images/00011.jpeg" id="id11" media-type="image/jpeg"/>
+    <item href="page_styles.css" id="page_css" media-type="text/css"/>
+    <item href="stylesheet.css" id="css" media-type="text/css"/>
+    <item href="text/part0000_split_000.html" id="id202" media-type="application/xhtml+xml"/>
+    <item href="text/part0000_split_001.html" id="id201" media-type="application/xhtml+xml"/>
+    <item href="text/part0001.html" id="id21" media-type="application/xhtml+xml"/>
+    <item href="text/part0002.html" id="id22" media-type="application/xhtml+xml"/>
+    <item href="text/part0003.html" id="id23" media-type="application/xhtml+xml"/>
+    <item href="text/part0004.html" id="id24" media-type="application/xhtml+xml"/>
+    <item href="text/part0005.html" id="id25" media-type="application/xhtml+xml"/>
+    <item href="text/part0006.html" id="id26" media-type="application/xhtml+xml"/>
+    <item href="text/part0007.html" id="id27" media-type="application/xhtml+xml"/>
+    <item href="text/part0008.html" id="id28" media-type="application/xhtml+xml"/>
+    <item href="text/part0009.html" id="id29" media-type="application/xhtml+xml"/>
+    <item href="text/part0010.html" id="id30" media-type="application/xhtml+xml"/>
+    <item href="text/part0011.html" id="id31" media-type="application/xhtml+xml"/>
+    <item href="text/part0012.html" id="id32" media-type="application/xhtml+xml"/>
+    <item href="text/part0013.html" id="id33" media-type="application/xhtml+xml"/>
+    <item href="text/part0014.html" id="id34" media-type="application/xhtml+xml"/>
+    <item href="text/part0015.html" id="id35" media-type="application/xhtml+xml"/>
+    <item href="text/part0016.html" id="id36" media-type="application/xhtml+xml"/>
+    <item href="titlepage.xhtml" id="titlepage" media-type="application/xhtml+xml"/>
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="titlepage"/>
+    <itemref idref="id202"/>
+    <itemref idref="id201"/>
+    <itemref idref="id21"/>
+    <itemref idref="id22"/>
+    <itemref idref="id23"/>
+    <itemref idref="id24"/>
+    <itemref idref="id25"/>
+    <itemref idref="id26"/>
+    <itemref idref="id27"/>
+    <itemref idref="id28"/>
+    <itemref idref="id29"/>
+    <itemref idref="id30"/>
+    <itemref idref="id31"/>
+    <itemref idref="id32"/>
+    <itemref idref="id33"/>
+    <itemref idref="id34"/>
+    <itemref idref="id35"/>
+    <itemref idref="id36"/>
+  </spine>
+  <guide>
+    <reference href="text/part0001.html" title="titlepage" type="text"/>
+    <reference href="titlepage.xhtml" title="Cover" type="cover"/>
+    <reference href="text/part0003.html" title="目录" type="toc"/>
+  </guide>
+</package>

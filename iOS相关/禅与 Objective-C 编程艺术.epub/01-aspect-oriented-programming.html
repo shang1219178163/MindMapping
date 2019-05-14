@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>面向切面编程 | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_37">面向切面编程</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h1 id="%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B" class="calibre1">面向切面编程</h1>
+<p class="calibre7">Aspect Oriented Programming (AOP，面向切面编程) 在 Objective-C 社区内没有那么有名，但是 AOP 在运行时可以有巨大威力。 但是因为没有事实上的标准，Apple 也没有开箱即用的提供，也显得不重要，开发者都不怎么考虑它。</p>
+<p class="calibre7">引用 <a href="http://en.wikipedia.org/wiki/Aspect-oriented_programming" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">Aspect Oriented Programming</a> 维基页面:</p>
+<blockquote class="calibre17">
+<p class="calibre18">An aspect can alter the behavior of the base code (the non-aspect part of a program) by applying advice (additional behavior) at various join points (points in a program) specified in a quantification or query called a pointcut (that detects whether a given join point matches). (一个切面可以通过在多个 join points 中附加的行为来改变基础代码的行为(程序的非切面的部分) )</p>
+</blockquote>
+<p class="calibre7">在 Objective-C 的世界里，这意味着使用运行时的特性来为指定的方法追加 <em class="calibre15">切面</em> 。切面所附加的行为可以是这样的：</p>
+<ul class="calibre11">
+<li class="calibre3">在类的特定方法调用前运行特定的代码</li>
+<li class="calibre3">在类的特定方法调用后运行特定的代码</li>
+<li class="calibre3">增加代码来替代原来的类的方法的实现</li>
+</ul>
+<p class="calibre7">有很多方法可以达成这些目的，但是我们没有深入挖掘，不过它们主要都是利用了运行时。 <a href="https://twitter.com/steipete" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">Peter Steinberger</a> 写了一个库，<a href="https://github.com/steipete/Aspects" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">Aspects</a> 完美地适配了 AOP 的思路。我们发现它值得信赖以及设计得非常优秀，所以我们就在这边作为一个简单的例子。</p>
+<p class="calibre7">对于所有的 AOP库，这个库用运行时做了一些非常酷的魔法，可以替换或者增加一些方法（比 method swizzling 技术更有技巧性）</p>
+<p class="calibre7">Aspect 的 API 有趣并且非常强大：</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">+ (<span class="hljs-keyword">id</span>&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector
+                      withOptions:(AspectOptions)options
+                       usingBlock:(<span class="hljs-keyword">id</span>)block
+                            error:(<span class="hljs-built_in">NSError</span> **)error;
+- (<span class="hljs-keyword">id</span>&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector
+                      withOptions:(AspectOptions)options
+                       usingBlock:(<span class="hljs-keyword">id</span>)block
+                            error:(<span class="hljs-built_in">NSError</span> **)error;
+</code></pre>
+<p class="calibre7">比如，下面的代码会对于执行 <code class="pcalibre6 pcalibre5 calibre13">MyClass</code> 类的 <code class="pcalibre6 pcalibre5 calibre13">myMethod:</code>  (实例或者类的方法) 执行块参数。</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">[MyClass aspect_hookSelector:<span class="hljs-keyword">@selector</span>(myMethod:)
+                 withOptions:AspectPositionAfter
+                  usingBlock:^(<span class="hljs-keyword">id</span>&lt;AspectInfo&gt; aspectInfo) {
+            ...
+        }
+                       error:<span class="hljs-built_in">nil</span>];
+</code></pre>
+<p class="calibre7">换一句话说：任意的 <code class="pcalibre6 pcalibre5 calibre13">MyClass</code> 类型的对象(或者是类型本身当这个 @selector 方法为类方法时)的 <code class="pcalibre6 pcalibre5 calibre13">@selector</code> 方法执行完后，就会执行这个代码中块参数所提供的代码。</p>
+<p class="calibre7">我们为 <code class="pcalibre6 pcalibre5 calibre13">MyClass</code> 类的 <code class="pcalibre6 pcalibre5 calibre13">myMethod:</code> 方法增加了切面。</p>
+<p class="calibre7">通常 AOP 被用来实现横向切面。统计与日志就是一个完美的例子。</p>
+<p class="calibre7">下面的例子里面，我们会用AOP用来进行统计。统计是iOS项目里面一个热门的特性，有很多选择比如 Google Analytics, Flurry, MixPanel, 等等.</p>
+<p class="calibre7">大部分统计框架都有教程来指导如何追踪特定的界面和事件，包括在每一个类里写几行代码。</p>
+<p class="calibre7">在 Ray Wenderlich 的博客里有 <a href="http://www.raywenderlich.com/53459/google-analytics-ios" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">文章</a> 和一些示例代码，通过在你的 view controller 里面加入 <a href="https://developers.google.com/analytics/devguides/collection/ios/" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">Google Analytics</a>  进行统计。</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-keyword">void</span>)logButtonPress:(<span class="hljs-built_in">UIButton</span> *)button {
+    <span class="hljs-keyword">id</span>&lt;GAITracker&gt; tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:<span class="hljs-string">@"UX"</span>
+                                                          action:<span class="hljs-string">@"touch"</span>
+                                                           label:[button<span class="hljs-variable">.titleLabel</span> text]
+                                                           value:<span class="hljs-built_in">nil</span>] build]];
+}
+</code></pre>
+<p class="calibre7">上面的代码在按钮点击的时候发送了特定的上下文事件。但是当你想追踪屏幕的时候会变得很糟。</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-keyword">void</span>)viewDidAppear:(<span class="hljs-built_in">BOOL</span>)animated {
+    [<span class="hljs-keyword">super</span> viewDidAppear:animated];
+
+    <span class="hljs-keyword">id</span>&lt;GAITracker&gt; tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:<span class="hljs-string">@"Stopwatch"</span>];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
+</code></pre>
+<p class="calibre7">对于大部分有经验的iOS工程师，这看起来不是很好的代码。我们让 view controller 变得更糟糕了。因为我们加入了统计事件的代码，但是它不是 view controller 的职能。你可以反驳，因为你通常有特定的对象来负责统计追踪，并且你将代码注入了 view controller ，但是无论你隐藏逻辑，问题仍然存在 ：你最后还是在<code class="pcalibre6 pcalibre5 calibre13">viewDidAppear:</code> 后插入了代码。</p>
+<p class="calibre7">我们可以在类的 <code class="pcalibre6 pcalibre5 calibre13">viewDidAppear:</code> 方法上使用 AOP 来追踪屏幕，并且我们可以使用同样的方法在其他我们感兴趣的方法上添加事件追踪。比如当用户点击某个按钮时(比如:一般调用对应的 IBAction).</p>
+<p class="calibre7">方法很简洁且不具侵入性：</p>
+<ul class="calibre11">
+<li class="calibre3">view controller 不会被不属于它的代码污染</li>
+<li class="calibre3">为所有加入到我们代码的切面指定一个 SPOC 文件 (single point of customization)提供了可能</li>
+<li class="calibre3">SPOC 应该在 App 刚开始启动的时候用来添加切面</li>
+<li class="calibre3">如果SPOC文件异常,至少有一个 selector 或者 类 识别不出来，应用将会在启动时崩溃(对我们来说这很酷).</li>
+<li class="calibre3">公司负责统计的团队通常会提供统计文档，罗列出需要追踪的事件。这个文档可以很容易映射到一个 SPOC 文件。</li>
+<li class="calibre3">追踪逻辑抽象化之后，扩展到很多其他统计框架会很方便</li>
+<li class="calibre3">对于屏幕视图，对于需要定义 selector 的方法，只需要在 SPOC 文件修改相关的类（相关的切面会加入到 <code class="pcalibre6 pcalibre5 calibre13">viewDidAppear:</code> 方法）。如果要同时发送屏幕视图和事件，需要（依靠统计提供方）提供一个追踪的标示或者可能还需要提供其他的元信息。</li>
+</ul>
+<p class="calibre7">我们可能希望一个 SPOC 文件类似下面的（同样的一个 .plist 文件会适配）</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c"><span class="hljs-built_in">NSDictionary</span> *analyticsConfiguration()
+{
+    <span class="hljs-keyword">return</span> @{
+        <span class="hljs-string">@"trackedScreens"</span> : @[
+            @{
+                <span class="hljs-string">@"class"</span> : <span class="hljs-string">@"ZOCMainViewController"</span>,
+                <span class="hljs-string">@"label"</span> : <span class="hljs-string">@"Main screen"</span>
+                }
+             ],
+        <span class="hljs-string">@"trackedEvents"</span> : @[
+            @{
+                <span class="hljs-string">@"class"</span> : <span class="hljs-string">@"ZOCMainViewController"</span>,
+                <span class="hljs-string">@"selector"</span> : <span class="hljs-string">@"loginViewFetchedUserInfo:user:"</span>,
+                <span class="hljs-string">@"label"</span> : <span class="hljs-string">@"Login with Facebook"</span>
+                },
+            @{
+                <span class="hljs-string">@"class"</span> : <span class="hljs-string">@"ZOCMainViewController"</span>,
+                <span class="hljs-string">@"selector"</span> : <span class="hljs-string">@"loginViewShowingLoggedOutUser:"</span>,
+                <span class="hljs-string">@"label"</span> : <span class="hljs-string">@"Logout with Facebook"</span>
+                },
+            @{
+                <span class="hljs-string">@"class"</span> : <span class="hljs-string">@"ZOCMainViewController"</span>,
+                <span class="hljs-string">@"selector"</span> : <span class="hljs-string">@"loginView:handleError:"</span>,
+                <span class="hljs-string">@"label"</span> : <span class="hljs-string">@"Login error with Facebook"</span>
+                },
+            @{
+                <span class="hljs-string">@"class"</span> : <span class="hljs-string">@"ZOCMainViewController"</span>,
+                <span class="hljs-string">@"selector"</span> : <span class="hljs-string">@"shareButtonPressed:"</span>,
+                <span class="hljs-string">@"label"</span> : <span class="hljs-string">@"Share button"</span>
+                }
+             ]
+    };
+}
+</code></pre>
+<p class="calibre7">提及的架构托管 在 Github 的<a href="https://github.com/ef-ctx/JohnnyEnglish/blob/master/CTXUserActivityTrackingManager.m" target="_blank" class="calibre4 pcalibre pcalibre1 pcalibre2">EF Education First</a> 中.</p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-keyword">void</span>)setupWithConfiguration:(<span class="hljs-built_in">NSDictionary</span> *)configuration
+{
+    <span class="hljs-comment">// screen views tracking</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">NSDictionary</span> *trackedScreen <span class="hljs-keyword">in</span> configuration[<span class="hljs-string">@"trackedScreens"</span>]) {
+        Class clazz = <span class="hljs-built_in">NSClassFromString</span>(trackedScreen[<span class="hljs-string">@"class"</span>]);
+
+        [clazz aspect_hookSelector:<span class="hljs-keyword">@selector</span>(viewDidAppear:)
+                       withOptions:AspectPositionAfter
+                        usingBlock:^(<span class="hljs-keyword">id</span>&lt;AspectInfo&gt; aspectInfo) {
+            <span class="hljs-built_in">dispatch_async</span>(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="hljs-built_in">0</span>), 
+            ^{
+                <span class="hljs-built_in">NSString</span> *viewName = trackedScreen[<span class="hljs-string">@"label"</span>];
+                [tracker trackScreenHitWithName:viewName];
+                });
+            }
+            error:<span class="hljs-built_in">nil</span>];
+        }];
+
+    }
+
+    <span class="hljs-comment">// events tracking</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">NSDictionary</span> *trackedEvents <span class="hljs-keyword">in</span> configuration[<span class="hljs-string">@"trackedEvents"</span>]) {
+        Class clazz = <span class="hljs-built_in">NSClassFromString</span>(trackedEvents[<span class="hljs-string">@"class"</span>]);
+        SEL selektor = <span class="hljs-built_in">NSSelectorFromString</span>(trackedEvents[<span class="hljs-string">@"selector"</span>]);
+
+        [clazz aspect_hookSelector:selektor
+                       withOptions:AspectPositionAfter
+                        usingBlock:^(<span class="hljs-keyword">id</span>&lt;AspectInfo&gt; aspectInfo) {
+            <span class="hljs-built_in">dispatch_async</span>(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="hljs-built_in">0</span>), 
+                    ^{
+                        UserActivityButtonPressedEvent *buttonPressEvent = \
+                        [UserActivityButtonPressedEvent \
+                                eventWithLabel:trackedEvents[<span class="hljs-string">@"label"</span>]];
+                        [tracker trackEvent:buttonPressEvent];
+                    });
+                }
+            error:<span class="hljs-built_in">nil</span>];
+        }];
+
+    }
+}
+</code></pre>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>

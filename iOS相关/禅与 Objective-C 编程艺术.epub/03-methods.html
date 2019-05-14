@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+  <head>
+    <title>方法 | 禅与 Objective-C 编程艺术</title>
+    <meta content="" name="description"/>
+    <meta content="GitBook 2.4.3" name="generator"/>
+    <meta content="Yourtion" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+        
+<div class="page">
+    <h1 class="book-chapter" id="calibre_toc_17">方法</h1>
+    
+        <div class="normal" id="section-">
+        
+            <h2 id="%E6%96%B9%E6%B3%95" class="calibre9">方法</h2>
+<p class="calibre7">方法名与方法类型 (<code class="pcalibre6 pcalibre5 calibre13">-</code>/<code class="pcalibre6 pcalibre5 calibre13">+</code> 符号)之间应该以空格间隔。方法段之间也应该以空格间隔（以符合 Apple 风格）。参数前应该总是有一个描述性的关键词。</p>
+<p class="calibre7">尽可能少用 "and" 这个词。它不应该用来阐明有多个参数，比如下面的 <code class="pcalibre6 pcalibre5 calibre13">initWithWidth:height:</code> 这个例子：</p>
+<p class="calibre7"><strong class="calibre10">推荐:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-keyword">void</span>)setExampleText:(<span class="hljs-built_in">NSString</span> *)text image:(<span class="hljs-built_in">UIImage</span> *)image;
+- (<span class="hljs-keyword">void</span>)sendAction:(SEL)aSelector to:(<span class="hljs-keyword">id</span>)anObject forAllCells:(<span class="hljs-built_in">BOOL</span>)flag;
+- (<span class="hljs-keyword">id</span>)viewWithTag:(<span class="hljs-built_in">NSInteger</span>)tag;
+- (instancetype)initWithWidth:(<span class="hljs-built_in">CGFloat</span>)width height:(<span class="hljs-built_in">CGFloat</span>)height;
+</code></pre>
+<p class="calibre7"><strong class="calibre10">不推荐:</strong></p>
+<pre class="calibre12"><code class="pcalibre4 pcalibre3 lang-obj-c">- (<span class="hljs-keyword">void</span>)setT:(<span class="hljs-built_in">NSString</span> *)text i:(<span class="hljs-built_in">UIImage</span> *)image;
+- (<span class="hljs-keyword">void</span>)sendAction:(SEL)aSelector :(<span class="hljs-keyword">id</span>)anObject :(<span class="hljs-built_in">BOOL</span>)flag;
+- (<span class="hljs-keyword">id</span>)taggedView:(<span class="hljs-built_in">NSInteger</span>)tag;
+- (instancetype)initWithWidth:(<span class="hljs-built_in">CGFloat</span>)width andHeight:(<span class="hljs-built_in">CGFloat</span>)height;
+- (instancetype)initWith:(<span class="hljs-keyword">int</span>)width and:(<span class="hljs-keyword">int</span>)height;  <span class="hljs-comment">// Never do this.</span>
+</code></pre>
+
+        
+        </div>
+    
+</div>
+
+        
+        
+    
+    
+
+</body></html>
