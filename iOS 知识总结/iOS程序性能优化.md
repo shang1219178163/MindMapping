@@ -1,4 +1,4 @@
-优化 iOS 程序性能
+# iOS 程序性能优化
 
 ### 1. 在正确的地方使用 reuseIdentifier
 一个开发中常见的错误就是没有给UITableViewCells， UICollectionViewCells，甚至是UITableViewHeaderFooterViews设置正确的reuseIdentifier。
