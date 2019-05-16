@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <title>iOS的函数响应型编程 - 书栈(BookStack.CN)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../Styles/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../Styles/page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre6">
+    <h1 id="article-title" class="calibre11">过滤</h1>
+    <div class="article-body" id="page-content">
+        <div class="markdown-toc"><ul class="markdown-toc-list"><li class="calibre12"><a class="pcalibre1 calibre9 pcalibre" href="#高阶过滤" level="1">高阶过滤</a><ul class="calibre13"></ul></li>
+</ul>
+</div>
+<h1 id="h1-u9AD8u9636u8FC7u6EE4" class="calibre14"><a class="pcalibre1 calibre9 pcalibre" id="高阶过滤"></a><span class="pcalibre2 header-link"></span>高阶过滤</h1>
+<p class="calibre15">谈到ReactiveCocoa，我们要使用的另一种关键的高阶函数就是过滤器。一个列表通过过滤能够返回一个只包含了原列表中符合条件的元素的新列表，具体我们来看实践中的例子:</p>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="typ">NSArray</span><span class="pln"> </span><span class="pun">*</span><span class="pln">filteredArray </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">array rx_filterWithBlock</span><span class="pun">:^</span><span class="pln">BOOL</span><span class="pun">(</span><span class="pln">id each</span><span class="pun">){</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">([</span><span class="pln">each integerValue</span><span class="pun">]</span><span class="pln"> </span><span class="pun">%</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pun">}]</span></code></li>
+</ol></pre>
+<p class="calibre15">过滤后，现在<code class="calibre20 pcalibre6 pcalibre5">filteredArray</code>等于<code class="calibre20 pcalibre6 pcalibre5">@[ <a href="https://github.com/2" title="@2" class="pcalibre1 calibre9 pcalibre">@2</a> ]</code>.如果没有这样的抽象方法(即高阶过滤)，我们不得不像下面这样来完成工作:</p>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="typ">NSMutableArray</span><span class="pln"> </span><span class="pun">*</span><span class="pln">mutableArray </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">NSMutableArray</span><span class="pln"> arrayWithCapacity</span><span class="pun">:</span><span class="pln"> array</span><span class="pun">.</span><span class="pln">count</span><span class="pun">];</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> </span><span class="typ">NSNumber</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> number </span><span class="kwd">in</span><span class="pln"> array </span><span class="pun">){</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> </span><span class="pun">[</span><span class="pln">number integerValue</span><span class="pun">]</span><span class="pln"> </span><span class="pun">%</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">){</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">        </span><span class="pun">[</span><span class="pln">mutableArray addObject</span><span class="pun">:</span><span class="pln">number</span><span class="pun">];</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">    </span><span class="pun">}</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pun">}</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="typ">NSArray</span><span class="pln"> </span><span class="pun">*</span><span class="pln">filteredArray </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">NSArray</span><span class="pln"> arrayWithArray</span><span class="pun">:</span><span class="pln">mutableArray</span><span class="pun">];</span></code></li>
+</ol></pre>
+<p class="calibre15">有点明白了,对不对? 你可能像上面这样子写代码写了成百上千次。我们每一天的工作中涉及到类似这种高阶映射或者高阶过滤的事情有多少? 非常多！通过使用像高阶过滤、高阶映射类似的高阶函数，我们能够把这种繁琐又乏味的任务抽象出来，轻松工作，轻松生活。。。</p>
+
+    </div>
+</body>
+</html>

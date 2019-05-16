@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ncx version="2005-1" xml:lang="zho" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta content="3975938b-23e8-417b-95f8-ea345ef932d8" name="dtb:uid"/>
+    <meta content="3" name="dtb:depth"/>
+    <meta content="calibre (3.15.0)" name="dtb:generator"/>
+    <meta content="0" name="dtb:totalPageCount"/>
+    <meta content="0" name="dtb:maxPageNumber"/>
+  </head>
+  <docTitle>
+    <text>iOS的函数响应型编程</text>
+  </docTitle>
+  <navMap>
+    <navPoint class="chapter" id="id256548483" playOrder="1">
+      <navLabel>
+        <text>致谢</text>
+      </navLabel>
+      <content src="Text/statement.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="id30861" playOrder="2">
+      <navLabel>
+        <text>introduction</text>
+      </navLabel>
+      <content src="Text/30861.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="id30863" playOrder="3">
+      <navLabel>
+        <text>致谢</text>
+      </navLabel>
+      <content src="Text/30863.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="id30866" playOrder="4">
+      <navLabel>
+        <text>理念</text>
+      </navLabel>
+      <content src="Text/30866.html"/>
+      <navPoint class="chapter" id="id30865" playOrder="5">
+        <navLabel>
+          <text>函数式反应型编程</text>
+        </navLabel>
+        <content src="Text/30865.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30864" playOrder="6">
+        <navLabel>
+          <text>结论</text>
+        </navLabel>
+        <content src="Text/30864.html"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="id30871" playOrder="7">
+      <navLabel>
+        <text>用RXCollections进行函数式编程</text>
+      </navLabel>
+      <content src="Text/30871.html"/>
+      <navPoint class="chapter" id="id30867" playOrder="8">
+        <navLabel>
+          <text>高阶函数</text>
+        </navLabel>
+        <content src="Text/30867.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30872" playOrder="9">
+        <navLabel>
+          <text>使用RXCollections</text>
+        </navLabel>
+        <content src="Text/30872.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30873" playOrder="10">
+        <navLabel>
+          <text>映射</text>
+        </navLabel>
+        <content src="Text/30873.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30869" playOrder="11">
+        <navLabel>
+          <text>过滤</text>
+        </navLabel>
+        <content src="Text/30869.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30870" playOrder="12">
+        <navLabel>
+          <text>折叠</text>
+        </navLabel>
+        <content src="Text/30870.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30874" playOrder="13">
+        <navLabel>
+          <text>性能</text>
+        </navLabel>
+        <content src="Text/30874.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30868" playOrder="14">
+        <navLabel>
+          <text>总结</text>
+        </navLabel>
+        <content src="Text/30868.html"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="id30880" playOrder="15">
+      <navLabel>
+        <text>ReactiveCocoa 简介</text>
+      </navLabel>
+      <content src="Text/30880.html"/>
+      <navPoint class="chapter" id="id30879" playOrder="16">
+        <navLabel>
+          <text>使用ReactiveCocoa</text>
+        </navLabel>
+        <content src="Text/30879.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30884" playOrder="17">
+        <navLabel>
+          <text>流和序列</text>
+        </navLabel>
+        <content src="Text/30884.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30883" playOrder="18">
+        <navLabel>
+          <text>信号</text>
+        </navLabel>
+        <content src="Text/30883.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30885" playOrder="19">
+        <navLabel>
+          <text>订阅</text>
+        </navLabel>
+        <content src="Text/30885.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30877" playOrder="20">
+        <navLabel>
+          <text>状态推导</text>
+        </navLabel>
+        <content src="Text/30877.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30875" playOrder="21">
+        <navLabel>
+          <text>指令</text>
+        </navLabel>
+        <content src="Text/30875.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30882" playOrder="22">
+        <navLabel>
+          <text>RACSubject</text>
+        </navLabel>
+        <content src="Text/30882.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30878" playOrder="23">
+        <navLabel>
+          <text>热信号与冷信号</text>
+        </navLabel>
+        <content src="Text/30878.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30881" playOrder="24">
+        <navLabel>
+          <text>组播</text>
+        </navLabel>
+        <content src="Text/30881.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30876" playOrder="25">
+        <navLabel>
+          <text>总结</text>
+        </navLabel>
+        <content src="Text/30876.html"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="id30890" playOrder="26">
+      <navLabel>
+        <text>ReactiveCocoa的实践</text>
+      </navLabel>
+      <content src="Text/30890.html"/>
+      <navPoint class="chapter" id="id30887" playOrder="27">
+        <navLabel>
+          <text>FunctionalReactivePixels的基础知识</text>
+        </navLabel>
+        <content src="Text/30887.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30886" playOrder="28">
+        <navLabel>
+          <text>添加FunctionalReactivePixels</text>
+        </navLabel>
+        <content src="Text/30886.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30891" playOrder="29">
+        <navLabel>
+          <text>和FunctionalReactivePixels一起实践</text>
+        </navLabel>
+        <content src="Text/30891.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30889" playOrder="30">
+        <navLabel>
+          <text>网络层回访</text>
+        </navLabel>
+        <content src="Text/30889.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30888" playOrder="31">
+        <navLabel>
+          <text>总结</text>
+        </navLabel>
+        <content src="Text/30888.html"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="id30894" playOrder="32">
+      <navLabel>
+        <text>MVVM On iOS</text>
+      </navLabel>
+      <content src="Text/30894.html"/>
+      <navPoint class="chapter" id="id30897" playOrder="33">
+        <navLabel>
+          <text>什么是MVVM</text>
+        </navLabel>
+        <content src="Text/30897.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30895" playOrder="34">
+        <navLabel>
+          <text>重温FunctionalReactivePixels</text>
+        </navLabel>
+        <content src="Text/30895.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30893" playOrder="35">
+        <navLabel>
+          <text>MVVM的具体实践</text>
+        </navLabel>
+        <content src="Text/30893.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30896" playOrder="36">
+        <navLabel>
+          <text>测试ViewModels</text>
+        </navLabel>
+        <content src="Text/30896.html"/>
+      </navPoint>
+      <navPoint class="chapter" id="id30892" playOrder="37">
+        <navLabel>
+          <text>终稿</text>
+        </navLabel>
+        <content src="Text/30892.html"/>
+      </navPoint>
+    </navPoint>
+  </navMap>
+</ncx>

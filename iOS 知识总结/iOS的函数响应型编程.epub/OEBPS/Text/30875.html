@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <title>iOS的函数响应型编程 - 书栈(BookStack.CN)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../Styles/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../Styles/page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre6">
+    <h1 id="article-title" class="calibre11">指令</h1>
+    <div class="article-body" id="page-content">
+        <div class="markdown-toc"><ul class="markdown-toc-list"><li class="calibre12"><a class="pcalibre1 calibre9 pcalibre" href="#指令" level="1">指令</a><ul class="calibre13"></ul></li>
+</ul>
+</div>
+<h1 id="h1-u6307u4EE4" class="calibre14"><a class="pcalibre1 calibre9 pcalibre" id="指令"></a><span class="pcalibre2 header-link"></span>指令</h1>
+<p class="calibre15">上一节，我们绑定UIButton的enabled属性并不是最佳实践，因为UIButton增加了一个ReactiveCocoa的类和一条指令。在这一节中我们将介绍ReactiveCocoa的指令。实际上button的rac_command可以为我们监控enabled属性。<br class="calibre18"/>应用一段ReactiveCocoa的文档:</p>
+<blockquote class="calibre16">
+<p class="calibre15">指令，RACCommand类的代表，创建并订阅动作的信号响应，可以很容易地实现一些用户与应用交互时的边界效果。</p>
+<p class="calibre17">指令(行为触发的)通常是UI驱动的，比如按键的点击。指令也可以通过信号自动禁用，这种禁用状态呈现在UI上就是禁用与该指令相关联的任何操作。</p>
+</blockquote>
+<p class="calibre15">当你想要一次用户交互发送一个信号来响应的时候指令就很有用。指令信号对订阅了指令的这个信号而言，她之后的输出都被指令信号所处理。这有一点点混乱，在第五章我们会看到一些指令相关的实践。</p>
+<p class="calibre15">现在我们用下面的代码来替代之前的在button上绑定enabled属性的代码</p>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="kwd">self</span><span class="pun">.</span><span class="pln">button</span><span class="pun">.</span><span class="pln">rac_command </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[[</span><span class="typ">RACCommand</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln"> initWithEnabled</span><span class="pun">:</span><span class="pln">validEmailSignal</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">                                                signalBlock</span><span class="pun">:^</span><span class="typ">RACSignal</span><span class="pln"> </span><span class="pun">*(</span><span class="pln">id input</span><span class="pun">){</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">                                                    </span><span class="typ">NSLog</span><span class="pun">(@</span><span class="str">"Button was pressed."</span><span class="pun">);</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">                                                    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">[</span><span class="typ">RACSignal</span><span class="pln"> empty</span><span class="pun">];</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">                                                </span><span class="pun">}];</span></code></li>
+</ol></pre>
+<p class="calibre15">任何时候button被点击就会执行signalBlock，rac_command属性会监控使能信号validEmailSignal和button的enabled属性。(实际上，如果我们保留原来的代码，新加这一段会引起重复绑定一个属性的错误)。</p>
+<p class="calibre15">另外，这里返回的[RACSignal empty]是什么东西? 呃。。。这里我们需要返回一个信号让属于RACCommand的<code class="calibre20 pcalibre6 pcalibre5">executionSignal</code>管道(pipe)下发出去。这个信号代表button按下时一些任务需要被处理。在这个处理信号没有返回一个’complete value’(‘empty ‘会立即返回一个’complete value’)之前button将会保持不可用状态.因为这个例子中我们只是打印了一下，所以这里我们只返回一个empty信号。在第五章我们将继续讨论RACCommand及其用途。</p>
+
+    </div>
+</body>
+</html>

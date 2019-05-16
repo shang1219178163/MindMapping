@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <title>iOS的函数响应型编程 - 书栈(BookStack.CN)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../Styles/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../Styles/page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre6">
+    <h1 id="article-title" class="calibre11">使用ReactiveCocoa</h1>
+    <div class="article-body" id="page-content">
+        <div class="markdown-toc"><ul class="markdown-toc-list"><li class="calibre12"><a class="pcalibre1 calibre9 pcalibre" href="#引入ReactiveCocoa" level="1">引入ReactiveCocoa</a><ul class="calibre13"></ul></li>
+</ul>
+</div>
+<h1 id="h1--reactivecocoa" class="calibre14"><a class="pcalibre1 calibre9 pcalibre" id="引入ReactiveCocoa"></a><span class="pcalibre2 header-link"></span>引入ReactiveCocoa</h1>
+<p class="calibre15">&#160;&#160;ReactiveCocoa有两种引入的方式:使用CocoaPods或者作为项目的一个字模块(直接拽入项目中)。ReactiveCocoa官方是不支持CococaPods的，但是开源社区提供了这样的服务，我们可以使用她。如果你乐于让ReactiveCocoa作为一个子模块引入到项目中，你可以下载2.x版本并根据官方的介绍来配置她。</p>
+<p class="calibre15">&#160;&#160;使用CocoaPods来引入ReactiveCocoa：打开前面我们创建的<code class="calibre20 pcalibre6 pcalibre5">Podfile</code>文件，并删除<code class="calibre20 pcalibre6 pcalibre5">RXCollections</code>行，用<code class="calibre20 pcalibre6 pcalibre5">pod 'ReactiveCocoa', '2.0'</code>替代掉。你的<code class="calibre20 pcalibre6 pcalibre5">Podfile</code>文件看起来应该是这样的:</p>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">platform </span><span class="pun">:</span><span class="pln">ios</span><span class="pun">,</span><span class="pln"> </span><span class="str">"6.0"</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">target </span><span class="str">"Playground"</span><span class="pln"> </span><span class="kwd">do</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">pod </span><span class="str">'ReactiveCocoa'</span><span class="pln"> </span><span class="pun">,</span><span class="pln"> </span><span class="str">'2.0'</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="kwd">end</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">target </span><span class="str">"PlaygroundTests"</span><span class="pln"> </span><span class="kwd">do</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">pod </span><span class="str">'ReactiveCocoa'</span><span class="pln"> </span><span class="pun">,</span><span class="pln"> </span><span class="str">'2.0'</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="kwd">end</span></code></li>
+</ol></pre>
+<p class="calibre15">注意：我们使用的是’2.0’版的ReactiveCocoa而非最新的。重新运行<code class="calibre20 pcalibre6 pcalibre5">pod install</code>,将从项目中移除<code class="calibre20 pcalibre6 pcalibre5">RXCollections</code>并引入<code class="calibre20 pcalibre6 pcalibre5">ReactiveCocoa</code>。项目中任何<code class="calibre20 pcalibre6 pcalibre5">#import &lt;RXCollections/XXXX&gt;</code>的地方都会编译报错，请把他们也移除。</p>
+<p class="calibre15">这一章里面，我们将把代码写在<code class="calibre20 pcalibre6 pcalibre5">ViewController</code>的实现文件中，而不是在<code class="calibre20 pcalibre6 pcalibre5">AppDelegate</code>中，所以现在请打开ViewController的实现文件。不要忘记把ReactiveCocoa引入进来 <code class="calibre20 pcalibre6 pcalibre5">#import &lt;ReactiveCocoa/ReactiveCocoa.h&gt;</code>。</p>
+
+    </div>
+</body>
+</html>

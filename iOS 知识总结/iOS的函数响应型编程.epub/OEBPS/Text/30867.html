@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <title>iOS的函数响应型编程 - 书栈(BookStack.CN)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../Styles/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../Styles/page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre6">
+    <h1 id="article-title" class="calibre11">高阶函数</h1>
+    <div class="article-body" id="page-content">
+        <div class="markdown-toc"><ul class="markdown-toc-list"><li class="calibre12"><a class="pcalibre1 calibre9 pcalibre" href="#高阶函数" level="1">高阶函数</a><ul class="calibre13"></ul></li>
+</ul>
+</div>
+<h1 id="h1-u9AD8u9636u51FDu6570" class="calibre14"><a class="pcalibre1 calibre9 pcalibre" id="高阶函数"></a><span class="pcalibre2 header-link"></span>高阶函数</h1>
+<p class="calibre15">函数式编程的一个关键的概念是”高阶函数”。从维基百科的解释来看，一个高阶函数需要满足下面两个条件:</p>
+<ul class="markdown-toc-list">
+<li class="calibre12">一个或者多个函数作为输入。</li>
+<li class="calibre12">有且仅有一个函数输出。</li>
+</ul>
+<p class="calibre15">在Objective-c中我们经常使用block作为函数。我们不需要跋山涉水地去寻找‘高阶函数’，实际上，Apple为我们提供的Foundation库中就有。考虑象下面这么简单的一个NSNumber 的数组：</p>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln"> </span><span class="typ">NSArray</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> array </span><span class="pun">=</span><span class="pln"> </span><span class="pun">@[</span><span class="pln"> </span><span class="pun">@(</span><span class="lit">1</span><span class="pun">),</span><span class="pln"> </span><span class="pun">@(</span><span class="lit">2</span><span class="pun">),</span><span class="pln"> </span><span class="pun">@(</span><span class="lit">3</span><span class="pun">)</span><span class="pln"> </span><span class="pun">];</span></code></li>
+</ol></pre>
+<p class="calibre15">我们想要枚举这个数组的内容，利用数组元素来做些事情。</p>
+<p class="calibre15">“好吧”，你说， “我将写一个for循环～”</p>
+<p class="calibre15">住手吧，伙计，停止写for循环,好好看看我之前说的，我们可以用一个NSArray的高阶函数来代替。代码如下：</p>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">NSNumber</span><span class="pln"> </span><span class="pun">*</span><span class="pln">number </span><span class="kwd">in</span><span class="pln"> array</span><span class="pun">)</span><span class="pln"> </span><span class="typ">NSLog</span><span class="pun">(@</span><span class="str">"%@"</span><span class="pun">,</span><span class="pln">number</span><span class="pun">);</span></code></li>
+</ol></pre>
+<p class="calibre15">。。。这个等同于下面的高阶函数:</p>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pun">[</span><span class="pln">array enumerateObjectsUsingBlock</span><span class="pun">:^(</span><span class="typ">NSNumber</span><span class="pln"> </span><span class="pun">*</span><span class="pln">number</span><span class="pun">,</span><span class="pln"> </span><span class="typ">NSUInteger</span><span class="pln"> idx</span><span class="pun">,</span><span class="pln"> BOOL </span><span class="pun">*</span><span class="pln">stop</span><span class="pun">)</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pun">{</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">    </span><span class="typ">NSLog</span><span class="pun">(@</span><span class="str">"%@"</span><span class="pun">,</span><span class="pln">number</span><span class="pun">);</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pun">}];</span></code></li>
+</ol></pre>
+<p class="calibre15">“为什么?”,”这代码不是更多了吗?”.</p>
+<p class="calibre15">好吧，确实是这样，但这是通往函数式编程道路上的第一步:函数的启蒙教育。就像上一章节所说的，如何在只关注任务本身的前提下去完成任务？这只是为即将到来的便利付出的一点点代价，相信我。</p>
+<p class="calibre15">实际上，高阶函数是很抽象的东西，我们所做的事情(命令式编程)基本上都可以用它来抽象。但Foundation中高阶函数的程度很低，要了解更多，我们不得不借助开源社区。</p>
+
+    </div>
+</body>
+</html>

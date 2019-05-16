@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <title>iOS的函数响应型编程 - 书栈(BookStack.CN)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../Styles/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../Styles/page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre6">
+    <h1 id="article-title" class="calibre11">什么是MVVM</h1>
+    <div class="article-body" id="page-content">
+        <div class="markdown-toc"><ul class="markdown-toc-list"><li class="calibre12"><a class="pcalibre1 calibre9 pcalibre" href="#什么是MVVM" level="1">什么是MVVM</a><ul class="calibre13"></ul></li>
+</ul>
+</div>
+<h1 id="h1--mvvm" class="calibre14"><a class="pcalibre1 calibre9 pcalibre" id="什么是MVVM"></a><span class="pcalibre2 header-link"></span>什么是MVVM</h1>
+<p class="calibre15">&#160;&#160;在传统的MVC架构的应用中，你有三种组件：数据模型、视图以及试图控制器。数据模型保持你的数据，而视图用来呈现这些数据。控制器介于这两个组件之间调解所有的交互。</p>
+<p class="calibre15">&#160;&#160;希望于Apple已经很好地测试过它的业务逻辑了。剩下的视图控制器它很少进行单元测试。</p>
+<p class="calibre15">&#160;&#160;当新的数据到达时，model会通知ViewController（通常是通过键-值观察(KVO)的方式），然后ViewController会更新View。当View接收交互时，ViewController会更新Model。</p>
+<p class="calibre15"><img src="../Images/276d5c88c6a4081c02f4361fcd090ca9.png" alt="Typical MVC Paradigm" class="calibre22"/></p>
+<p class="calibre15">&#160;&#160;正如你所看到的ViewController隐式地负责很多事情：验证输入、将模型数据映射到面向用户的信息、操作视图层次结构等等。</p>
+<p class="calibre15">&#160;&#160;MVVM将大量的类似上面的业务逻辑从viewController中抽离出来了。</p>
+<p class="calibre15"><img src="../Images/1aeac39214d71503af78563cf928a335.png" alt="MVVM_high_level" class="calibre22"/></p>
+<p class="calibre15">&#160;&#160;在MVVM中，我们趋向于将view和view controller作为一个整体（这也解释了为什么不称它为MVVCVM),新的viewModel代替原来的viewController协调view与model之间的交互。</p>
+<p class="calibre15">&#160;&#160;对这种MVVM架构中的”更新”机制，我们没有什么概念。实际上也没有什么关于MVVM的东西迫使你使用特定的机制来更新视图模型或视图。但在本书的范围内，我们将使用ReactiveCocoa来做处理这个。</p>
+<p class="calibre15">&#160;&#160;ReactiveCocoa将会监控数据模型(model)的变化，并将这个变化映射到视图模型(viewModel)的属性上，执行任意必要的业务逻辑。</p>
+<p class="calibre15">&#160;&#160;举一个具体的例子：假设我们的模型包含一个“日期”(用<code class="calibre20 pcalibre6 pcalibre5">dateAdded</code>表示)，我们想要监控这个“日期”的变化，来更新我们视图模型(viewModel)的属性<code class="calibre20 pcalibre6 pcalibre5">dateAdded</code>.模型(model)的属性是一个<code class="calibre20 pcalibre6 pcalibre5">NSDate</code>的实例，但视图模型(viewModel)中对应的属性是从它转换过来的<code class="calibre20 pcalibre6 pcalibre5">NSString</code>。这种绑定看起来跟下面的代码类似(在viewModel的初始化方法中进行)：</p>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">RAC</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">,</span><span class="pln"> dateAdded</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">RACObserve</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">.</span><span class="pln">model</span><span class="pun">,</span><span class="pln">dateAdded</span><span class="pun">)</span><span class="pln"> map</span><span class="pun">:^(</span><span class="typ">NSDate</span><span class="pln"> </span><span class="pun">*</span><span class="pln">date</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">[[</span><span class="typ">ViewModel</span><span class="pln"> dateFormatter</span><span class="pun">]</span><span class="pln"> stringFromDate</span><span class="pun">:</span><span class="pln">date</span><span class="pun">];</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pun">}];</span></code></li>
+</ol></pre>
+<p class="calibre15">&#160;&#160;<code class="calibre20 pcalibre6 pcalibre5">dateFormatter</code>是ViewModel的一个类方法，它缓存了一个<code class="calibre20 pcalibre6 pcalibre5">NSDateFormatter</code>实例以便复用(创建NSDateFormatter代价昂贵)。<br class="calibre18"/>接下来，view controller 可以监控viewModel的<code class="calibre20 pcalibre6 pcalibre5">dateAdded</code>属性将它跟一个<code class="calibre20 pcalibre6 pcalibre5">label</code>进行绑定。</p>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">RAC</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">.</span><span class="pln">label</span><span class="pun">,</span><span class="pln"> text</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">RACObserve</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">.</span><span class="pln">viewModel</span><span class="pun">,</span><span class="pln"> dateAdded</span><span class="pun">);</span></code></li>
+</ol></pre>
+<p class="calibre15">&#160;&#160;现在，我们已经将日期转换为字符串到视图模型的过程抽象出来了，在(viewModel)中我们可以为这个业务逻辑编写单元测试。这个例子看起来简单，但就像我们看到的，它显著地减少了你的视图控制器中的业务逻辑。</p>
+
+    </div>
+</body>
+</html>

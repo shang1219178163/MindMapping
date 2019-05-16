@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package version="2.0" unique-identifier="uuid_id" xmlns="http://www.idpf.org/2007/opf">
+  <metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:calibre="http://calibre.kovidgoyal.net/2009/metadata" xmlns:opf="http://www.idpf.org/2007/opf">
+    <meta name="cover" content="cover" />
+    <dc:identifier id="uuid_id" opf:scheme="uuid">3975938b-23e8-417b-95f8-ea345ef932d8</dc:identifier>
+    <dc:language>zh</dc:language>
+    <dc:title>iOS的函数响应型编程</dc:title>
+    <dc:publisher>书栈(BookStack.CN)</dc:publisher>
+    <dc:contributor opf:role="bkp">书栈(BookStack.CN)</dc:contributor>
+    <meta name="calibre:timestamp" content="2018-04-14T16:00:00+00:00" />
+    <dc:description>Functional reactive programming introduction using ReactiveCocoa 中文译本</dc:description>
+    <dc:creator opf:file-as="Unknown" opf:role="aut">书栈(BookStack.CN)</dc:creator>
+    <meta name="Sigil version" content="0.9.10" />
+    <dc:date opf:event="modification" xmlns:opf="http://www.idpf.org/2007/opf">2019-05-10</dc:date>
+  </metadata>
+  <manifest>
+    <item id="cover" href="Images/cover_image.jpg" media-type="image/jpeg"/>
+    <item id="page_css" href="Styles/page_styles.css" media-type="text/css"/>
+    <item id="page_css1" href="Styles/page_styles1.css" media-type="text/css"/>
+    <item id="css" href="Styles/stylesheet.css" media-type="text/css"/>
+    <item id="titlepage" href="Text/titlepage.xhtml" media-type="application/xhtml+xml"/>
+    <item id="143fb7012e8fb3e0aba2f8487cfcf9ff" href="Images/00036d326d6cc1b262fa39fb5c9580e4.png" media-type="image/png"/>
+    <item id="bed84e81c5d8a664cd2de0f189388303" href="Images/042c4d0b01ddaabfe6fd9f60bfb20e1d.png" media-type="image/png"/>
+    <item id="bac40d7ee092e026c1a854855d945ed7" href="Images/0880401d077746261f585e446188f97c.png" media-type="image/png"/>
+    <item id="191dbf610374333ff3c184f00e3d81c9" href="Images/0c9975648762abc37ac4c14412c9575a.png" media-type="image/png"/>
+    <item id="3ff749291b6f9e98d6ca83d9ccd7b870" href="Images/1aeac39214d71503af78563cf928a335.png" media-type="image/png"/>
+    <item id="e94330a7481917f3d70cc3aa33300328" href="Images/202b75a857d1e8dd891b2d58e20f6a2c.png" media-type="image/png"/>
+    <item id="e891fdbed9173e082bdb311ff923de7e" href="Images/276d5c88c6a4081c02f4361fcd090ca9.png" media-type="image/png"/>
+    <item id="bc821776875104a2a1bf23498d26ecf8" href="Images/2d4da8efa765ffc2db5943f006be8a92.png" media-type="image/png"/>
+    <item id="093aa14aaf069615ffab0496dc2b3df0" href="Images/2f45ed0a74ad286093c7df0b733df59f.png" media-type="image/png"/>
+    <item id="af286e9be8c5ad04ac8d11040f9056ed" href="Text/30861.html" media-type="application/xhtml+xml"/>
+    <item id="317560bb7e08cede2732c4b37fe3dae5" href="Text/30863.html" media-type="application/xhtml+xml"/>
+    <item id="0fc129b41041b29ff1de15d578145927" href="Text/30864.html" media-type="application/xhtml+xml"/>
+    <item id="645f7aea02fc573e6f126a2012b07b5f" href="Text/30865.html" media-type="application/xhtml+xml"/>
+    <item id="1e486d2f2788c85493246eaa1351418d" href="Text/30866.html" media-type="application/xhtml+xml"/>
+    <item id="aa46b5e84b0e81c1435dc26a320efb1d" href="Text/30867.html" media-type="application/xhtml+xml"/>
+    <item id="439758241d0639a4fa9a5f82c7edeb32" href="Text/30868.html" media-type="application/xhtml+xml"/>
+    <item id="eea75673a000ada34ddbcd187f51f3d0" href="Text/30869.html" media-type="application/xhtml+xml"/>
+    <item id="5214af094db60a9a24896eebdb5a1208" href="Text/30870.html" media-type="application/xhtml+xml"/>
+    <item id="8e91a2d12f86197045c0cce968481fed" href="Text/30871.html" media-type="application/xhtml+xml"/>
+    <item id="c68a1ef37202e5ea6e981e4d9c3da4f4" href="Text/30872.html" media-type="application/xhtml+xml"/>
+    <item id="c613f0963ec99c4f3eece32ac6d98bee" href="Text/30873.html" media-type="application/xhtml+xml"/>
+    <item id="37a28712e608fd31d51945cfe5b1aa7f" href="Text/30874.html" media-type="application/xhtml+xml"/>
+    <item id="669ed1bfa2a84df8fb4c51dcb0a909e9" href="Text/30875.html" media-type="application/xhtml+xml"/>
+    <item id="26ccc196cb3cc4ff17314fc676a75a89" href="Text/30876.html" media-type="application/xhtml+xml"/>
+    <item id="066e0873515ce205ccfca9110082f91e" href="Text/30877.html" media-type="application/xhtml+xml"/>
+    <item id="a5b560df6e076db5fe2c1ea23f69b4b3" href="Text/30878.html" media-type="application/xhtml+xml"/>
+    <item id="e51091b3e363a71d0ab02d0d6e8213b7" href="Text/30879.html" media-type="application/xhtml+xml"/>
+    <item id="88639800d78a4101a9cb0c476a521a47" href="Text/30880.html" media-type="application/xhtml+xml"/>
+    <item id="f1d4f9129a3f983af69491a51cd67a32" href="Text/30881.html" media-type="application/xhtml+xml"/>
+    <item id="253d7d7a3bf2311493ab92ed54eba63b" href="Text/30882.html" media-type="application/xhtml+xml"/>
+    <item id="2245ec53948b2854c68c6950d80bef1e" href="Text/30883.html" media-type="application/xhtml+xml"/>
+    <item id="fa3425b980e7e29154a21fb68b8929b5" href="Text/30884.html" media-type="application/xhtml+xml"/>
+    <item id="940e778ff250a7bcfbe7747689c1940c" href="Text/30885.html" media-type="application/xhtml+xml"/>
+    <item id="fecc6306e1eb4254270cc58052fc0d99" href="Text/30886.html" media-type="application/xhtml+xml"/>
+    <item id="708fedbf7030f8caf7d52a42d9870d16" href="Text/30887.html" media-type="application/xhtml+xml"/>
+    <item id="4b884b29f3584a34b69f018bd3226086" href="Text/30888.html" media-type="application/xhtml+xml"/>
+    <item id="5b7c5fc9738de8952a6faa4b2195e96c" href="Text/30889.html" media-type="application/xhtml+xml"/>
+    <item id="ff77a67751011b06a08a9fda58851b56" href="Text/30890.html" media-type="application/xhtml+xml"/>
+    <item id="82980ecf7871ad1734546bdb3baec121" href="Text/30891.html" media-type="application/xhtml+xml"/>
+    <item id="9400923e482feffcbfbdaaf865303e1a" href="Text/30892.html" media-type="application/xhtml+xml"/>
+    <item id="2b442627de3f4c7cb92d83f1e9cba222" href="Text/30893.html" media-type="application/xhtml+xml"/>
+    <item id="9147d5f7914f56de2d1c7c642c0f08dd" href="Text/30894.html" media-type="application/xhtml+xml"/>
+    <item id="5b62fb0e26e8dbe30a39bb59df3dfd31" href="Text/30895.html" media-type="application/xhtml+xml"/>
+    <item id="4df55ba6d33678ea07690813528c9766" href="Text/30896.html" media-type="application/xhtml+xml"/>
+    <item id="f5a6b400a0efae14695abe3e5802f926" href="Text/30897.html" media-type="application/xhtml+xml"/>
+    <item id="3a1e89677e82ecd62557911d65d9c4c9" href="Images/3763cc3f967fc975e2703ae613f12e06.png" media-type="image/png"/>
+    <item id="5db94ea5b750a55a15c0dc8a8205696f" href="Images/389511f7d919af57d10367681660fb2e.png" media-type="image/png"/>
+    <item id="1ca31958ca29a0598926009d8c39d1f9" href="Images/6032259d965bbf063dbd17ee627159c2.png" media-type="image/png"/>
+    <item id="e803d8cbd9669349d26fac7fa1326a72" href="Images/6865dbdbf7e6f2afb287e1ffd0ba4e05.png" media-type="image/png"/>
+    <item id="0ede90ab048d4335c57ddf67427d23cb" href="Images/70e3b378a7d883761e814b35c62dee8e.png" media-type="image/png"/>
+    <item id="6ceff9c6ff1f48d90cd1fa6d871ff706" href="Images/741ca44e9fa9597609eb1b789d9b880b.png" media-type="image/png"/>
+    <item id="d374b33f5f1464ca6613d7fea2f12efd" href="Images/77a511e5a45233e4c8093426cd4f7d47.png" media-type="image/png"/>
+    <item id="1ceb88e0701d73c359e4e70e0bbf7f47" href="Images/858acc98336d0a5fcd0008a2cf77c9ae.png" media-type="image/png"/>
+    <item id="38c43f9293b5a2c89ad8991f9e110beb" href="Images/9404a72d34a40f8b9a600c64c74d5d96.png" media-type="image/png"/>
+    <item id="49916f830a8f4d200e5755613754355a" href="Images/9a178afc2ad7eb126f95d02bde0cbb35.png" media-type="image/png"/>
+    <item id="0b427c13a999b56a8bbabcadad91776f" href="Images/a3325371c0c357556b9742a35a2ea251.png" media-type="image/png"/>
+    <item id="a2c0023fe32813836e6b62f890ae6925" href="Images/de4b8dfc6829b6ce7a5178968024e9e8.png" media-type="image/png"/>
+    <item id="50317eedea6bbba2a94d9c936c3a0825" href="Images/e30b6a1499fbd53c16fe845dbbe0538e.png" media-type="image/png"/>
+    <item id="52ceb0b8b7cb67690d8d0fd1b339ad08" href="Images/e87473c532b638e99dde90102523902d.png" media-type="image/png"/>
+    <item id="764c3b982cccf6bf5f750c44467e414b" href="Images/eb6310e2df5c90560e7751172b1e22bd.png" media-type="image/png"/>
+    <item id="f79b7d0938d4db40f4211ad033d860ac" href="Text/statement.html" media-type="application/xhtml+xml"/>
+    <item id="summary" href="Text/summary.html" media-type="application/xhtml+xml"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="titlepage"/>
+    <itemref idref="summary"/>
+    <itemref idref="f79b7d0938d4db40f4211ad033d860ac"/>
+    <itemref idref="af286e9be8c5ad04ac8d11040f9056ed"/>
+    <itemref idref="317560bb7e08cede2732c4b37fe3dae5"/>
+    <itemref idref="1e486d2f2788c85493246eaa1351418d"/>
+    <itemref idref="645f7aea02fc573e6f126a2012b07b5f"/>
+    <itemref idref="0fc129b41041b29ff1de15d578145927"/>
+    <itemref idref="8e91a2d12f86197045c0cce968481fed"/>
+    <itemref idref="aa46b5e84b0e81c1435dc26a320efb1d"/>
+    <itemref idref="c68a1ef37202e5ea6e981e4d9c3da4f4"/>
+    <itemref idref="c613f0963ec99c4f3eece32ac6d98bee"/>
+    <itemref idref="eea75673a000ada34ddbcd187f51f3d0"/>
+    <itemref idref="5214af094db60a9a24896eebdb5a1208"/>
+    <itemref idref="37a28712e608fd31d51945cfe5b1aa7f"/>
+    <itemref idref="439758241d0639a4fa9a5f82c7edeb32"/>
+    <itemref idref="88639800d78a4101a9cb0c476a521a47"/>
+    <itemref idref="e51091b3e363a71d0ab02d0d6e8213b7"/>
+    <itemref idref="fa3425b980e7e29154a21fb68b8929b5"/>
+    <itemref idref="2245ec53948b2854c68c6950d80bef1e"/>
+    <itemref idref="940e778ff250a7bcfbe7747689c1940c"/>
+    <itemref idref="066e0873515ce205ccfca9110082f91e"/>
+    <itemref idref="669ed1bfa2a84df8fb4c51dcb0a909e9"/>
+    <itemref idref="253d7d7a3bf2311493ab92ed54eba63b"/>
+    <itemref idref="a5b560df6e076db5fe2c1ea23f69b4b3"/>
+    <itemref idref="f1d4f9129a3f983af69491a51cd67a32"/>
+    <itemref idref="26ccc196cb3cc4ff17314fc676a75a89"/>
+    <itemref idref="ff77a67751011b06a08a9fda58851b56"/>
+    <itemref idref="708fedbf7030f8caf7d52a42d9870d16"/>
+    <itemref idref="fecc6306e1eb4254270cc58052fc0d99"/>
+    <itemref idref="82980ecf7871ad1734546bdb3baec121"/>
+    <itemref idref="5b7c5fc9738de8952a6faa4b2195e96c"/>
+    <itemref idref="4b884b29f3584a34b69f018bd3226086"/>
+    <itemref idref="9147d5f7914f56de2d1c7c642c0f08dd"/>
+    <itemref idref="f5a6b400a0efae14695abe3e5802f926"/>
+    <itemref idref="5b62fb0e26e8dbe30a39bb59df3dfd31"/>
+    <itemref idref="2b442627de3f4c7cb92d83f1e9cba222"/>
+    <itemref idref="4df55ba6d33678ea07690813528c9766"/>
+    <itemref idref="9400923e482feffcbfbdaaf865303e1a"/>
+  </spine>
+  <guide>
+    <reference type="cover" title="Title Page" href="Text/titlepage.xhtml"/>
+  </guide>
+</package>

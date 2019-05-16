@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <title>iOS的函数响应型编程 - 书栈(BookStack.CN)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../Styles/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../Styles/page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre6">
+    <h1 id="article-title" class="calibre11">状态推导</h1>
+    <div class="article-body" id="page-content">
+        <div class="markdown-toc"><ul class="markdown-toc-list"><li class="calibre12"><a class="pcalibre1 calibre9 pcalibre" href="#状态推导" level="1">状态推导</a><ul class="calibre13"></ul></li>
+</ul>
+</div>
+<h1 id="h1-u72B6u6001u63A8u5BFC" class="calibre14"><a class="pcalibre1 calibre9 pcalibre" id="状态推导"></a><span class="pcalibre2 header-link"></span>状态推导</h1>
+<p class="calibre15">状态推导是ReactiveCocoa的另一个核心组件。这里并非指类的某个属性(设置一个新的值就代表状态发生了改变那样)，这里我们指的是把属性抽象为流。就拿前面的例子，我们为她增加状态推导。</p>
+<p class="calibre15">假设我们的视图是用来创建账户的，我们只允许包含有’@’字符的Email地址，当且仅当，输入的用户名有效时使按键可用，同时我们也希望通过TextField中Text的颜色给用户提供反馈。</p>
+<ul class="markdown-toc-list">
+<li class="calibre12">首先我们使用IBOutlet在视图上增加一个按键‘button’.<br class="calibre18"/><img src="../Images/2f45ed0a74ad286093c7df0b733df59f.png" alt="added_a_button" class="calibre22"/></li>
+<li class="calibre12">其次我们将button的enable属性与我们创建的信号绑定。</li>
+</ul>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">RAC</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">.</span><span class="pln">button</span><span class="pun">,</span><span class="pln"> enabled</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">self</span><span class="pun">.</span><span class="pln">textField</span><span class="pun">.</span><span class="pln">rac_textSignal map</span><span class="pun">:^</span><span class="pln">id </span><span class="pun">(</span><span class="typ">NSString</span><span class="pln"> </span><span class="pun">*</span><span class="pln">value</span><span class="pun">){</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">@([</span><span class="pln">value rangeOfString</span><span class="pun">:@</span><span class="str">"@"</span><span class="pun">].</span><span class="pln">location </span><span class="pun">!=</span><span class="pln"> </span><span class="typ">NSNotfound</span><span class="pun">);</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pun">}];</span></code></li>
+</ol></pre>
+<p class="calibre15">请注意，稍候将看到我们如何使用buttons的命令来更好地约束她的enable属性。</p>
+<p class="calibre15"><code class="calibre20 pcalibre6 pcalibre5">RAC()</code>宏需要两个参数:‘对象’以及这个对象的某个属性的’keyPath’。然后将表达式右边的值和’keyPath’做一个单向的绑定，这个值必须是NSObject类型，所以我们会把boolean量封装成NSNumber。</p>
+<p class="calibre15">但是，文本的颜色怎么办?实际上我们在这个基础上做一点点重构就可以了。</p>
+<pre class="prettyprint"><ol class="linenums"><li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="typ">RACSignal</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> validEmailSignal </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">self</span><span class="pun">.</span><span class="pln">textField</span><span class="pun">.</span><span class="pln">rac_textSignal map</span><span class="pun">:^</span><span class="pln">id </span><span class="pun">(</span><span class="typ">NSString</span><span class="pln"> </span><span class="pun">*</span><span class="pln">value</span><span class="pun">){</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">@([</span><span class="pln">value rangeOfString</span><span class="pun">:@</span><span class="str">"@"</span><span class="pun">].</span><span class="pln">location </span><span class="pun">!=</span><span class="pln"> </span><span class="typ">NSNotFound</span><span class="pun">);</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pun">}];</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">RAC</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">.</span><span class="pln">button</span><span class="pun">,</span><span class="pln"> enabled</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> validEmailSignal</span><span class="pun">;</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">RAC</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">.</span><span class="pln">textField</span><span class="pun">,</span><span class="pln"> textColor</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">validEmailSignal map</span><span class="pun">:</span><span class="pln"> </span><span class="pun">^</span><span class="pln">id </span><span class="pun">(</span><span class="pln">id value</span><span class="pun">){</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">    </span><span class="kwd">if</span><span class="pun">([</span><span class="pln">value boolValue</span><span class="pun">]){</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">[</span><span class="typ">UIColor</span><span class="pln"> greenColor</span><span class="pun">];</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">    </span><span class="pun">}</span><span class="kwd">else</span><span class="pun">{</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">[</span><span class="typ">UIColor</span><span class="pln"> redColor</span><span class="pun">];</span></code></li>
+<li class="l1"><code class="pcalibre3 calibre19 pcalibre4"><span class="pln">    </span><span class="pun">}</span></code></li>
+<li class="l"><code class="pcalibre3 calibre19 pcalibre4"><span class="pun">}];</span></code></li>
+</ol></pre>
+<p class="calibre15"><img src="../Images/3763cc3f967fc975e2703ae613f12e06.png" alt="invalid_email_address" class="calibre22"/></p>
+<p class="calibre15"><img src="../Images/de4b8dfc6829b6ce7a5178968024e9e8.png" alt="valid_email_address" class="calibre22"/></p>
+<p class="calibre15">很好！看到我们怎样复用validEmailSignal吗？这在ReactiveCocoa中是非常常见的用法。在viewDidLoad方法之外，我们也不用写任何代码，这也很常见。</p>
+
+    </div>
+</body>
+</html>
