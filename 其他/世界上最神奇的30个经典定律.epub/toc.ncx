@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+<head>
+<meta content="coay_2867" name="dtb:uid"/>
+<meta content="2" name="dtb:depth"/>
+<meta content="COAY.COM [http://www.coay.com]" name="dtb:generator"/>
+<meta content="0" name="dtb:totalPageCount"/>
+<meta content="0" name="dtb:maxPageNumber"/>
+</head>
+<docTitle>
+<text>世界上最神奇的30个经典定律</text>
+</docTitle>
+<docAuthor>
+<text>龙吻</text>
+</docAuthor>
+<navMap>
+<navPoint class="chapter" id="article_135584" playOrder="1">
+<navLabel>
+<text>前言</text>
+</navLabel>
+<content src="article_135584.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135585" playOrder="2">
+<navLabel>
+<text>破 窗 理 论 (1)</text>
+</navLabel>
+<content src="article_135585.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135586" playOrder="3">
+<navLabel>
+<text>破 窗 理 论 (2)</text>
+</navLabel>
+<content src="article_135586.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135587" playOrder="4">
+<navLabel>
+<text>破 窗 理 论 (3)</text>
+</navLabel>
+<content src="article_135587.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135588" playOrder="5">
+<navLabel>
+<text>彼得原理(1)</text>
+</navLabel>
+<content src="article_135588.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135589" playOrder="6">
+<navLabel>
+<text>彼得原理(2)</text>
+</navLabel>
+<content src="article_135589.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135590" playOrder="7">
+<navLabel>
+<text>彼得原理(3)</text>
+</navLabel>
+<content src="article_135590.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135591" playOrder="8">
+<navLabel>
+<text>华盛顿合作定律(1)</text>
+</navLabel>
+<content src="article_135591.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135592" playOrder="9">
+<navLabel>
+<text>华盛顿合作定律(2)</text>
+</navLabel>
+<content src="article_135592.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135593" playOrder="10">
+<navLabel>
+<text>华盛顿合作定律(3)</text>
+</navLabel>
+<content src="article_135593.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135594" playOrder="11">
+<navLabel>
+<text>华盛顿合作定律(4)</text>
+</navLabel>
+<content src="article_135594.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135595" playOrder="12">
+<navLabel>
+<text>帕金森定律(1)</text>
+</navLabel>
+<content src="article_135595.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135596" playOrder="13">
+<navLabel>
+<text>帕金森定律(2)</text>
+</navLabel>
+<content src="article_135596.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135597" playOrder="14">
+<navLabel>
+<text>帕金森定律(3)</text>
+</navLabel>
+<content src="article_135597.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135598" playOrder="15">
+<navLabel>
+<text>帕金森定律(4)</text>
+</navLabel>
+<content src="article_135598.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135599" playOrder="16">
+<navLabel>
+<text>250定律(1)</text>
+</navLabel>
+<content src="article_135599.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135600" playOrder="17">
+<navLabel>
+<text>250定律(2)</text>
+</navLabel>
+<content src="article_135600.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135601" playOrder="18">
+<navLabel>
+<text>250定律(3)</text>
+</navLabel>
+<content src="article_135601.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135602" playOrder="19">
+<navLabel>
+<text>250定律(4)</text>
+</navLabel>
+<content src="article_135602.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135603" playOrder="20">
+<navLabel>
+<text>250定律(5)</text>
+</navLabel>
+<content src="article_135603.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135604" playOrder="21">
+<navLabel>
+<text>墨菲定律 (1)</text>
+</navLabel>
+<content src="article_135604.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135605" playOrder="22">
+<navLabel>
+<text>墨菲定律 (2)</text>
+</navLabel>
+<content src="article_135605.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135606" playOrder="23">
+<navLabel>
+<text>墨菲定律 (3)</text>
+</navLabel>
+<content src="article_135606.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135607" playOrder="24">
+<navLabel>
+<text>墨菲定律 (4)</text>
+</navLabel>
+<content src="article_135607.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135608" playOrder="25">
+<navLabel>
+<text>蘑菇定律(1)</text>
+</navLabel>
+<content src="article_135608.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135609" playOrder="26">
+<navLabel>
+<text>蘑菇定律(2)</text>
+</navLabel>
+<content src="article_135609.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135610" playOrder="27">
+<navLabel>
+<text>蘑菇定律(3)</text>
+</navLabel>
+<content src="article_135610.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135611" playOrder="28">
+<navLabel>
+<text>蘑菇定律(4)</text>
+</navLabel>
+<content src="article_135611.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135612" playOrder="29">
+<navLabel>
+<text>蘑菇定律(5)</text>
+</navLabel>
+<content src="article_135612.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135613" playOrder="30">
+<navLabel>
+<text>手表定律 (1)</text>
+</navLabel>
+<content src="article_135613.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135614" playOrder="31">
+<navLabel>
+<text>手表定律 (2)</text>
+</navLabel>
+<content src="article_135614.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135615" playOrder="32">
+<navLabel>
+<text>手表定律 (3)</text>
+</navLabel>
+<content src="article_135615.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135616" playOrder="33">
+<navLabel>
+<text>手表定律 (4)</text>
+</navLabel>
+<content src="article_135616.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135617" playOrder="34">
+<navLabel>
+<text>手表定律 (5)</text>
+</navLabel>
+<content src="article_135617.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135618" playOrder="35">
+<navLabel>
+<text>不值得定律(1)</text>
+</navLabel>
+<content src="article_135618.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135619" playOrder="36">
+<navLabel>
+<text>不值得定律(2)</text>
+</navLabel>
+<content src="article_135619.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135620" playOrder="37">
+<navLabel>
+<text>不值得定律(3)</text>
+</navLabel>
+<content src="article_135620.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135621" playOrder="38">
+<navLabel>
+<text>羊群效应(1)</text>
+</navLabel>
+<content src="article_135621.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135622" playOrder="39">
+<navLabel>
+<text>羊群效应(2)</text>
+</navLabel>
+<content src="article_135622.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135623" playOrder="40">
+<navLabel>
+<text>羊群效应(3)</text>
+</navLabel>
+<content src="article_135623.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135624" playOrder="41">
+<navLabel>
+<text>羊群效应(4)</text>
+</navLabel>
+<content src="article_135624.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135625" playOrder="42">
+<navLabel>
+<text>羊群效应(5)</text>
+</navLabel>
+<content src="article_135625.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135626" playOrder="43">
+<navLabel>
+<text>酒与污水定律(1)</text>
+</navLabel>
+<content src="article_135626.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135627" playOrder="44">
+<navLabel>
+<text>酒与污水定律(2)</text>
+</navLabel>
+<content src="article_135627.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135628" playOrder="45">
+<navLabel>
+<text>酒与污水定律(3)</text>
+</navLabel>
+<content src="article_135628.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135629" playOrder="46">
+<navLabel>
+<text>马蝇效应(1)</text>
+</navLabel>
+<content src="article_135629.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135630" playOrder="47">
+<navLabel>
+<text>马蝇效应(2)</text>
+</navLabel>
+<content src="article_135630.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135631" playOrder="48">
+<navLabel>
+<text>马蝇效应(3)</text>
+</navLabel>
+<content src="article_135631.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135632" playOrder="49">
+<navLabel>
+<text>马蝇效应(4)</text>
+</navLabel>
+<content src="article_135632.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135633" playOrder="50">
+<navLabel>
+<text>马蝇效应(5)</text>
+</navLabel>
+<content src="article_135633.html"/>
+</navPoint>
+<navPoint class="chapter" id="article_135634" playOrder="51">
+<navLabel>
+<text>马蝇效应(6)</text>
+</navLabel>
+<content src="article_135634.html"/>
+</navPoint>
+</navMap>
+</ncx>
