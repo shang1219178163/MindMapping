@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ncx version="2005-1" xml:lang="zho" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta content="29eb59c1-8e05-4842-b8a4-6e2148f4ffc8" name="dtb:uid"/>
+    <meta content="3" name="dtb:depth"/>
+    <meta content="calibre (0.9.41)" name="dtb:generator"/>
+    <meta content="0" name="dtb:totalPageCount"/>
+    <meta content="0" name="dtb:maxPageNumber"/>
+  </head>
+  <docTitle>
+    <text>乌合之众:大众心理研究 (社会学经典名著)</text>
+  </docTitle>
+  <navMap>
+    <navPoint class="chapter" id="num_1" playOrder="1">
+      <navLabel>
+        <text>版权</text>
+      </navLabel>
+      <content src="Text/part0000_split_000.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_2" playOrder="2">
+      <navLabel>
+        <text>第一卷：群体心理</text>
+      </navLabel>
+      <content src="Text/part0000_split_002.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_3" playOrder="3">
+      <navLabel>
+        <text>第一章 群体的一般特征</text>
+      </navLabel>
+      <content src="Text/part0000_split_003.html"/>
+      <navPoint class="chapter" id="num_4" playOrder="4">
+        <navLabel>
+          <text>（1）群体是个活的生物</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-18"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_5" playOrder="5">
+        <navLabel>
+          <text>（2）构成群体的条件</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-19"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_6" playOrder="6">
+        <navLabel>
+          <text>（3）群体的相同与不同</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-20"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_7" playOrder="7">
+        <navLabel>
+          <text>（4）群体共性的研究方法</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-21"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_8" playOrder="8">
+        <navLabel>
+          <text>（5）群体共同的心理特征</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-22"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_9" playOrder="9">
+        <navLabel>
+          <text>（6）群体质变的症因</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-23"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_10" playOrder="10">
+        <navLabel>
+          <text>（7）被抹平的才智差别</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-24"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_11" playOrder="11">
+        <navLabel>
+          <text>（8）第一个原因：本能</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-25"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_12" playOrder="12">
+        <navLabel>
+          <text>（9）第二个原因：传染</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-26"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_13" playOrder="13">
+        <navLabel>
+          <text>（10）第三个原因：暗示</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-27"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_14" playOrder="14">
+        <navLabel>
+          <text>（11）野蛮的玩偶</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-28"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_15" playOrder="15">
+        <navLabel>
+          <text>（12）群体的行为</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-29"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_16" playOrder="16">
+        <navLabel>
+          <text>（13）奇迹的创造者</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-30"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_17" playOrder="17">
+        <navLabel>
+          <text>（14）你不会接受的观念</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-31"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_18" playOrder="18">
+        <navLabel>
+          <text>（15）群体特性之一：冲动、易变和急躁</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-32"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_19" playOrder="19">
+        <navLabel>
+          <text>（16）群体极端表现（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-33"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_20" playOrder="20">
+        <navLabel>
+          <text>（17）群体极端表现（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-34"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_21" playOrder="21">
+        <navLabel>
+          <text>（18）群体没有任何长远打算</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-35"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_22" playOrder="22">
+        <navLabel>
+          <text>（19）群体不承认障碍</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-36"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_23" playOrder="23">
+        <navLabel>
+          <text>（20）引发冲动的导火索</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-37"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_24" playOrder="24">
+        <navLabel>
+          <text>（21）群体特性之二：易受暗示与轻信</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-38"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_25" playOrder="25">
+        <navLabel>
+          <text>（22）群体在等待，永远在等待</text>
+        </navLabel>
+        <content src="Text/part0000_split_003.html#toc-anchor-39"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_26" playOrder="26">
+      <navLabel>
+        <text>第二章 群众的情感和道德观</text>
+      </navLabel>
+      <content src="Text/part0000_split_004.html"/>
+      <navPoint class="chapter" id="num_27" playOrder="27">
+        <navLabel>
+          <text>（1）群体是用形象来思维的</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-40"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_28" playOrder="28">
+        <navLabel>
+          <text>（2）群体观察能力的缺失</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-41"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_29" playOrder="29">
+        <navLabel>
+          <text>（3）群体中的智力泯灭（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-42"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_30" playOrder="30">
+        <navLabel>
+          <text>（4）群体中的智力泯灭（中）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-43"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_31" playOrder="31">
+        <navLabel>
+          <text>（5）群体中的智力泯灭（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-44"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_32" playOrder="32">
+        <navLabel>
+          <text>（6）群体的谎言（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-45"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_33" playOrder="33">
+        <navLabel>
+          <text>（7）群体的谎言（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-46"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_34" playOrder="34">
+        <navLabel>
+          <text>（8）妇孺言论不可轻信</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-47"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_35" playOrder="35">
+        <navLabel>
+          <text>（9）群体只会撒谎</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-48"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_36" playOrder="36">
+        <navLabel>
+          <text>（10）群众杜撰的历史（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-49"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_37" playOrder="37">
+        <navLabel>
+          <text>（11）群众杜撰的历史（中）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-50"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_38" playOrder="38">
+        <navLabel>
+          <text>（12）群众杜撰的历史（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-51"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_39" playOrder="39">
+        <navLabel>
+          <text>（13）群体的极端感情（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-52"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_40" playOrder="40">
+        <navLabel>
+          <text>（14）群体的极端感情（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-53"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_41" playOrder="41">
+        <navLabel>
+          <text>（15）打动群体的东西</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-54"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_42" playOrder="42">
+        <navLabel>
+          <text>（16）群体的夸张妨碍智力（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-55"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_43" playOrder="43">
+        <navLabel>
+          <text>（17）群体的夸张妨碍智力（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-56"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_44" playOrder="44">
+        <navLabel>
+          <text>（18）群体的偏执与专横（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-57"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_45" playOrder="45">
+        <navLabel>
+          <text>（19）群体的偏执与专横（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-58"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_46" playOrder="46">
+        <navLabel>
+          <text>（20）群体渴望强权</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-59"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_47" playOrder="47">
+        <navLabel>
+          <text>（21）群体的保守本能</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-60"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_48" playOrder="48">
+        <navLabel>
+          <text>（22）群体的道德（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-61"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_49" playOrder="49">
+        <navLabel>
+          <text>（23）群体的道德（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-62"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_50" playOrder="50">
+        <navLabel>
+          <text>（24）群体的道德净化作用</text>
+        </navLabel>
+        <content src="Text/part0000_split_004.html#toc-anchor-63"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_51" playOrder="51">
+      <navLabel>
+        <text>第三章 群体的观念、推理与想象力</text>
+      </navLabel>
+      <content src="Text/part0000_split_005.html"/>
+      <navPoint class="chapter" id="num_52" playOrder="52">
+        <navLabel>
+          <text>（1）群体只接受简单观念</text>
+        </navLabel>
+        <content src="Text/part0000_split_005.html#toc-anchor-64"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_53" playOrder="53">
+        <navLabel>
+          <text>（2）如何让群体接受新观念</text>
+        </navLabel>
+        <content src="Text/part0000_split_005.html#toc-anchor-65"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_54" playOrder="54">
+        <navLabel>
+          <text>（3）群体难于被动摇</text>
+        </navLabel>
+        <content src="Text/part0000_split_005.html#toc-anchor-66"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_55" playOrder="55">
+        <navLabel>
+          <text>（4）群体的伪推理能力</text>
+        </navLabel>
+        <content src="Text/part0000_split_005.html#toc-anchor-67"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_56" playOrder="56">
+        <navLabel>
+          <text>（5）群体的想象力（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_005.html#toc-anchor-68"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_57" playOrder="57">
+        <navLabel>
+          <text>（6）群体的想象力（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_005.html#toc-anchor-69"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_58" playOrder="58">
+        <navLabel>
+          <text>（7）掌握群体的想象力（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_005.html#toc-anchor-70"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_59" playOrder="59">
+        <navLabel>
+          <text>（8）掌握群体的想象力（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_005.html#toc-anchor-71"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_60" playOrder="60">
+      <navLabel>
+        <text>第四章 群体信仰所采取的宗教形式</text>
+      </navLabel>
+      <content src="Text/part0000_split_006.html"/>
+      <navPoint class="chapter" id="num_61" playOrder="61">
+        <navLabel>
+          <text>（1）群体的偶像崇拜（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_006.html#toc-anchor-72"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_62" playOrder="62">
+        <navLabel>
+          <text>（2）群体的偶像崇拜（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_006.html#toc-anchor-73"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_63" playOrder="63">
+        <navLabel>
+          <text>（3）如何建立偶像崇拜</text>
+        </navLabel>
+        <content src="Text/part0000_split_006.html#toc-anchor-74"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_64" playOrder="64">
+        <navLabel>
+          <text>（4）偶像崇拜不会消亡</text>
+        </navLabel>
+        <content src="Text/part0000_split_006.html#toc-anchor-75"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_65" playOrder="65">
+        <navLabel>
+          <text>（5）又一个你无法接受的观念</text>
+        </navLabel>
+        <content src="Text/part0000_split_006.html#toc-anchor-76"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_66" playOrder="66">
+      <navLabel>
+        <text>第二卷：群体的意见与信念</text>
+      </navLabel>
+      <content src="Text/part0000_split_007.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_67" playOrder="67">
+      <navLabel>
+        <text>第一章 群体的意见与信念中的间接因素</text>
+      </navLabel>
+      <content src="Text/part0000_split_008.html"/>
+      <navPoint class="chapter" id="num_68" playOrder="68">
+        <navLabel>
+          <text>（1）群众运动的导火索</text>
+        </navLabel>
+        <content src="Text/part0000_split_008.html#toc-anchor-77"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_69" playOrder="69">
+        <navLabel>
+          <text>（2）第一条导火索：民族</text>
+        </navLabel>
+        <content src="Text/part0000_split_008.html#toc-anchor-78"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_70" playOrder="70">
+        <navLabel>
+          <text>（3）第二条导火索：传统</text>
+        </navLabel>
+        <content src="Text/part0000_split_008.html#toc-anchor-79"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_71" playOrder="71">
+        <navLabel>
+          <text>（4）第三条导火索：时间</text>
+        </navLabel>
+        <content src="Text/part0000_split_008.html#toc-anchor-80"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_72" playOrder="72">
+        <navLabel>
+          <text>（5）第四条导火索：政治和社会制度</text>
+        </navLabel>
+        <content src="Text/part0000_split_008.html#toc-anchor-81"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_73" playOrder="73">
+        <navLabel>
+          <text>（6）第五条导火索：教育</text>
+        </navLabel>
+        <content src="Text/part0000_split_008.html#toc-anchor-82"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_74" playOrder="74">
+        <navLabel>
+          <text>（7）关于应试教育的题外话（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_008.html#toc-anchor-83"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_75" playOrder="75">
+        <navLabel>
+          <text>（8）关于应试教育的题外话（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_008.html#toc-anchor-84"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_76" playOrder="76">
+      <navLabel>
+        <text>第二章 群体意见的直接因素</text>
+      </navLabel>
+      <content src="Text/part0000_split_009.html"/>
+      <navPoint class="chapter" id="num_77" playOrder="77">
+        <navLabel>
+          <text>（1）那些直捣人心的东西</text>
+        </navLabel>
+        <content src="Text/part0000_split_009.html#toc-anchor-85"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_78" playOrder="78">
+        <navLabel>
+          <text>（2）第一：形象</text>
+        </navLabel>
+        <content src="Text/part0000_split_009.html#toc-anchor-86"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_79" playOrder="79">
+        <navLabel>
+          <text>（3）第二：词语和套话</text>
+        </navLabel>
+        <content src="Text/part0000_split_009.html#toc-anchor-87"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_80" playOrder="80">
+        <navLabel>
+          <text>（4）第三：幻觉</text>
+        </navLabel>
+        <content src="Text/part0000_split_009.html#toc-anchor-88"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_81" playOrder="81">
+        <navLabel>
+          <text>（5）第四：经验</text>
+        </navLabel>
+        <content src="Text/part0000_split_009.html#toc-anchor-89"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_82" playOrder="82">
+        <navLabel>
+          <text>（6）第五：理性</text>
+        </navLabel>
+        <content src="Text/part0000_split_009.html#toc-anchor-90"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_83" playOrder="83">
+      <navLabel>
+        <text>第三章 群体领袖及其说服的手法</text>
+      </navLabel>
+      <content src="Text/part0000_split_010.html"/>
+      <navPoint class="chapter" id="num_84" playOrder="84">
+        <navLabel>
+          <text>（1）群体的领袖</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-91"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_85" playOrder="85">
+        <navLabel>
+          <text>（2）领袖是如何炼成的</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-92"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_86" playOrder="86">
+        <navLabel>
+          <text>（3）领袖召唤信仰狂潮</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-93"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_87" playOrder="87">
+        <navLabel>
+          <text>（4）领袖的权威</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-94"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_88" playOrder="88">
+        <navLabel>
+          <text>（5）两类不同的领袖（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-95"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_89" playOrder="89">
+        <navLabel>
+          <text>（6）两类不同的领袖（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-96"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_90" playOrder="90">
+        <navLabel>
+          <text>（7）领袖的名望</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-97"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_91" playOrder="91">
+        <navLabel>
+          <text>（8）领袖的动员手段之一：断言</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-98"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_92" playOrder="92">
+        <navLabel>
+          <text>（9）领袖的动员手段之二：重复</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-99"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_93" playOrder="93">
+        <navLabel>
+          <text>（10）领袖的动员手段之三：传染</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-100"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_94" playOrder="94">
+        <navLabel>
+          <text>（11）传染来源于模仿</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-101"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_95" playOrder="95">
+        <navLabel>
+          <text>（12）你逃不掉传染</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-102"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_96" playOrder="96">
+        <navLabel>
+          <text>（13）比财富更诱人的东西</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-103"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_97" playOrder="97">
+        <navLabel>
+          <text>（14）第一类名望</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-104"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_98" playOrder="98">
+        <navLabel>
+          <text>（15）第二类名望</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-105"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_99" playOrder="99">
+        <navLabel>
+          <text>（16）如何取博得个人名望</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-106"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_100" playOrder="100">
+        <navLabel>
+          <text>（17）另一种博得名望的方法</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-107"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_101" playOrder="101">
+        <navLabel>
+          <text>（18）如何不让你的名望流失</text>
+        </navLabel>
+        <content src="Text/part0000_split_010.html#toc-anchor-108"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_102" playOrder="102">
+      <navLabel>
+        <text>第四章 群体的信念与意见的变化范围</text>
+      </navLabel>
+      <content src="Text/part0000_split_011.html"/>
+      <navPoint class="chapter" id="num_103" playOrder="103">
+        <navLabel>
+          <text>（1）两类信念与意见</text>
+        </navLabel>
+        <content src="Text/part0000_split_011.html#toc-anchor-109"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_104" playOrder="104">
+        <navLabel>
+          <text>（2）信仰的变化范围</text>
+        </navLabel>
+        <content src="Text/part0000_split_011.html#toc-anchor-110"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_105" playOrder="105">
+        <navLabel>
+          <text>（3）如何用信仰抓住群众</text>
+        </navLabel>
+        <content src="Text/part0000_split_011.html#toc-anchor-111"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_106" playOrder="106">
+        <navLabel>
+          <text>（4）形形色色的意见</text>
+        </navLabel>
+        <content src="Text/part0000_split_011.html#toc-anchor-112"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_107" playOrder="107">
+        <navLabel>
+          <text>（5）意见的循环过程</text>
+        </navLabel>
+        <content src="Text/part0000_split_011.html#toc-anchor-113"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_108" playOrder="108">
+        <navLabel>
+          <text>（6）缭乱的当代形势</text>
+        </navLabel>
+        <content src="Text/part0000_split_011.html#toc-anchor-114"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_109" playOrder="109">
+        <navLabel>
+          <text>（7）媒体的堕落</text>
+        </navLabel>
+        <content src="Text/part0000_split_011.html#toc-anchor-115"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_110" playOrder="110">
+        <navLabel>
+          <text>（8）历史观的消亡</text>
+        </navLabel>
+        <content src="Text/part0000_split_011.html#toc-anchor-116"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_111" playOrder="111">
+      <navLabel>
+        <text>第三卷：不同群体的分类及其特点</text>
+      </navLabel>
+      <content src="Text/part0000_split_012.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_112" playOrder="112">
+      <navLabel>
+        <text>第一章 群体的分类</text>
+      </navLabel>
+      <content src="Text/part0000_split_013.html"/>
+      <navPoint class="chapter" id="num_113" playOrder="113">
+        <navLabel>
+          <text>（1）群体的两大类别</text>
+        </navLabel>
+        <content src="Text/part0000_split_013.html#toc-anchor-117"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_114" playOrder="114">
+        <navLabel>
+          <text>（2）异质性群体</text>
+        </navLabel>
+        <content src="Text/part0000_split_013.html#toc-anchor-118"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_115" playOrder="115">
+        <navLabel>
+          <text>（3）异质性群体的特征</text>
+        </navLabel>
+        <content src="Text/part0000_split_013.html#toc-anchor-119"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_116" playOrder="116">
+        <navLabel>
+          <text>（4）同质性群体</text>
+        </navLabel>
+        <content src="Text/part0000_split_013.html#toc-anchor-120"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_117" playOrder="117">
+      <navLabel>
+        <text>第二章 被称为犯罪群体的群体</text>
+      </navLabel>
+      <content src="Text/part0000_split_014.html"/>
+      <navPoint class="chapter" id="num_118" playOrder="118">
+        <navLabel>
+          <text>（1）拒绝认罪的罪犯</text>
+        </navLabel>
+        <content src="Text/part0000_split_014.html#toc-anchor-121"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_119" playOrder="119">
+        <navLabel>
+          <text>（2）不平常的犯罪</text>
+        </navLabel>
+        <content src="Text/part0000_split_014.html#toc-anchor-122"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_120" playOrder="120">
+        <navLabel>
+          <text>（3）群体犯罪的历史</text>
+        </navLabel>
+        <content src="Text/part0000_split_014.html#toc-anchor-123"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_121" playOrder="121">
+        <navLabel>
+          <text>（4）犯罪群体的特征（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_014.html#toc-anchor-124"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_122" playOrder="122">
+        <navLabel>
+          <text>（5）犯罪群体的特征（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_014.html#toc-anchor-125"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_123" playOrder="123">
+      <navLabel>
+        <text>第三章 刑事案件的陪审团</text>
+      </navLabel>
+      <content src="Text/part0000_split_015.html"/>
+      <navPoint class="chapter" id="num_124" playOrder="124">
+        <navLabel>
+          <text>（1）陪审团的智力泯灭</text>
+        </navLabel>
+        <content src="Text/part0000_split_015.html#toc-anchor-126"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_125" playOrder="125">
+        <navLabel>
+          <text>（2）陪审团的坚定立场</text>
+        </navLabel>
+        <content src="Text/part0000_split_015.html#toc-anchor-127"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_126" playOrder="126">
+        <navLabel>
+          <text>（3）陪审团最痛恨的人</text>
+        </navLabel>
+        <content src="Text/part0000_split_015.html#toc-anchor-128"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_127" playOrder="127">
+        <navLabel>
+          <text>（4）陪审团最怜悯的人</text>
+        </navLabel>
+        <content src="Text/part0000_split_015.html#toc-anchor-129"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_128" playOrder="128">
+        <navLabel>
+          <text>（5）掌控陪审团的秘诀</text>
+        </navLabel>
+        <content src="Text/part0000_split_015.html#toc-anchor-130"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_129" playOrder="129">
+        <navLabel>
+          <text>（6）陪审团的人道色彩</text>
+        </navLabel>
+        <content src="Text/part0000_split_015.html#toc-anchor-131"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_130" playOrder="130">
+      <navLabel>
+        <text>第四章 选民群体</text>
+      </navLabel>
+      <content src="Text/part0000_split_016.html"/>
+      <navPoint class="chapter" id="num_131" playOrder="131">
+        <navLabel>
+          <text>（1）选民群体的特征</text>
+        </navLabel>
+        <content src="Text/part0000_split_016.html#toc-anchor-132"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_132" playOrder="132">
+        <navLabel>
+          <text>（2）如何在选举中取得成功</text>
+        </navLabel>
+        <content src="Text/part0000_split_016.html#toc-anchor-133"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_133" playOrder="133">
+        <navLabel>
+          <text>（3）用言语控制选民</text>
+        </navLabel>
+        <content src="Text/part0000_split_016.html#toc-anchor-134"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_134" playOrder="134">
+        <navLabel>
+          <text>（4）选民群体拒绝理性</text>
+        </navLabel>
+        <content src="Text/part0000_split_016.html#toc-anchor-135"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_135" playOrder="135">
+        <navLabel>
+          <text>（5）选民是被操纵的群体</text>
+        </navLabel>
+        <content src="Text/part0000_split_016.html#toc-anchor-136"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_136" playOrder="136">
+        <navLabel>
+          <text>（6）不可动摇的普选制度（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_016.html#toc-anchor-137"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_137" playOrder="137">
+        <navLabel>
+          <text>（7）不可动摇的普选制度（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_016.html#toc-anchor-138"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_138" playOrder="138">
+        <navLabel>
+          <text>（8）民族精神的深层作用</text>
+        </navLabel>
+        <content src="Text/part0000_split_016.html#toc-anchor-139"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_139" playOrder="139">
+      <navLabel>
+        <text>第五章 议会</text>
+      </navLabel>
+      <content src="Text/part0000_split_017.html"/>
+      <navPoint class="chapter" id="num_140" playOrder="140">
+        <navLabel>
+          <text>（1）没有明智的议会</text>
+        </navLabel>
+        <content src="Text/part0000_split_017.html#toc-anchor-140"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_141" playOrder="141">
+        <navLabel>
+          <text>（2）议会的特征</text>
+        </navLabel>
+        <content src="Text/part0000_split_017.html#toc-anchor-141"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_142" playOrder="142">
+        <navLabel>
+          <text>（3）议而不决的议会</text>
+        </navLabel>
+        <content src="Text/part0000_split_017.html#toc-anchor-142"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_143" playOrder="143">
+        <navLabel>
+          <text>（4）议会中领袖的影响力</text>
+        </navLabel>
+        <content src="Text/part0000_split_017.html#toc-anchor-143"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_144" playOrder="144">
+        <navLabel>
+          <text>（5）如何影响议会（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_017.html#toc-anchor-144"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_145" playOrder="145">
+        <navLabel>
+          <text>（6）如何影响议会（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_017.html#toc-anchor-145"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_146" playOrder="146">
+        <navLabel>
+          <text>（7）议会的名望崇拜</text>
+        </navLabel>
+        <content src="Text/part0000_split_017.html#toc-anchor-146"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_147" playOrder="147">
+        <navLabel>
+          <text>（8）游走在情感的两极</text>
+        </navLabel>
+        <content src="Text/part0000_split_017.html#toc-anchor-147"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_148" playOrder="148">
+        <navLabel>
+          <text>（9）议会的两大险情（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_017.html#toc-anchor-148"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_149" playOrder="149">
+        <navLabel>
+          <text>（10）议会的两大险情（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_017.html#toc-anchor-149"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="num_150" playOrder="150">
+      <navLabel>
+        <text>结束章 民族存亡的关头</text>
+      </navLabel>
+      <content src="Text/part0000_split_018.html"/>
+      <navPoint class="chapter" id="num_151" playOrder="151">
+        <navLabel>
+          <text>（1）历史的发展规律（上）</text>
+        </navLabel>
+        <content src="Text/part0000_split_018.html#toc-anchor-150"/>
+      </navPoint>
+      <navPoint class="chapter" id="num_152" playOrder="152">
+        <navLabel>
+          <text>（2）历史的发展规律（下）</text>
+        </navLabel>
+        <content src="Text/part0000_split_018.html#toc-anchor-151"/>
+      </navPoint>
+    </navPoint>
+  </navMap>
+</ncx>

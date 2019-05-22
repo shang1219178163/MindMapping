@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package version="2.0" unique-identifier="uuid_id" xmlns="http://www.idpf.org/2007/opf">
+  <metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:calibre="http://calibre.kovidgoyal.net/2009/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+    <dc:publisher>XZXCN</dc:publisher>
+    <meta name="calibre:title_sort" content="乌合之众:大众心理研究 (社会学经典名著)" />
+    <dc:language>zh</dc:language>
+    <dc:creator opf:file-as="古斯塔夫·勒宠" opf:role="aut">古斯塔夫·勒宠</dc:creator>
+    <meta name="calibre:timestamp" content="2013-08-21T16:29:33+00:00" />
+    <dc:title>乌合之众:大众心理研究 (社会学经典名著)</dc:title>
+    <meta name="cover" content="cover" />
+    <dc:date>2011-05-31T16:00:00+00:00</dc:date>
+    <dc:contributor opf:role="bkp">calibre (0.9.41) [http://calibre-ebook.com]</dc:contributor>
+    <dc:identifier opf:scheme="MOBI-ASIN">B008H0H9FO</dc:identifier>
+    <dc:identifier opf:scheme="uuid" id="uuid_id">29eb59c1-8e05-4842-b8a4-6e2148f4ffc8</dc:identifier>
+    <dc:identifier opf:scheme="calibre">29eb59c1-8e05-4842-b8a4-6e2148f4ffc8</dc:identifier>
+    <meta name="Sigil version" content="0.9.10" />
+    <dc:date opf:event="modification" xmlns:opf="http://www.idpf.org/2007/opf">2019-04-19</dc:date>
+  </metadata>
+  <manifest>
+    <item id="cover" href="Images/cover.jpeg" media-type="image/jpeg"/>
+    <item id="page_css" href="Styles/page_styles.css" media-type="text/css"/>
+    <item id="css" href="Styles/stylesheet.css" media-type="text/css"/>
+    <item id="id919" href="Text/part0000_split_000.html" media-type="application/xhtml+xml"/>
+    <item id="id918" href="Text/part0000_split_001.html" media-type="application/xhtml+xml"/>
+    <item id="id917" href="Text/part0000_split_002.html" media-type="application/xhtml+xml"/>
+    <item id="id916" href="Text/part0000_split_003.html" media-type="application/xhtml+xml"/>
+    <item id="id915" href="Text/part0000_split_004.html" media-type="application/xhtml+xml"/>
+    <item id="id914" href="Text/part0000_split_005.html" media-type="application/xhtml+xml"/>
+    <item id="id913" href="Text/part0000_split_006.html" media-type="application/xhtml+xml"/>
+    <item id="id912" href="Text/part0000_split_007.html" media-type="application/xhtml+xml"/>
+    <item id="id911" href="Text/part0000_split_008.html" media-type="application/xhtml+xml"/>
+    <item id="id910" href="Text/part0000_split_009.html" media-type="application/xhtml+xml"/>
+    <item id="id99" href="Text/part0000_split_010.html" media-type="application/xhtml+xml"/>
+    <item id="id98" href="Text/part0000_split_011.html" media-type="application/xhtml+xml"/>
+    <item id="id97" href="Text/part0000_split_012.html" media-type="application/xhtml+xml"/>
+    <item id="id96" href="Text/part0000_split_013.html" media-type="application/xhtml+xml"/>
+    <item id="id95" href="Text/part0000_split_014.html" media-type="application/xhtml+xml"/>
+    <item id="id94" href="Text/part0000_split_015.html" media-type="application/xhtml+xml"/>
+    <item id="id93" href="Text/part0000_split_016.html" media-type="application/xhtml+xml"/>
+    <item id="id92" href="Text/part0000_split_017.html" media-type="application/xhtml+xml"/>
+    <item id="id91" href="Text/part0000_split_018.html" media-type="application/xhtml+xml"/>
+    <item id="titlepage" href="Text/titlepage.xhtml" media-type="application/xhtml+xml"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="titlepage"/>
+    <itemref idref="id919"/>
+    <itemref idref="id918"/>
+    <itemref idref="id917"/>
+    <itemref idref="id916"/>
+    <itemref idref="id915"/>
+    <itemref idref="id914"/>
+    <itemref idref="id913"/>
+    <itemref idref="id912"/>
+    <itemref idref="id911"/>
+    <itemref idref="id910"/>
+    <itemref idref="id99"/>
+    <itemref idref="id98"/>
+    <itemref idref="id97"/>
+    <itemref idref="id96"/>
+    <itemref idref="id95"/>
+    <itemref idref="id94"/>
+    <itemref idref="id93"/>
+    <itemref idref="id92"/>
+    <itemref idref="id91"/>
+  </spine>
+  <guide>
+    <reference type="toc" title="Table of Contents" href="Text/part0000_split_001.html#toc"/>
+    <reference type="cover" title="Cover" href="Text/titlepage.xhtml"/>
+    <reference type="text" title="start" href="Text/part0000_split_002.html#toc-anchor-1"/>
+  </guide>
+</package>
