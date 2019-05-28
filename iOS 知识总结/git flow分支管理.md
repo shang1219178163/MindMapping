@@ -7,9 +7,9 @@
 * 三种临时分支
 
 ```
-    1.功能(feature)分支：这个分支主要是用来开发一个新的功能，一旦开发完成，我们合并回Develop分支进入下一个Release。
-    2.预发布(release)分支：当你需要发布一个新Release的时候，我们基于Develop分支创建一个Release分支，完成Release后，我们合并到Master和Develop分支。
-    3.修补bug(hotfix)分支：当我们在Production发现新的Bug时候，我们需要创建一个Hotfix, 完成Hotfix后，我们合并回Master和Develop分支，所以Hotfix的改动会进入下一个Release。
+    1.功能分支(feature)：这个分支主要是用来开发一个新的功能，一旦开发完成，我们合并回Develop分支进入下一个Release。
+    2.预发布分支(release)：当你需要发布一个新Release的时候，我们基于Develop分支创建一个Release分支，完成Release后，我们合并到Master和Develop分支。
+    3.修补bug分支(hotfix)：当我们在Production发现新的Bug时候，我们需要创建一个Hotfix, 完成Hotfix后，我们合并回Master和Develop分支，所以Hotfix的改动会进入下一个Release。
     这三种分支都属于临时性需要，使用完以后，应该删除，使得代码库的常设分支始终只有master和develop。
 
 ```
