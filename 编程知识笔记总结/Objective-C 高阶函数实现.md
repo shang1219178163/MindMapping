@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSArray *)filter:(BOOL(^)(NSObject *obj, NSUInteger idx))handler;
 
+/**
+ reduce 高阶函数(求和,累加等)
+ */
+- (NSNumber *)reduce:(NSNumber *(^)(NSNumber *num1, NSNumber *num2))handler;
 
 @implementation NSArray (Helper)
 
@@ -41,7 +45,22 @@ NS_ASSUME_NONNULL_BEGIN
     return marr.copy;
 }
 
-🌰🌰🌰🌰：
+- (NSNumber *)reduce:(NSNumber *(^)(NSNumber *num1, NSNumber *num2))handler{
+    __block CGFloat result = 0.0;
+    [self enumerateObjectsUsingBlock:^(NSNumber *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx < self.count - 1) {
+            NSNumber *num1 = idx == 0 ? obj : @(result);
+            NSNumber *num2 = self[idx+1];
+            if (handler) {
+                result = handler(num1, num2).floatValue;
+//                DDLog(@"handler_%@_%@_%@_%@",num1, num2, handler(num1, num2), @(result));
+            }
+        }
+    }];
+    return @(result);
+}
+
+🌰🌰🌰：
     1. 截取子字符串
     NSArray *list = @[@"1111", @"2222", @"3333", @"4444"];
     NSArray *listOne = [list map:^NSObject * _Nonnull(NSObject * _Nonnull obj, NSUInteger idx) {
@@ -81,6 +100,18 @@ NS_ASSUME_NONNULL_BEGIN
         return (![(NSString *)obj isEqualToString:@"222"]);
     }];
     //  list2_(111,333,444,)
+    
+    6. array = @[@1, @3, @5, @7, @9];
+    NSNumber * result = [array reduce:^NSNumber *(NSNumber * _Nonnull num1, NSNumber * _Nonnull num2) {
+        return @(num1.floatValue * 10 + num2.floatValue);
+    }];
+   // result_13579
+    
+    7.NSNumber * result1 = [array reduce:^NSNumber *(NSNumber * _Nonnull num1, NSNumber * _Nonnull num2) {
+        return @(num1.floatValue + num2.floatValue);
+    }];
+    // result1_25
+    
 ```
 
 [Swift 高阶函数自定义](https://www.jianshu.com/p/8ebc559c9041)
