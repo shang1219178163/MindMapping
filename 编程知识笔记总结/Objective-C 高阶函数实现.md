@@ -110,8 +110,78 @@ NS_ASSUME_NONNULL_BEGIN
     7.NSNumber * result1 = [array reduce:^NSNumber *(NSNumber * _Nonnull num1, NSNumber * _Nonnull num2) {
         return @(num1.floatValue + num2.floatValue);
     }];
-    // result1_25
-    
+    // result1_25    
 ```
+```
+#import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+@interface NSDictionary(Helper)
+
+- (NSDictionary<NSObject<NSCopying> *, NSObject *> *)map:(NSObject *(^)(NSObject<NSCopying> *key, NSObject *obj))handler;
+
+- (nullable NSDictionary<NSObject<NSCopying> *, NSObject *> *)filter:(BOOL(^)(NSObject<NSCopying> *key, NSObject *obj))handler;
+
+@end
+
+@implementation NSDictionary(Tmp)
+
+- (NSDictionary<NSObject<NSCopying> *, NSObject *> *)map:(NSObject *(^)(NSObject<NSCopying> *key, NSObject *obj))handler{
+    __block NSMutableDictionary *mdic = [NSMutableDictionary dictionary];
+    [self enumerateKeysAndObjectsUsingBlock:^(NSObject<NSCopying> * _Nonnull key, NSObject * _Nonnull obj, BOOL * _Nonnull stop) {
+        NSObject *blockResult = handler(key, obj) ? : obj;
+        [mdic setObject:blockResult forKey:key];
+    }];
+    return mdic.copy;
+}
+
+- (nullable NSDictionary<NSObject<NSCopying> *, NSObject *> *)filter:(BOOL(^)(NSObject<NSCopying> *key, NSObject *obj))handler{
+    __block NSMutableDictionary *mdic = [NSMutableDictionary dictionary];
+     [self enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+         if (handler && handler(key, obj) == true) {
+             [mdic setObject:obj forKey:key];
+         }
+     }];
+    return mdic.copy;
+}
+
+🌰🌰🌰：
+ NSDictionary *dic = @{
+                          @"1": @"111",
+                          @"2": @"222",
+                          @"3": @"222",
+                          @"4": @"444",
+                          };
+    1.对 value 加工
+    NSDictionary *dic1 = [dic map:^NSObject * _Nonnull(NSObject<NSCopying> * _Nonnull key, NSObject * _Nonnull obj) {
+        return [NSString stringWithFormat:@"%@_%@", key, obj];
+    }];
+    DDLog(@"dic1_%@",dic1);
+//    2019-08-26 18:54:36.503000+0800【line -303】-[TestViewController funtionMoreDic] dic1_{
+//        3 = 3_222;
+//        1 = 1_111;
+//        4 = 4_444;
+//        2 = 2_222;
+//    }
+
+    2. 过滤键等于@“2”的子字典
+    NSDictionary *dic2 = [dic filter:^BOOL(NSObject<NSCopying> * _Nonnull key, NSObject * _Nonnull obj) {
+        return [(NSString *)key isEqualToString:@"2"];
+    }];
+    DDLog(@"dic2_%@",dic2);
+//    2019-08-26 18:54:36.504000+0800【line -304】-[TestViewController funtionMoreDic] dic2_{
+//        2 = 222;
+//    }
+
+    3. 过滤值为@“222” 的子字典
+    NSDictionary *dic3 = [dic filter:^BOOL(NSObject<NSCopying> * _Nonnull key, NSObject * _Nonnull obj) {
+        return [(NSString *)obj isEqualToString:@"222"];
+    }];
+    DDLog(@"dic3_%@",dic3);
+//    2019-08-26 18:54:36.504000+0800【line -305】-[TestViewController funtionMoreDic] dic3_{
+//        3 = 222;
+//        2 = 222;
+//    }
+```
 [Swift 高阶函数自定义](https://www.jianshu.com/p/8ebc559c9041)
