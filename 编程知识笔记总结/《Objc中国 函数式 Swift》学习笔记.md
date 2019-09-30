@@ -1,6 +1,9 @@
 
 # Objc中国 - 函数式 Swift
 
+![](https://github.com/shang1219178163/MindMapping/blob/master/Resource/Objc%E4%B8%AD%E5%9B%BD%20%E5%87%BD%E6%95%B0%E5%BC%8F%20Swift.jpg?raw=true)
+
+
 ## 第一节 引言
 
 ```
