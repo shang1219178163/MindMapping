@@ -767,4 +767,49 @@ class Pirate {
         /* ... */
     }
 }
+```
+##根据副作用命名功能和方法
+```
+那些没有副作用应为名词短语，例如x.distance(to: y)，i.successor()。
 
+那些有副作用应该读作必要的动词短语，例如print(x)，x.sort()，x.append(y)。
+
+* 一致地命名突变/非突变方法对。变异方法通常会具有具有类似语义的非变异变体，但它会返回新值，而不是就地更新实例。
+
+* 当用动词自然地描述操作时，请将动词的祈使语用于变异方法，并应用“ ed”或“ ing”后缀来命名其非变异对应词。
+
+变异	非变异
+x.sort()	z = x.sorted()
+x.append(y)	z = x.appending(y)
+喜欢用动词的过去来命名nonmutating变形 词（通常是追加“ED”）：
+
+/// Reverses `self` in-place.
+mutating func reverse()
+
+/// Returns a reversed copy of `self`.
+func reversed() -> Self
+...
+x.reverse()
+let y = x.reversed()
+当添加“ ed”不是语法上的（因为动词有直接宾语）时，请通过在动词的现在分词后附加“ ing”来命名非变异变体 。
+
+/// Strips all the newlines from `self`
+mutating func stripNewlines()
+
+/// Returns a copy of `self` with all the newlines stripped.
+func strippingNewlines() -> String
+...
+s.stripNewlines()
+let oneLine = t.strippingNewlines()
+* 当操作自然由名词描述时，请将该名词用于非变异方法，并使用“ form”前缀来命名其变异对应物。
+
+非变异	变异
+x = y.union(z)	y.formUnion(z)
+j = c.successor(i)	c.formSuccessor(&i)
+布尔方法和属性用途应为有关接收器断言时使用的nonmutating，例如x.isEmpty， line1.intersects(line2)。
+
+* 描述某些事物的协议应读作名词（例如Collection）。
+
+* 描述一个协议能力 应该使用后缀命名able，ible或ing （例如Equatable，ProgressReporting）。
+
+* 其他类型，属性，变量和常量的名称应读作名词。
