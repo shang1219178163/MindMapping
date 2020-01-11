@@ -2,7 +2,8 @@
     通过 dynamic loader 动态加载 
 
 ###  简述 Category 的实现原理
-    Objective-C 通过 Runtime 运行时来实现动态语言特性，所有的类和对象，在 Runtime 中都是用结构体来表示的，Category 在 Runtime 中是用结构体 category_t 来表示的，下面是结构体 category_t 具体表示：
+    Objective-C 通过 Runtime 运行时来实现动态语言特性，所有的类和对象，在 Runtime 中都是用结构体来表示的，
+    Category 在 Runtime 中是用结构体 category_t 来表示的，下面是结构体 category_t 具体表示：
 
 ```
 typedef struct category_t {
