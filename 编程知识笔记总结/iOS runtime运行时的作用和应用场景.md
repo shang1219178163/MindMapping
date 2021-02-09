@@ -129,3 +129,8 @@ iOS runtime 应用场景总结
     free(protocolList);
 }
 ```
+场景 9：动态获取 class，selector以及创建动态视图，极大地提高代码复用率
+```
+NSClassFromString(@"MyClass");
+NSSelectorFromString(@"showShareActionSheet");
+```
